@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,400&family=Open+Sans:wght@300&display=swap'); 
+
+:root {
+    --purple-light: #7e35e4;
+    --purple-dark: #54267d;
+    --purple-lighter: #9164e6; 
+    --withe: #ffffff;
+    --gray: #f9f7f6 ; 
+    --black: #000000; 
+    --red:#E03D70; 
+    --dark-grey: #b9c4bd; 
+
+    --font-size-xs: 8.5px;
+    --font-size-s: 14.5px; 
+    --font-size-m: 20.5px;
+    --font-size-l: 30.67px;
+    --font-size-xl: 55.2px;
+    --font-size-xxl: 78.9px;
+
+    --font-family-montserrat: "Montserrat", "sans-serif";
+}
+
+body{
+    color: var(--withe); 
+    font-family: var(--font-family-montserrat); 
+}
+.dad-checkout{
+    border-radius: 30px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px var(--dark-grey);
+    width: 620px; 
+    position: relative; 
+    left: 35%;
+    background: var(--withe); 
+}
+
+.container-checkout{
+    background: transparent;
+}
+
+.titulo-checkout{
+    display: flex;
+    justify-content: center;
+    color: var(--black); 
+    height: 50px;
+    align-items: center;
+}
+.titulo-checkout h4{
+    font-weight: bold;
+    font-size: var(--font-size-l); 
+}
+
+form{
+    display: block;
+    align-items: center;
+    padding: 13px; 
+}
+
+form input{
+    display: flex;
+    position: relative;
+    width: 300px;
+    height: 25px;
+    border-radius: 30px;
+    border: none; 
+    outline: none;
+
+    box-shadow: 0 0 5px var(--dark-grey);
+}
+
+
+.btn-registro{ 
+    background: var(--withe);
+    color: var(--black);
+    border: none; 
+    width: 130px;
+    height: 40px;
+    border-radius: 30px; 
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    position: relative;
+    left: 110px;
+    bottom: 10px; 
+    cursor: pointer; 
+}
+
+label {
+    color: var(--black);
+    gap: 5px; 
+    display: grid; 
+}
+
+.btn-registro{
+    background: var(--purple-light); 
+}
+
+.btn-registro:hover{
+    color: var(--withe);
+    transition: .4s; 
+    box-shadow: 0 0 10px var(--black); 
+}
+
+.btn-registro:active{
+    background: var(--purple-dark);
+    transition: .1s;
+}  
+
+.tipo-persona input{
+    display: flex; 
+    width: 20px; 
+    box-shadow: none;   
+}
+
+label i{
+    position: relative;
+    right: 35px;
+    top: 53px;
+    color: var(--purple-light); 
+}
+/*Clases dinamicas desde js*/
+
+.tipo-persona i{
+    top: 31px; 
+}
+.invalid{
+    border: solid 1px var(--red); 
+    box-shadow: 0 0 10px var(--red); 
+}
+
+.error{
+    color: var(--red); 
+    display: block; 
+}
+
+
+@media screen and(max-width: 1380px){ 
+    .dad-checkout{
+        width: 640px;
+        left: 50%;
+    }
+}
+
+@media screen and(min-width: 1280px) {
+
+    .dad-checkout{
+        width: auto;
+        left: auto;
+    }
+    
+}
+
+@media screen and (max-width: 885px) {
+    .dad-checkout{
+        width: auto;
+        left: auto;
+    }
+}
+
+@media screen and (max-width: 460px){
+
+    .dad-checkout {
+        width: auto;
+        left: auto; 
+    } 
+}

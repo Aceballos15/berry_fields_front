@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="sweetalert2.min.css">
+    <link rel="stylesheet" href="/CSS/registro.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+
+    <div class="dad-checkout">
+        <div class="container-checkout">
+            <div class="titulo-checkout">
+                <H4>CHECKOUT</H4> 
+            </div>
+
+            <form action="">
+                <label>
+                    <i class="material-icons">person</i>
+                    <em>Nombre</em> 
+                    <input type="text" name="Nombre" id="nombre">
+                    <span></span>
+                </label>
+       
+
+                <label>
+                    <i class="material-icons">person</i>
+                    <em>Apellidos </em>
+                    <input type="text" name="Apellido" id="apellido">
+                    <span></span>
+                </label>
+           
+
+                <label>
+                    <i class="material-symbols-outlined">universal_currency</i> 
+                    <em>Tipo De Documento </em>
+                    <input type="text" name="Tipo-Documento" id="tipo-doc">
+                    <span></span>
+                </label>
+           
+
+                <label>
+                    <i class="material-icons">tag</i> 
+                    <em>Cedula </em>
+                    <input type="number" name="Cedula" id="cedula">
+                    <span></span>
+                </label>
+           
+
+                <label>
+                    <i class="material-icons">phone</i> 
+                    <em>Celular </em>
+                    <input type="tel" class="celular" name="Celular" id="celular">
+                    <span></span>
+                </label>
+            
+
+                <label>
+                    <i class="material-icons">mail</i> 
+                    <em>Correo </em>
+                    <input type="email" name="Correo" id="correo">
+                    <span></span>
+                </label>
+
+             
+                <label>
+                    <i class="material-icons">location_city</i> 
+                    <em>Municipio </em>
+                    <input type="text" name="Municipio" id="municipio"> 
+                    <span></span>
+                </label>
+
+                  
+                <label>
+                    <i class="material-icons">public</i> 
+                    <em class="departamento">Departamento </em>  
+                    <input type="text" name="Departamento" id="departamento"> 
+                    <span></span>
+                </label>
+
+             
+                <label>
+                    <i class="material-symbols-outlined">calendar_month</i>  
+                    <em>Fecha de nacimiento </em>  
+                    <input type="date" name="fecha_nacimiento" id="fecha_nacimiento"> 
+                    <span></span>
+                </label>
+
+
+                <label>
+                    <i class="material-symbols-outlined">home_pin</i> 
+                    <em>Direccion </em> 
+                    <input type="text" name="Direccion" id="direccion"> 
+                    <span></span>
+                </label>
+            </form>
+            
+            <form action="" class="tipo-persona"> 
+                <label>
+                    <i class="material-symbols-outlined">badge</i>
+                    
+                    <span></span> 
+                    <em>Persona Natural </em> 
+                    <input type="radio" name="tipo-persona" value="persona natural - regimen simplificado" class="natural"> 
+                    
+                    <em>Persona Juridica</em>
+                    <input type="radio" name="tipo-persona" value="persona juridica - regimen comun" class="juridica">  
+                </label>
+            </form>
+
+            <div class="container-btn">
+                <button class="btn-registro" type="">Registrarse</button> 
+            </div> 
+
+        </div>
+
+    </div>  
+    
+
+    <script src="/js/registro.js"></script> 
+    <script src="/js/boton-registro.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

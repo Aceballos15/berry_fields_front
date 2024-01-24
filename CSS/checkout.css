@@ -1,0 +1,223 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;1,400&family=Open+Sans:wght@300&display=swap'); 
+
+:root {
+    --purple-light: #7e35e4;
+    --purple-dark: #54267d;
+    --withe: #ffffff;
+    --gray: #D6DBDF ; 
+    --black: #000000; 
+    --red: #DC3731; 
+    --aquaMarine: #01D1A0; 
+    --blue: #172E58; 
+    --orange : #FE7E00; 
+    --yellow: #FED700; 
+    --beige: #fef1e1; 
+
+    --font-size-xs: 8.5px;
+    --font-size-s: 14.5px; 
+    --font-size-m: 20.5px;
+    --font-size-l: 41.67;
+    --font-size-xl: 55.2px;
+    --font-size-xxl: 78.9px;
+
+    --font-family-montserrat: "Montserrat", "sans-serif";
+}
+
+body{
+    background: var(--purple-dark);
+}
+
+.hidden-checkout{
+    display: none; 
+}
+.dad-checkout{
+    background: var(--withe);
+    font-family: var(--font-family-montserrat);
+    margin: auto;
+    height: 392px;
+    width: 445px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgb(130, 130, 130);
+    border-radius: 10px;
+    text-align: center;
+    position: absolute;
+    top: 119px;
+    right: 675px;
+    z-index: 1;
+}
+
+.container-checkout{
+    position: relative;
+    top: 200px; 
+}
+.titulo-checkout{
+    font-size: var(--font-size-s) ;
+    margin-bottom: .5rem;
+    position: relative;
+    bottom: 150px;
+}
+.titulo-checkout h4{
+    font-weight: bold; 
+}
+
+.boton-cerrar{ 
+    display: flex;
+    justify-content: end;
+    position: relative;
+    bottom: 186px;
+    width: 25px;
+    left: 398px;
+}
+.boton-cerrar button{
+    border-radius: 40px;
+    border: none;
+    width: 25px;
+    height: 25px; 
+    background: var(--purple-light);
+    color: var(--withe); 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.boton-cerrar button:hover{
+    background: var(--purple-dark);
+    transition: .4s; 
+}
+.container-contenido-checkout{
+    margin-top: var(--font-size-s);
+    display: grid; 
+    gap: 60px; 
+    position: relative;
+    bottom: -40px;
+}
+.contenido-checkout{
+    position: relative;
+    color: var(--black) 
+}
+
+.form-input{
+    width: 100%;
+    background: none; 
+    color: var(--black); 
+    font-size: var(--font-size-s);
+    padding: .6em .3em;
+    border: none;
+    outline: none; 
+    /* border-bottom: 1px solid var(--black);  */
+    font-family: var(--font-family-montserrat); 
+    display: flex;
+}
+
+.form-label{
+    color: var(--black); 
+    position: absolute;
+    top: -24px;
+    left: 2px;
+    transform: translateY(10px);
+    transition: transform .4s .3s;
+}
+
+.form-submit{
+    background: var(--blue);
+    color: var(--withe);
+    font-family: var(--font-family-montserrat);
+    padding: .8em;
+    border-radius: 40px;
+    border: none; 
+    position: relative;
+    top: 35px;  
+}
+
+.form-submit:hover{
+    background: var(--aquaMarine);
+    transition: .4s; 
+}
+
+.form-line{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: var(--blue);
+    /* transform: scale(0);
+    transform: left bottom; */
+    transition: transform .4s; 
+}
+
+.form-input:focus ~ .form-line, 
+.form-input:not(:placeholder-shown) ~.form-line{
+    transform: scale(1);
+}
+
+/*Responsive*/
+
+@media screen and (max-width:1380px ){
+    .dad-checkout{
+        height: 370px; 
+        bottom: 760px;
+    }
+    .container-checkout{
+        top: 113px;
+    }
+    .titulo-checkout{
+        bottom: 100px;
+    }
+    .boton-cerrar{ 
+        top: -138px;
+    }
+    .container-contenido-checkout{
+        position: relative;
+        top: 35px; 
+        gap: 45px;
+    }
+    .form-submit{
+        top: 23px;
+    }
+    .dad-checkout{
+        right: 456px; 
+        top: 345px; 
+    }
+}
+
+@media screen and (max-width: 885px){
+    .dad-checkout{
+        bottom: 885px;
+        height: 978px;
+    }
+    .form-submit{
+        top: 45px;
+    }
+    .container-contenido-checkout{
+        position: relative;
+        bottom: 0px; 
+        gap: 70px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .dad-checkout{
+        top: 403px;
+        height: 333px;
+        left: 33px;
+        width: 335px; 
+    }
+    .container-checkout{
+        top: 90px;
+    }
+    .container-contenido-checkout{
+        gap: 45px;  
+        bottom: -26px;  
+    }
+    .titulo-checkout{
+        bottom: 90px; 
+    }
+    .boton-cerrar{
+        top: -123px; 
+    }
+    .form-submit{
+        top: 2px;
+    }
+}
