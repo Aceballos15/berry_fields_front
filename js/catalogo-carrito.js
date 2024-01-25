@@ -70,7 +70,7 @@ const addCartToMemory = () =>{
 } 
 
 
-//Almacenar la cantidad para 
+//Almacenar la cantidad para cantidad
 let Quantity = [] 
 
 //Alamcenar el precio total 
@@ -178,8 +178,8 @@ listCartHTML.addEventListener('click', (event) =>{
         if (positionClick.classList.contains('minus')|| positionClick.classList.contains('plus')|| positionClick.classList.contains('icon-trash')){
             
             //console.log(Quantity)
-            const btnPagar = document.querySelector('.pagar')
-            Quantity == 1?btnPagar.disabled = true: btnPagar.disabled = false; 
+            // const btnPagar = document.querySelector('.pagar')
+            // Quantity == 1?btnPagar.disabled = true: btnPagar.disabled = false;  
             
             const product_id = cardElement.dataset.id; 
             let type = 'minus'

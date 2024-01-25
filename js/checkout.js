@@ -103,7 +103,7 @@ let IvaTotal = 0
 let SubTOTAL = 0 
 let id = []
 
-btnGuadarCheckout.addEventListener('click', ()=>{
+btnCart.addEventListener('click', ()=>{
     carts.forEach(product =>{
 
         //console.log(product) 
@@ -159,6 +159,8 @@ btnGuadarCheckout.addEventListener('click', ()=>{
         //Declaracion a detalle de todo el objeto de productos 
         Detalle = products  
 
+        // console.log(Total) 
+
     }) 
 
     if(chechkout.length == 1){
@@ -213,11 +215,11 @@ btnGuadarCheckout.addEventListener('click', ()=>{
         .then(response => response.json())
         .then(data =>{
             console.log('Respuesta', data)
-            Swal.fire({ 
-                icon: "success",
-                title: "Excelente",
-                text: "Tu pedido fue recibido", 
-            }); 
+            // Swal.fire({ 
+            //     icon: "success",
+            //     title: "Excelente",
+            //     text: "Tu pedido fue recibido", 
+            // }); 
 
             // const reiniciar = (()=>{
             //     location.reload();
@@ -229,12 +231,12 @@ btnGuadarCheckout.addEventListener('click', ()=>{
 
         })  
     }else{
-        Swal.fire({ 
-            icon: "error", 
-            title: "Lo sentimos...",
-            text: "No estas en nuestra base de datos",
-            footer: '<a href="/HTML/registro.html">Registrate</a>' 
-        }); 
+        // Swal.fire({ 
+        //     icon: "error", 
+        //     title: "Lo sentimos...",
+        //     text: "No estas en nuestra base de datos",
+        //     footer: '<a href="/HTML/registro.html">Registrate</a>' 
+        // }); 
     }
     
 })
