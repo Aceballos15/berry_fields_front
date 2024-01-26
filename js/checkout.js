@@ -23,7 +23,7 @@ const Celular = document.querySelector('.celular')
 const Correo = document.querySelector('.correo') 
 const Departamento = document.querySelector('.departamento')
 const Municipio = document.querySelector('.municipio')
-const Direccion = document.querySelector('.direccion')
+const Direccion = document.querySelector('#direccion')
 
 let ID = []
 let subTotal = []
@@ -36,62 +36,163 @@ let Total = 0
 let cedulaCheckout = []
 let products = []
 
+let totalWompi = 0 
+
+const wompi = ()=>{
+
+    const btnClose = document.querySelector('.btn-cierre-checkout')  
+
+    
+    let DATA = []
+    
+    carts.forEach(price =>{
+        const precio = price.price * price.quantity
+        
+        totalWompi = totalWompi + precio; 
+        
+    })
+    
+    btnClose.addEventListener('click', ()=>{
+        containerCheckout.classList.toggle('hidden-ckeckout') 
+
+        totalWompi = 0
+       
+    })
+
+    const total = {
+        amount: totalWompi 
+    }
+
+    const post = {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+        },
+        body: JSON.stringify(total) 
+    }
+
+    //console.log(post) 
+
+    try{
+        const URL_API = "https://f307-190-0-247-116.ngrok-free.app/api/Signature"
+    
+        fetch(URL_API, post)
+        .then(response => response.json())
+        .then(data =>{
+            
+            DATA = data; 
+
+            DATA.forEach(datos =>{
+                let pagar = document.querySelector('.container-btnWompi')  
+                
+                let pay = document.createElement('div')
+                pay.classList.add('wompi') 
+            
+                pay.innerHTML= `
+                
+                <div>   
+                    <form action="https://checkout.wompi.co/p/" method="GET"> 
+                    <input type="hidden" name="public-key" class="key" value="${datos.public_key}" />  
+                    <input type="hidden" name="currency" class="currency" value="${datos.currency}" />
+                    <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
+                    <input type="hidden" name="reference" class="reference" value="${datos.reference}" /> 
+                    <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>  
+                    
+                    <button class="btnWompi" id="pagar" type="submit"> PAGAR </button> 
+                    
+                    </form>
+                <div> 
+                `
+                pagar.appendChild(pay) 
+            })
+            
+        })
+        .catch(error => console.log(error))
+        
+    }
+    catch(error){
+        console.error(error) 
+    }
+
+}
+
 //Funcion para mostrar en el checkout 
 const check = ()=>{
-    if(chechkout.length === 1){
-        chechkout.forEach(i =>{
-            //Direccion del cliente 
-            Direccion.innerText = `${i.Direccion}` 
+    setTimeout(()=>{
+        if(chechkout.length === 1){
+            chechkout.forEach(i =>{
+                //Direccion del cliente 
+                Direccion.innerText = `${i.Direccion}` 
+                
+                ID = i.ID 
+    
+                //Cedula 
+                cedulaCheckout = i.Documento  
+    
+                //Guardar info de cada valor  
+    
+                wompi();         
+    
+            });  
+        }
+        else{
             
-            ID = i.ID 
+            try{
+                Direccion.innerText = ` ` 
+                Swal.fire({ 
+                    icon: "error", 
+                    title: "Lo sentimos...",
+                    text: "No estas en nuestra base de datos",
+                    footer: '<a href="/HTML/registro.html">Registrate</a>' 
+                }); 
 
-            //Cedula 
-            cedulaCheckout = i.Documento  
+            }
+            catch(error){
+                console.error(error) 
+            }
 
-            //Guardar info de cada valor  
-
-        });  
-    }
-    else{
-        Direccion.innerText = ` ` 
-    }
+            
+    
+        }
+    },3000)
 }; 
 
 
 //Constante para almacenar la info del input 
-const inputCedula = document.querySelector('.cedula')
+const inputCedula = document.querySelector('#cedula')
 
 let Doc= []
 
 //Se agrego un evento a la constante 
 
-// inputCedula.addEventListener('keyup', (e)=>{
-//     //variable para obtener el valor 
-//     const cedula = e.target.value
+inputCedula.addEventListener('keyup', (e)=>{
+    //variable para obtener el valor 
+    const cedula = e.target.value
     
-//     Doc = cedula 
+    Doc = cedula 
     
-//     //console.log(Doc)  
-//     //API con parametro de busqueda en cedula 
-//     URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`   
+    //console.log(Doc)  
+    //API con parametro de busqueda en cedula 
+    URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
 
-//     //Funcion para traer la info 
-//     const initCheckout = ()=>{
-//         fetch(URL_API_Reporte_Clientes)
-//         .then(response => response.json())
-//         .then(data =>{
-//             chechkout = data; 
-//             //console.log(data)  
+    //Funcion para traer la info 
+    const initCheckout = ()=>{
+        fetch(URL_API_Reporte_Clientes)
+        .then(response => response.json())
+        .then(data =>{
+            chechkout = data; 
+            //console.log(data)  
             
-//             //Funcion para mostrar en el checkout
-//             check(); 
+            //Funcion para mostrar en el checkout
 
-//         }) 
-//         .catch(error =>console.log(error))
+            check(); 
+        }) 
+        .catch(error =>console.log(error))
         
-//     };     
-//     initCheckout(); 
-// }); 
+    };     
+    initCheckout(); 
+}); 
 
 //Condicion cuando no traiga info de la API 
 
@@ -102,141 +203,3 @@ const btnGuadarCheckout = document.querySelector('.form-submit')
 let IvaTotal = 0
 let SubTOTAL = 0 
 let id = []
-
-// btnGuadarCheckout.addEventListener('click', ()=>{ 
-//     carts.forEach(product =>{
-
-//         //console.log(product) 
-        
-//         //Iva de cada producto 
-//         const iva = product.price *0.19 
-        
-//         const ivatotal = iva * product.quantity
-        
-//         ivaTotal = Math.floor(ivatotal)
-        
-//         //Subtotal de los productos 
-//         const subtotal = product.price - ivatotal
-        
-//         subTotal  = Math.ceil(subtotal) 
-
-//         const total =  product.price * product.quantity
-
-//         //Declaracion para el total de la factura 
-//         let Iva = 0
-
-//         DetalleTotal = total 
-
-//         Total = Total += total 
-
-//         Iva = Total * 0.19 
-
-//         IvaTotal = Math.ceil(Iva) 
-
-//         SubTOTAL = Total - IvaTotal 
-
-//         // console.log(IvaTotal) 
-
-//         //id de cada producto
-//         id = product.product_id
-
-//         //cambio  de precio (str) a (int)
-
-//         const precioProduct = product.price *1 
-
-//         let new_products = { 
-//             Producto: id,
-//             Precio: precioProduct,
-//             Total : DetalleTotal, 
-//             Cantidad : product.quantity, 
-//             IVA: 0, 
-//             Utilidad: 0,
-//             Cargo_por_venta: 0, 
-//             Asesor: "1889220000132110360"
-//         } 
-
-//         products.push(new_products); 
-//         //Declaracion a detalle de todo el objeto de productos 
-//         Detalle = products  
-
-//         // console.log(Total) 
-
-//     }) 
-
-//     if(chechkout.length == 1){
-//         const jsonCliente =  { 
-//             Fecha : fechaHoy, 
-//             Clientes: ID,
-//             Detalle: Detalle, 
-//             Estado: "Pendiente", 
-//             Total: Total,
-//             IVA_total: 0,
-//             Subtotal : Total 
-//         } 
-
-//         const factura = {
-//             Cliente : ID, 
-//             Zona: "1889220000130974457", 
-//             Tipo_Factura: "Credito", 
-//             Aseso: "1889220000132110360", 
-//             Financieras: "1889220000132718855", 
-//             Bodega: "1889220000131977652", 
-//             Redes2 : "No", 
-//             Fecha: fechaHoy, 
-//             Vendedor: "1889220000131684707", 
-//             Subtotal : Total, 
-//             Total: Total, 
-//             Iva_Total: 0, 
-//             RT_Pago_Digital: 0, 
-//             Otras_Deducciones: 0, 
-//             Observacion: " ", 
-//             Cargo_por_ventas: 0, 
-//             Rete_Fuente: 0, 
-//             Rete_ICA: 0, 
-//             Rete_IVA: 0, 
-//             Envio: 0, 
-//             Item: products
-//         }
-
-//         const envioCkeckout = {
-//             method : 'POST', 
-//             headers : {
-//                 'Content-Type' : 'application/json'
-//             }, 
-//             body: JSON.stringify(factura)    
-//         }
-
-
-
-//         //API para mandar factura  
-//         const URL_API_FACTURACION = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Remision" 
-        
-//         fetch(URL_API_FACTURACION, envioCkeckout) 
-//         .then(response => response.json())
-//         .then(data =>{
-//             console.log('Respuesta', data)
-//             // Swal.fire({ 
-//             //     icon: "success",
-//             //     title: "Excelente",
-//             //     text: "Tu pedido fue recibido", 
-//             // }); 
-
-//             // const reiniciar = (()=>{
-//             //     location.reload();
-//             // })  
-
-//             // setTimeout(()=>{
-//             //     reiniciar() 
-//             // }, 4000)
-
-//         })  
-//     }else{
-//         // Swal.fire({ 
-//         //     icon: "error", 
-//         //     title: "Lo sentimos...",
-//         //     text: "No estas en nuestra base de datos",
-//         //     footer: '<a href="/HTML/registro.html">Registrate</a>' 
-//         // }); 
-//     }
-    
-// })

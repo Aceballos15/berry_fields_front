@@ -17,6 +17,7 @@ const containerCheckout = document.querySelector('.dad-checkout')
 const btnCerrar = document.querySelector('.boton-cerrar')
 
 
+
 //Abrir checkout 
 btnPagar.addEventListener('click', ()=>{
     containerCheckout.classList.toggle('hidden-ckeckout')

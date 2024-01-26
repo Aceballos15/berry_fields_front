@@ -147,7 +147,7 @@
     border-radius: 27px;
 }
 
-.bnt-cierre-checkout{
+.btn-cierre-checkout{
     display: flex;
     position: relative; 
     left: 400px; 
@@ -158,7 +158,7 @@
     color: var(--withe); 
 }
 
-.bnt-cierre-checkout:hover{
+.btn-cierre-checkout:hover{ 
     background: var(--aquaMarine);
     box-shadow: 0 0 6px; 
     transition: .5s; 
@@ -180,6 +180,7 @@
     display: flex;
     justify-content: center;
     align-items: center; 
+    top: 50px; 
 }
 
 .btnWompi:hover{
