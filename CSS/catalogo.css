@@ -52,7 +52,7 @@
     width: 165px; 
     height: 65px;
     position: relative;
-    left: 145px; 
+    left: 195px; 
     top: 20px;
     border-radius: 8px; 
 }
@@ -111,7 +111,7 @@
 .filtro_active{
     display: flex;
     position: absolute;
-    left: 143px;
+    left: 200px;
     top: -9px;
     height: 46px;
     width: 600px;
@@ -147,11 +147,46 @@
     border-radius: 27px;
 }
 
+.bnt-cierre-checkout{
+    display: flex;
+    position: relative; 
+    left: 400px; 
+    bottom: 37px; 
+    border: none;
+    background: var(--blue);
+    border-radius: 30px; 
+    color: var(--withe); 
+}
+
+.bnt-cierre-checkout:hover{
+    background: var(--aquaMarine);
+    box-shadow: 0 0 6px; 
+    transition: .5s; 
+}
+
 .wompi{
     position: relative;
     left: 120px; 
 }
 
+.btnWompi{
+    position: absolute; 
+    background: var(--blue);
+    color: var(--withe);
+    border-radius: 30px;
+    border: none; 
+    width: 200px;
+    height: 50px; 
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.btnWompi:hover{
+    background: var(--aquaMarine);
+    box-shadow: 0 0 6px; 
+    transition: .5s; 
+}
 .precio-total{
     width: 89px;
     display: flex;
@@ -335,13 +370,12 @@
 }
 
 .pagar{
-    border-radius: 50px; 
+    border-radius: 50px;
     background: var(--blue);
-    color: var(--withe); 
-    width: 260px;  
-    height: 50px; 
+    color: var(--withe);
+    width: 260px;
+    height: 50px;
     border: none;
-    position: absolute; 
 }
 .pagar:hover{
     background: var(--aquaMarine);
@@ -368,7 +402,7 @@
     height: 42px;
     position: relative;
     top: 34px;
-    left: 753px; 
+    left: 795px; 
     border: none;
 }
 
@@ -533,7 +567,7 @@
     padding: 20px;
     position: relative;
     top: 126px;
-    left: 280px;
+    left: 330px;
     z-index: -1;
 
     border-radius: 10px;
@@ -557,7 +591,7 @@
     justify-content: center;
     z-index: -1;
     position: relative;
-    left: 49px;
+    left: 100px; 
     width: 1705px;
     top: 128px;
 }
@@ -1167,7 +1201,7 @@ ul{
         height: 45px; 
         position: absolute;
         top: 30px;
-        left: 20px; 
+        left: 56px;
 
     }
     .filtro_input {
@@ -1181,9 +1215,9 @@ ul{
         height: 51px;
         border: none;
         outline: none;
-        left: -19px;
+        left: 12px;  
         top: -14px;
-        width: 196px;
+        width: 169px;
     }
     .imagen-carrito img{
         width: 150px; 
@@ -1354,6 +1388,10 @@ ul{
     .container-borrar-carrito{
         top: 69px; 
         left: auto;
+    }
+
+    .btnWompi{
+        left: -60px; 
     }
 }
 

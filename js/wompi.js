@@ -1,19 +1,29 @@
 let totalWompi = 0 
 
 
-btnCart.addEventListener('click', ()=>{
+btnPagar.addEventListener('click', ()=>{
+
+    const btnClose = document.querySelector('.bnt-cierre-checkout')  
+
     
     let DATA = []
-
+    
     carts.forEach(price =>{
         const precio = price.price * price.quantity
-
+        
         totalWompi = totalWompi + precio; 
+        
+    })
+    
+    btnClose.addEventListener('click', ()=>{
+        containerCheckout.classList.toggle('hidden-ckeckout') 
 
+        totalWompi = 0
+       
     })
 
     const total = {
-        amount: Total
+        amount: totalWompi 
     }
 
     const post = {
@@ -25,11 +35,10 @@ btnCart.addEventListener('click', ()=>{
         body: JSON.stringify(total) 
     }
 
-
     //console.log(post) 
 
     try{
-        const URL_API = "https://da94-190-0-247-117.ngrok-free.app/api/Signature"
+        const URL_API = "https://f307-190-0-247-116.ngrok-free.app/api/Signature"
     
         fetch(URL_API, post)
         .then(response => response.json())
@@ -39,22 +48,22 @@ btnCart.addEventListener('click', ()=>{
 
             DATA.forEach(datos =>{
                
-                let pagar = document.querySelector('#container-pagar')  
+                let pagar = document.querySelector('.container-btnWompi')  
                 
                 let pay = document.createElement('div')
                 pay.classList.add('wompi') 
             
                 pay.innerHTML= `
                 
-                <div class="pagar"> 
+                <div> 
                     <form action="https://checkout.wompi.co/p/" method="GET"> 
-                    <input type="hidden" name="public-key" class="key" value="${datos.key}" /> 
+                    <input type="hidden" name="public-key" class="key" value="${datos.key}" />  
                     <input type="hidden" name="currency" class="currency" value="${datos.currency}" />
                     <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
                     <input type="hidden" name="reference" class="reference" value="${datos.reference}" /> 
-                    <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/> 
+                    <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>  
                     
-                    <button class="pagar" id="pagar" type="submit"> PAGAR </button> 
+                    <button class="btnWompi" id="pagar" type="submit"> PAGAR </button> 
                     
                     </form>
                 <div> 
@@ -69,6 +78,5 @@ btnCart.addEventListener('click', ()=>{
     catch(error){
         console.error(error) 
     }
-
 
 }) 

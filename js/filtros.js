@@ -55,18 +55,3 @@ const renderCard = (cards) =>{
     const itemCard = createCards(cards)
     dad.innerHTML = itemCard
 }
-
-
-
-
-//filtros por categoria 
-
-//Obtener botones
-const btnAll = document.querySelector('#todo')
-const btnAud = document.querySelector('#audifonos') 
-const btnPowerb = document.querySelector('#powerbank')
-const btnCargador = document.querySelector('#cargador')
-const btnCables = document.querySelector('#cables')
-const btnBocina = document.querySelector('#bocina') 
-
-//Funciones para los filtros de busqueda por categoria 
