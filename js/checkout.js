@@ -9,7 +9,7 @@ const obtenerFecha = ()=>{
     const fecha = new Date(); 
     const dia = String(fecha.getDate()).padStart(2, '0'); 
     const mes = String(fecha.getMonth() + 1).padStart(2 , '0'); 
-    const anio = fecha.getFullYear(); 
+    const anio = fecha.getFullYear()
     return `${anio}-${mes}-${dia}` 
 }
 
@@ -22,10 +22,12 @@ const Tipo_documento = document.querySelector('.tipo-doc')
 const Celular = document.querySelector('.celular')
 const Correo = document.querySelector('.correo') 
 const Departamento = document.querySelector('.departamento')
-const Municipio = document.querySelector('.municipio')
-const Direccion = document.querySelector('#direccion')
+// const Municipio = document.querySelector('.municipio')
+// const Direccion = document.querySelector('#direccion')
 
 let ID = []
+let Direccion = []
+let Cedula =[] 
 let subTotal = []
 let ivaTotal = [] 
 let Detalle = []
@@ -38,125 +40,50 @@ let products = []
 
 let totalWompi = 0 
 
-const wompi = ()=>{
 
-    const btnClose = document.querySelector('.btn-cierre-checkout')  
+const btnCheck = document.querySelector('.submit-check')  
 
-    
-    let DATA = []
-    
-    carts.forEach(price =>{
-        const precio = price.price * price.quantity
-        
-        totalWompi = totalWompi + precio; 
-        
-    })
-    
-    btnClose.addEventListener('click', ()=>{
-        containerCheckout.classList.toggle('hidden-ckeckout') 
+// btnCheck.addEventListener('click', ()=>{
+//     containerCheckout.classList.toggle('hidden-ckeckout') 
+// })
 
-        totalWompi = 0
-       
-    })
-
-    const total = {
-        amount: totalWompi 
-    }
-
-    const post = {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify(total) 
-    }
-
-    //console.log(post) 
-
-    try{
-        const URL_API = "https://f307-190-0-247-116.ngrok-free.app/api/Signature"
-    
-        fetch(URL_API, post)
-        .then(response => response.json())
-        .then(data =>{
-            
-            DATA = data; 
-
-            DATA.forEach(datos =>{
-                let pagar = document.querySelector('.container-btnWompi')  
-                
-                let pay = document.createElement('div')
-                pay.classList.add('wompi') 
-            
-                pay.innerHTML= `
-                
-                <div>   
-                    <form action="https://checkout.wompi.co/p/" method="GET"> 
-                    <input type="hidden" name="public-key" class="key" value="${datos.public_key}" />  
-                    <input type="hidden" name="currency" class="currency" value="${datos.currency}" />
-                    <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
-                    <input type="hidden" name="reference" class="reference" value="${datos.reference}" /> 
-                    <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>  
-                    
-                    <button class="btnWompi" id="pagar" type="submit"> PAGAR </button> 
-                    
-                    </form>
-                <div> 
-                `
-                pagar.appendChild(pay) 
-            })
-            
-        })
-        .catch(error => console.log(error))
-        
-    }
-    catch(error){
-        console.error(error) 
-    }
-
-}
-
-//Funcion para mostrar en el checkout 
+// //Funcion para mostrar en el checkout 
 const check = ()=>{
-    setTimeout(()=>{
-        if(chechkout.length === 1){
-            chechkout.forEach(i =>{
-                //Direccion del cliente 
-                Direccion.innerText = `${i.Direccion}` 
-                
-                ID = i.ID 
-    
-                //Cedula 
-                cedulaCheckout = i.Documento  
-    
-                //Guardar info de cada valor  
-    
-                wompi();         
-    
-            });  
-        }
-        else{
+   
+    if(chechkout.length === 1){        
+        chechkout.forEach(i =>{ 
+            ID = i.ID 
+            //Cedula 
+            cedulaCheckout = i.Documento  
             
-            try{
-                Direccion.innerText = ` ` 
-                Swal.fire({ 
-                    icon: "error", 
-                    title: "Lo sentimos...",
-                    text: "No estas en nuestra base de datos",
-                    footer: '<a href="/HTML/registro.html">Registrate</a>' 
-                }); 
-
-            }
-            catch(error){
-                console.error(error) 
-            }
-
+            let containerCedula = document.querySelector('.container-direccion')
+        
+            let direccion = document.createElement('div') 
+            direccion.classList.add('input-direccion') 
+        
+            direccion.innerHTML =`
+            <div class="direccion"> 
+                <label for="direccion" >Direccion: </label>
+                <input type="text" class="inputCheck" id="direccion"  placeholder="" value="${i.Direccion}"> 
+                <span class="lineaInput"></span>
+            </div> 
+            `
+            containerCedula.appendChild(direccion) 
+           
             
-    
-        }
-    },3000)
+            const inputDireccion = document.querySelector('#direccion')
+
+            const cedula = document.querySelector('#cedula')
+
+            Cedula = cedula.value 
+
+            Direccion = inputDireccion.value
+
+        });  
+        
+    }
 }; 
+
 
 
 //Constante para almacenar la info del input 
@@ -192,7 +119,7 @@ inputCedula.addEventListener('keyup', (e)=>{
         
     };     
     initCheckout(); 
-}); 
+});  
 
 //Condicion cuando no traiga info de la API 
 

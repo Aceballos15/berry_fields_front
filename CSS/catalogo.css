@@ -164,30 +164,7 @@
     transition: .5s; 
 }
 
-.wompi{
-    position: relative;
-    left: 120px; 
-}
 
-.btnWompi{
-    position: absolute; 
-    background: var(--blue);
-    color: var(--withe);
-    border-radius: 30px;
-    border: none; 
-    width: 200px;
-    height: 50px; 
-    display: flex;
-    justify-content: center;
-    align-items: center; 
-    top: 50px; 
-}
-
-.btnWompi:hover{
-    background: var(--aquaMarine);
-    box-shadow: 0 0 6px; 
-    transition: .5s; 
-}
 .precio-total{
     width: 89px;
     display: flex;
@@ -210,6 +187,7 @@
 
 .pedido{
     position: relative;
+    top: 90px; 
 }
 
 #offcanvasTop{
@@ -341,6 +319,7 @@
 
 .hidden-ckeckout{
     display: none; 
+    transition: .3s;
 }
 
 .container-products{ 
@@ -373,7 +352,7 @@
 .pagar{
     border-radius: 50px;
     background: var(--blue);
-    color: var(--withe);
+    color: var(--withe); 
     width: 260px;
     height: 50px;
     border: none;
@@ -436,7 +415,7 @@
     font-size: var(--font-size-s);
     margin-left: 10px; 
     position: relative;
-    left: 285px;
+    left: 160px; 
     bottom: 58px;
 }
 
@@ -511,10 +490,14 @@
     border-radius: 40px; 
     opacity: .5;
     left: 435px;
-    bottom: 185px; 
+    bottom: 195px;
     border: none; 
 }
 
+.container-icon-trash svg{
+    width: 20px;
+    height: 20px; 
+}
 .container-void{
     display: none;  
     height: 169px;
@@ -826,6 +809,7 @@ ul{
     .filtro_input{
         width: 900px; 
     }
+    
 }
 
 @media screen and (max-width: 1380px){  
@@ -834,7 +818,7 @@ ul{
         overflow-y: auto;
         position: relative;
         left: 0;
-        height: 350px; 
+        height: 330px;
     }
 
 
@@ -871,7 +855,7 @@ ul{
         justify-content: center;
         z-index: -1;
         position: relative;
-        left: 77px;
+        left: 45px; 
         width: 1199px;
         top: 128px
     } 
@@ -952,7 +936,7 @@ ul{
         height: 25px; 
     }
     .precio-product {
-        left: 280px;
+        left: 380px;
         bottom: 59px;
     }
 }
@@ -1225,7 +1209,7 @@ ul{
     }
     .nombre-product{
         top: -92px;
-        left: 167px;
+        left: 168px;  
         width: 160px; 
     }
 
@@ -1300,7 +1284,7 @@ ul{
         height: 563px;
     }
     .container-total{
-        top: -13px;
+        top: 3px; 
     }
     .dad-categoria{
         display: flex; 
@@ -1369,8 +1353,8 @@ ul{
         font-size: var(--font-size-s);
         margin-left: 10px;
         position: relative;
-        left: 260px;
-        bottom: 60px; 
+        left: 255px; 
+        bottom: 63px; 
     }
 
     .quantity button {
@@ -1390,11 +1374,6 @@ ul{
         top: 69px; 
         left: auto;
     }
-
-    .btnWompi{
-        left: -60px; 
-    }
-}
 
 @media screen and (max-width: 320px) {
     .logo{
@@ -1463,9 +1442,10 @@ ul{
 @media screen and (max-height: 926px) and (max-width:430px){ 
     
     .container-products{
-        height: 490px; 
+        height: 330px; 
     }
     #offcanvasTop{
         left: 0px;
     }
+}
 }
