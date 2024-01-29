@@ -12,10 +12,9 @@ btnCarrito.addEventListener('click', ()=>{
     containerWompi.classList.toggle('hidden-wompi') 
 })
 
-let product = []
 
 btnCarrito.addEventListener('click', ()=>{
-
+    
     
     let DATA = []
     
@@ -77,27 +76,43 @@ btnCarrito.addEventListener('click', ()=>{
                 `
                 wompi.appendChild(pay)
 
-                carts.forEach(product =>{
+                let product =[] 
+                let id = []
+                let referencia = []
+                let precio = 0
+                let cantidad = 0 
+                
+                carts.forEach(products =>{
+                    id = products.product_id
+                    referencia = products.referencia
+                    precio = products.price
+                    cantidad = products.quantity
+
                     let newProducts = {
                         Referencia: datos.reference, 
                         Productos: {
-                            id: product.product_id, 
-                            reference: product.referencia, 
-                            price: product.price, 
-                            quantity: product.quantity
+                            detail :{
+                                id: id, 
+                                reference: referencia, 
+                                price: precio, 
+                                quantity: cantidad 
+                            }
                         }
                     }
-
-                    products.push(newProducts) 
+                    
+                    product.push(newProducts); 
                 })
+                
 
+                
+                console.log(product)
                 const producto = {
                     method:'POST', 
                     headers: {
                         'Content-Type': 'application/json'
                     },
 
-                    body: JSON.stringify(products) 
+                    body: JSON.stringify(product) 
                 }
 
                 try{

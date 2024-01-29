@@ -169,7 +169,7 @@ body{
 .container-wompi{
     position: relative;
     top: 250px; 
-    right: 405px;
+    right: 106px; 
     height: 120px; 
     width:  300px; 
     box-shadow: 0 0 6px;
@@ -247,6 +247,7 @@ body{
 .inputCheck{
     outline: none;
     border: none; 
+    width: 220px; 
 }
 
 .lineaInput{

@@ -36,7 +36,6 @@ let DetalleTotal = []
 let Total = 0 
 
 let cedulaCheckout = []
-let products = []
 
 let totalWompi = 0 
 
