@@ -37,14 +37,9 @@ let Total = 0
 
 let cedulaCheckout = []
 
-let totalWompi = 0 
-
 
 const btnPedir = document.querySelector('.pagar') 
 
-// btnCheck.addEventListener('click', ()=>{
-//     containerCheckout.classList.toggle('hidden-ckeckout') 
-// })
 
 // //Funcion para mostrar en el checkout 
 const check = ()=>{

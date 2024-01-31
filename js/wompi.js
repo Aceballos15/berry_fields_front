@@ -1,5 +1,3 @@
-let totalWompi = 0 
-
 const btnCarrito = document.querySelector('.pagar')  
 const closeWompi = document.querySelector('.revisarPedido')
 const containerWompi = document.querySelector('.container-wompi')
@@ -8,6 +6,7 @@ btnCarrito.addEventListener('click', ()=>{
     containerWompi.classList.toggle('hidden-wompi') 
 })
 
+let totalWompi = 0 
 
 btnCarrito.addEventListener('click', ()=>{ 
     
