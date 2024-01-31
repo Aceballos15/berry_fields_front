@@ -28,7 +28,6 @@ listProductsHTML.addEventListener('click', (event) => {
             const referencia = cardElement.dataset.referencia; 
             const imagen = cardElement.dataset.imagen; 
             addToCart(product_id,price, referencia,imagen);  
-            //console.log(imagen);
         }
     } 
     
@@ -57,10 +56,10 @@ const addToCart = (product_id,price,referencia,imagen) =>{
     }else{
         carts[position].quantity = carts[position].quantity + 1; 
     }
-    //console.log(imagen)
+
     addCartToHTML(); 
     // Llamad de funcion para el local storage
-    // addCartToMemory(); 
+    addCartToMemory(); 
 }
 
 
@@ -106,8 +105,6 @@ const addCartToHTML = () =>{
             let newCart = document.createElement('div') 
             newCart.classList.add('container-cart-products')
             newCart.dataset.id = cart.product_id;  
-            //console.log(cart.product_id) 
-            //console.log(cart.imagen) 
 
             newCart.innerHTML = ` 
             
@@ -152,7 +149,7 @@ const addCartToHTML = () =>{
 
             
             listCartHTML.appendChild(newCart) 
-            // addCartToMemory(); 
+            addCartToMemory();
         });  
 
     }
@@ -164,7 +161,6 @@ const addCartToHTML = () =>{
 
     Quantity = totalQuantity 
 
-    //console.log(totalPrice)
 }
 
 //Captura del id con los botones minus, plus y delete
@@ -177,7 +173,6 @@ listCartHTML.addEventListener('click', (event) =>{
         
         if (positionClick.classList.contains('minus')|| positionClick.classList.contains('plus')|| positionClick.classList.contains('icon-trash')){
             
-            //console.log(Quantity)
             // const btnPagar = document.querySelector('.pagar')
             // Quantity == 1?btnPagar.disabled = true: btnPagar.disabled = false;   
             
@@ -210,7 +205,6 @@ const changeQuantity = (product_id, type) =>{
             case 'delete': 
                 carts[positionItemInCart].quantity = carts[positionItemInCart].quantity ==0;   
                 let value = carts[positionItemInCart].quantity == 0; 
-                //console.log(value) 
                 if(value > 0){ 
                     carts[positionItemInCart],quantity = value; 
                     //Splice para quitar los elementos 
@@ -235,7 +229,7 @@ const changeQuantity = (product_id, type) =>{
         }
     }
     //Añadir a la memoria y al carrito para refrescar  
-    // addCartToMemory(); 
+    addCartToMemory(); 
     addCartToHTML(); 
 }
 
@@ -253,7 +247,7 @@ const initApp =() =>{
             addCartToHTML(); 
         }
     })
-    .catch(error => console.log(error)); 
+    .catch(error => console.error(error));
 }; 
 
 initApp(); 

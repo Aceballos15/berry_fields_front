@@ -49,6 +49,7 @@ const createCards = cards => cards.map (card =>
     </div> 
     </div>  `).join(' ') 
 
+
     
 //Renderizacion de las cards
 const renderCard = (cards) =>{

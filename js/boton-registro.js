@@ -114,7 +114,6 @@ const cedulaNoRegistrada = ()=>{
                     text: "Lo sentimos hay un fallo con tu inscripcion en nuestra base de datos",
                 });
             })
-            console.log(objetoJSON)
         }
         catch(error){
             console.error('Error', error) 
@@ -138,7 +137,6 @@ const cedulaNoRegistrada = ()=>{
                     text: "Lo sentimos hay un fallo con tu inscripcion en nuestra base de datos",
                 });
             })
-            console.log(objetoJSON2)
 
         }catch(error){
             console.error('error', error) 
@@ -151,8 +149,6 @@ const cedulaNoRegistrada = ()=>{
 boton.addEventListener('click', ()=>{ 
 
     URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${Documento}"` 
-   
-    //console.log(await fetch(URL_API_Reporte_Clientes).json())  
 
     const validacionCedula = ()=>{
     fetch(URL_API_Reporte_Clientes)
@@ -220,7 +216,6 @@ municipio.addEventListener('keyup', (e)=>{
         .then(response => response.json())
         .then(data => {
             mun = data; 
-            //console.log(data)
 
             recorrido(mun)
         })

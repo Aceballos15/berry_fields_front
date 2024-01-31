@@ -41,7 +41,6 @@ btnCarrito.addEventListener('click', ()=>{
         body: JSON.stringify(total) 
     }
 
-    //console.log(post) 
 
 
    
@@ -70,7 +69,7 @@ btnCarrito.addEventListener('click', ()=>{
                 <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>
                 
                 <button class="Wompi" id="Wompi" type="submit"> 
-                    <img src="/IMG/close.svg" alt=""> 
+                    <img src="/IMG/close.svg" alt="">  
                 </button> 
                 
                 </form>
@@ -129,7 +128,7 @@ btnCarrito.addEventListener('click', ()=>{
 
         })
     })
-    .catch(error => console.log(error))
+    .catch(error => console.error(error)) 
 
 
 }) 

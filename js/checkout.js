@@ -116,7 +116,6 @@ inputCedula.addEventListener('keyup', (e)=>{
     if(cedula.trim().length >= 9){
         Doc = cedula 
         
-        //console.log(Doc)  
         //API con parametro de busqueda en cedula 
         URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
     
@@ -126,13 +125,12 @@ inputCedula.addEventListener('keyup', (e)=>{
             .then(response => response.json()) 
             .then(data =>{
                 chechkout = data; 
-                //console.log(data)  
                 
                 //Funcion para mostrar en el checkout
     
                 check(); 
             }) 
-            .catch(error =>console.log(error))
+            .catch(error =>console.error(error)) 
             
         };     
         initCheckout(); 
