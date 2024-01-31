@@ -15,23 +15,3 @@ btnBuscar.addEventListener('click', ()=>{
 const btnPagar = document.querySelector('#cart-product') 
 const containerCheckout = document.querySelector('.dad-checkout')
 const btnCerrar = document.querySelector('.boton-cerrar')
-
-
-//Abrir checkout 
-// btnPagar.addEventListener('click', ()=>{
-//     containerCheckout.classList.toggle('hidden-ckeckout')
-// }); 
- 
-//Habilitar y deshabilitar el boton de paggar cuando el carrito no tenga algo 
-// const carrito = document.querySelector('.cart') 
-
-// carrito.addEventListener('click', ()=>{
-//     if(precio.length == 0 ||precio == 0){
-//        btnPagar.disabled = true
-//     }
-//     else{
-//         btnPagar.disabled = false 
-//     }
-// }) 
-
-

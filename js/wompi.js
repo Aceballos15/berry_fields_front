@@ -29,8 +29,8 @@ btnCarrito.addEventListener('click', ()=>{
     const total = {
         amount: totalWompi , 
         ID:ID , 
-        Direccion:Direccion 
     }
+
 
     const post = {
         method: 'POST', 
@@ -45,7 +45,7 @@ btnCarrito.addEventListener('click', ()=>{
 
 
    
-    const URL_API = "https://app-berry-fields.onrender.com/api/Signature" 
+    const URL_API = "https://app-berry-fields.onrender.com/api/Signature"  
 
     fetch(URL_API, post)
     .then(response => response.json())
@@ -101,7 +101,8 @@ btnCarrito.addEventListener('click', ()=>{
                     Productos : Products,
                     Fecha: fechaHoy, 
                     Total: totalWompi, 
-                    ID1: ID
+                    ID1: ID,
+                    Direccion:Direccion 
                 }
                 
                 const producto = {
@@ -117,8 +118,7 @@ btnCarrito.addEventListener('click', ()=>{
                     const URL_BERRY = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido"
                     fetch(URL_BERRY,producto) 
                     .then(data =>{
-                        console.log(data.status) 
-                    }) 
+                        console.log(data.status)}) 
 
                 }
                 catch(error){
