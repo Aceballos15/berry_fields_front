@@ -15,6 +15,7 @@ const FechaNacimiento = document.querySelector('#fecha_nacimiento')
 
 const tipoPersona = document.querySelector('.tipo-persona') 
 
+const boton = document.querySelector('.btn-registro') 
 
 let mun =[]
 
@@ -82,8 +83,8 @@ const validacionCedula = (e) =>{
     const value = e.target.value 
     const regex = new RegExp (/^[1-9]{1}[0-9]{0,2}(?:\.[0-9]{3}){0,2}\.[0-9]{3}-[0-9kK]$/); 
 
-    value.trim().length > 10 && !regex.test(value)
-    ?errors("Ingresa una cedula valida", field)
+    value.trim().length > 12 && !regex.test(value)
+    ?errors("Ingresa un numero de documento valido", field)
     :errors("", field, false)
 
     cedula.addEventListener('input', validacionCedula)

@@ -1,8 +1,6 @@
-const boton = document.querySelector('.btn-registro') 
-
 //Variable de la url de la api 
 
-const url = 'https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes'
+const url = 'https://7cae-2800-e2-bd80-1f4b-e9bd-5c4c-1b85-ed15.ngrok-free.app/zoho/v1/console/Clientes' 
 
 let datos = []
 
@@ -26,7 +24,7 @@ const cedulaNoRegistrada = ()=>{
     const juri = juridica.value  
     
     //Formatos JSON para enviar el post a la base de datos
-        
+    const celular = valorCelular.toString(); 
     //JSON para regimen de persona natural
     const objetoJSON = {
         // Added_User: addedUser,
@@ -34,7 +32,7 @@ const cedulaNoRegistrada = ()=>{
         Primer_Apellido: valorApellido,  
         Tipo1: valorTipoCedula, 
         Documento: valorCedula, 
-        Celular: valorCelular *1, 
+        Celular: celular, 
         Correo: valorCorreo,  
         Retenedor: "No", 
         Fecha_de_Nacimiento: fechaNacimiento, 
@@ -47,7 +45,7 @@ const cedulaNoRegistrada = ()=>{
         Tipo: "Detal", 
         Dias: 0, 
         location : {
-            country2: "Colombia ", 
+            country2: "Colombia", 
             address_line_12: valorDireccion, 
             state_province2: valorDepartamento, 
             district_city2: valorMunicipio, 
@@ -62,7 +60,7 @@ const cedulaNoRegistrada = ()=>{
         Primer_Apellido: valorApellido,  
         Tipo1: valorTipoCedula, 
         Documento: valorCedula, 
-        Celular: valorCelular *1, 
+        Celular: celular, 
         Correo: valorCorreo,  
         Retenedor: "No", 
         Fecha_de_Nacimiento: fechaNacimiento, 
@@ -90,7 +88,7 @@ const cedulaNoRegistrada = ()=>{
             'Content-Type' : 'application/json', 
         }, 
         
-        body: JSON.stringify(objetoJSON),  
+        body: JSON.stringify(objetoJSON)
     }; 
     
     const personaJuridica ={
@@ -99,7 +97,7 @@ const cedulaNoRegistrada = ()=>{
             'Content-Type': 'application/json' 
         }, 
 
-        body: JSON.stringify(objetoJSON2),
+        body: JSON.stringify(objetoJSON2)
     }; 
     if(natural.checked){ 
         try{
@@ -213,8 +211,7 @@ const recorrido = ()=>{
 }
 //Funcion para traer los municipios 
 municipio.addEventListener('keyup', (e)=>{
-    const municipio = e.target.value
-
+    const municipio = e.target.value 
 
     URL_REPORT_MUNICIPIOS = URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Municipio1?where=Municipio.contains("${municipio}")` 
 
@@ -225,7 +222,7 @@ municipio.addEventListener('keyup', (e)=>{
             mun = data; 
             //console.log(data)
 
-            recorrido()
+            recorrido(mun)
         })
         .catch(error =>{
             console.error(error) 

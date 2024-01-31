@@ -40,7 +40,7 @@ let cedulaCheckout = []
 let totalWompi = 0 
 
 
-const btnCheck = document.querySelector('.submit-check')  
+const btnPedir = document.querySelector('.pagar') 
 
 // btnCheck.addEventListener('click', ()=>{
 //     containerCheckout.classList.toggle('hidden-ckeckout') 
@@ -69,20 +69,37 @@ const check = ()=>{
             `
             containerCedula.appendChild(direccion) 
            
+            const cedula = document.querySelector('#cedula')
+            
+            
+            Cedula = cedula.value 
             
             const inputDireccion = document.querySelector('#direccion')
 
-            const cedula = document.querySelector('#cedula')
-
-            Cedula = cedula.value 
-
             Direccion = inputDireccion.value
-
+            
+            inputDireccion.addEventListener('keyup', (e)=>{ 
+                valor = e.target.value
+            
+                Direccion =  valor
+            })
+            btnPedir.disabled = false 
         });  
+
+
         
     }
-}; 
+    else{
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Lo sentimos no estas en nuestra base de datos",
+            footer: '<a href="/HTML/registro.html">Registrate aca</a>'
+        });
 
+        btnPedir.disabled = true 
+    }
+}; 
 
 
 //Constante para almacenar la info del input 
@@ -96,28 +113,30 @@ inputCedula.addEventListener('keyup', (e)=>{
     //variable para obtener el valor 
     const cedula = e.target.value
     
-    Doc = cedula 
-    
-    //console.log(Doc)  
-    //API con parametro de busqueda en cedula 
-    URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
-
-    //Funcion para traer la info 
-    const initCheckout = ()=>{
-        fetch(URL_API_Reporte_Clientes)
-        .then(response => response.json())
-        .then(data =>{
-            chechkout = data; 
-            //console.log(data)  
-            
-            //Funcion para mostrar en el checkout
-
-            check(); 
-        }) 
-        .catch(error =>console.log(error))
+    if(cedula.trim().length >= 9){
+        Doc = cedula 
         
-    };     
-    initCheckout(); 
+        //console.log(Doc)  
+        //API con parametro de busqueda en cedula 
+        URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
+    
+        //Funcion para traer la info 
+        const initCheckout = ()=>{
+            fetch(URL_API_Reporte_Clientes)
+            .then(response => response.json()) 
+            .then(data =>{
+                chechkout = data; 
+                //console.log(data)  
+                
+                //Funcion para mostrar en el checkout
+    
+                check(); 
+            }) 
+            .catch(error =>console.log(error))
+            
+        };     
+        initCheckout(); 
+    } 
 });  
 
 //Condicion cuando no traiga info de la API 
