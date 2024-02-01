@@ -66,7 +66,8 @@ btnCarrito.addEventListener('click', ()=>{
                 <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
                 <input type="hidden" name="reference" class="reference" value="${datos.reference}" /> 
                 <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>
-                
+                <input type="hidden" name="redirect-url" value="https://www.theberryfields.com/"/>
+
                 <button class="Wompi" id="Wompi" type="submit"> 
                     <img src="/IMG/close.svg" alt="">  
                 </button> 
