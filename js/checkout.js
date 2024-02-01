@@ -55,14 +55,13 @@ const check = ()=>{
             let direccion = document.createElement('div') 
             direccion.classList.add('input-direccion') 
         
-            direccion.innerHTML =`
+            containerCedula.innerHTML =` 
             <div class="direccion"> 
                 <label for="direccion" >Direccion: </label>
                 <input type="text" class="inputCheck" id="direccion"  placeholder="" value="${i.Direccion}"> 
                 <span class="lineaInput"></span>
             </div> 
             `
-            containerCedula.appendChild(direccion) 
            
             const cedula = document.querySelector('#cedula')
             
@@ -102,34 +101,85 @@ const inputCedula = document.querySelector('#cedula')
 
 let Doc= []
 
-//Se agrego un evento a la constante 
-
+//Validacion por tipo de documento 
+const select = document.querySelector('#tipo-doc')
+ 
 inputCedula.addEventListener('keyup', (e)=>{
     //variable para obtener el valor 
     const cedula = e.target.value
-    
-    if(cedula.trim().length >= 9){
-        Doc = cedula 
+
+    if(select.value == "cc"){
+        if(cedula.trim().length == 8 || cedula.trim().length == 10){
+            Doc = cedula 
+            //API con parametro de busqueda en cedula 
+            URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
         
-        //API con parametro de busqueda en cedula 
-        URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
-    
-        //Funcion para traer la info 
-        const initCheckout = ()=>{
-            fetch(URL_API_Reporte_Clientes)
-            .then(response => response.json()) 
-            .then(data =>{
-                chechkout = data; 
+            //Funcion para traer la info 
+            const initCheckout = ()=>{
+                fetch(URL_API_Reporte_Clientes)
+                .then(response => response.json()) 
+                .then(data =>{
+                    chechkout = data; 
+                    
+                    //Funcion para mostrar en el checkout
+        
+                    check(); 
+                }) 
+                .catch(error =>console.error(error)) 
                 
-                //Funcion para mostrar en el checkout
-    
-                check(); 
-            }) 
-            .catch(error =>console.error(error)) 
+            };     
+            initCheckout(); 
+        } 
+    }
+    else if(select.value == "nit"){
+        if(cedula.trim().length == 12){
+            Doc = cedula  
             
-        };     
-        initCheckout(); 
-    } 
+            //API con parametro de busqueda en cedula 
+            URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
+        
+            //Funcion para traer la info 
+            const initCheckout = ()=>{
+                fetch(URL_API_Reporte_Clientes)
+                .then(response => response.json()) 
+                .then(data =>{
+                    chechkout = data; 
+                    
+                    //Funcion para mostrar en el checkout
+        
+                    check(); 
+                }) 
+                .catch(error =>console.error(error)) 
+                
+            };     
+            initCheckout(); 
+        } 
+    }
+    else if(select.value == 'ce'){
+        if(cedula.trim().length == 9){ 
+            Doc = cedula 
+            
+            //API con parametro de busqueda en cedula 
+            URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
+        
+            //Funcion para traer la info 
+            const initCheckout = ()=>{
+                fetch(URL_API_Reporte_Clientes)
+                .then(response => response.json()) 
+                .then(data =>{
+                    chechkout = data; 
+                    
+                    //Funcion para mostrar en el checkout
+        
+                    check(); 
+                }) 
+                .catch(error =>console.error(error)) 
+                
+            };     
+            initCheckout(); 
+        } 
+    }
+    
 });  
 
 //Condicion cuando no traiga info de la API 

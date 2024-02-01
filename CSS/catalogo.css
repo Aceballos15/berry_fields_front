@@ -311,6 +311,11 @@
     overflow-y: auto;
 }
 
+#tipo-doc{
+    outline: none; 
+    padding: 5px;
+}
+
 .check{
     position: relative;
     width: 500px;
