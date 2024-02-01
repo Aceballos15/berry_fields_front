@@ -109,7 +109,7 @@ const cedulaNoRegistrada = ()=>{
                     icon: "success", 
                     title: "LISTO",
                     text: "Ya estas creado en nuestra base de datos",
-                    footer: '<a href="index.html">Vuelve a tu compra</a>'  
+                    footer: '<a href="https://www.theberryfields.com/">Vuelve a tu compra</a>'   
                 });
             })
             .catch(error => {
