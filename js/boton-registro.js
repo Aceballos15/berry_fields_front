@@ -106,10 +106,10 @@ const cedulaNoRegistrada = ()=>{
             .then(data => {
                 console.log('Respuesta', data)
                 Swal.fire({
-                    icon: "error", 
-                    title: "Error",
-                    text: "Lo sentimos hay un fallo con tu inscripcion en nuestra base de datos",
-                    footer: '<a href="index.html">Registrate aca</a>'
+                    icon: "success", 
+                    title: "LISTO",
+                    text: "Ya estas creado en nuestra base de datos",
+                    footer: '<a href="index.html">Vuelve a tu compra</a>'  
                 });
             })
             .catch(error => {
