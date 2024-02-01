@@ -1,6 +1,6 @@
 //Variable de la url de la api 
 
-const url = 'https://7cae-2800-e2-bd80-1f4b-e9bd-5c4c-1b85-ed15.ngrok-free.app/zoho/v1/console/Clientes' 
+const url = 'https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes'  
 
 let datos = []
 
