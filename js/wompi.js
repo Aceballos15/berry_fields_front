@@ -10,13 +10,6 @@ let totalWompi = 0
 
 btnCarrito.addEventListener('click', ()=>{ 
     
-    // closeWompi.addEventListener('click', ()=>{
-    //     containerWompi.classList.toggle('hidden-wompi') 
-    //     totalWompi  = 0; 
-    //     console.log(totalWompi) 
-    // }) 
-    
-    
     let DATA = []
     
     carts.forEach(price =>{
