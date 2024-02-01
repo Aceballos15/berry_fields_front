@@ -171,7 +171,7 @@ body{
     top: 250px; 
     right: 106px; 
     height: 120px; 
-    width:  300px; 
+    width:  auto;  
     box-shadow: 0 0 6px;
     border-radius: 15px;
     background: var(--withe); 
@@ -180,13 +180,14 @@ body{
 .btnWompi .Wompi{
     height: 50px; 
     background: var(--blue);
-    color: var(--withe);
     width: 40px;
     height: 40px;
     border-radius: 30px;
     border: none; 
-    position: absolute;
-    top: 33px; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    color: var(--withe); 
 }
 
 .btnWompi .Wompi:hover{
@@ -216,9 +217,12 @@ body{
     border: none;
     border-radius: 30px; 
     background: var(--blue);
+    display: flex;
+    align-items: center;
+    justify-content: center; 
 }
 
-.revisarPedido img{
+.revisarPedido span{ 
     color: var(--withe); 
 }
 

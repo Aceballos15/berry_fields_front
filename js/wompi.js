@@ -57,7 +57,7 @@ btnCarrito.addEventListener('click', ()=>{
             let pay = document.createElement('div')
             pay.classList.add('wompi') 
         
-            pay.innerHTML= `
+            wompi.innerHTML= `
             
             <div>   
                 <form action="https://checkout.wompi.co/p/" method="GET"> 
@@ -69,13 +69,14 @@ btnCarrito.addEventListener('click', ()=>{
                 <input type="hidden" name="redirect-url" value="https://www.theberryfields.com/"/>
 
                 <button class="Wompi" id="Wompi" type="submit"> 
-                    <img src="/IMG/close.svg" alt="">  
+                    <span class="material-symbols-outlined">
+                        close
+                    </span> 
                 </button> 
                 
                 </form>
             <div> 
             `
-            wompi.appendChild(pay)
 
             const btnEnviar = document.querySelector('.Wompi')
 
