@@ -9,7 +9,7 @@ btnCarrito.addEventListener('click', ()=>{
 let totalWompi = 0 
 
 btnCarrito.addEventListener('click', ()=>{ 
-    
+
     let DATA = []
     
     carts.forEach(price =>{
@@ -64,9 +64,8 @@ btnCarrito.addEventListener('click', ()=>{
                 </form>
             <div> 
             `
-            document.getElementById('formWompi').submit();  
+            const form = document.getElementById('formWompi').submit();  
                 
-
             let Products = [] 
             
         
