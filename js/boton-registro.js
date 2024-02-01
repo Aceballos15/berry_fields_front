@@ -182,7 +182,7 @@ const cedulaRegistrada = ()=>{
         icon: "error", 
         title: "Error",
         text: "Ya estas en nuestra base de datos",
-        footer: '<a href="/HTML/catalogo.html">Regresar al pedido</a>'
+        footer: '<a href="https://www.theberryfields.com/">Regresar al pedido</a>'  
     });
 }
 
