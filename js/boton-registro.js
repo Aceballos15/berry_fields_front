@@ -109,7 +109,7 @@ const cedulaNoRegistrada = ()=>{
                     icon: "error", 
                     title: "Error",
                     text: "Lo sentimos hay un fallo con tu inscripcion en nuestra base de datos",
-                    footer: <a href="index.html">Registrate aca</a>  
+                    footer: '<a href="index.html">Registrate aca</a>'
                 });
             })
             .catch(error => {

@@ -116,5 +116,6 @@ btnCarrito.addEventListener('click', ()=>{
     })
     .catch(error => console.error(error)) 
 
+    btnPedir.disabled = true 
 
 }) 
