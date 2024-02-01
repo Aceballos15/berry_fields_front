@@ -10,10 +10,11 @@ let totalWompi = 0
 
 btnCarrito.addEventListener('click', ()=>{ 
     
-    closeWompi.addEventListener('click', ()=>{
-        containerWompi.classList.toggle('hidden-wompi') 
-        totalWompi  = 0; 
-    })
+    // closeWompi.addEventListener('click', ()=>{
+    //     containerWompi.classList.toggle('hidden-wompi') 
+    //     totalWompi  = 0; 
+    //     console.log(totalWompi) 
+    // }) 
     
     
     let DATA = []
@@ -24,6 +25,7 @@ btnCarrito.addEventListener('click', ()=>{
         totalWompi = totalWompi + precio; 
     })
     
+    console.log(totalWompi) 
 
     const total = {
         amount: totalWompi , 
@@ -39,8 +41,6 @@ btnCarrito.addEventListener('click', ()=>{
         },
         body: JSON.stringify(total) 
     }
-
-
 
    
     const URL_API = "https://app-berry-fields.onrender.com/api/Signature"  
@@ -60,7 +60,7 @@ btnCarrito.addEventListener('click', ()=>{
             wompi.innerHTML= `
             
             <div>   
-                <form action="https://checkout.wompi.co/p/" method="GET"> 
+                <form id="formWompi" action="https://checkout.wompi.co/p/" method="GET"> 
                 <input type="hidden" name="public-key" class="key" value="${datos.public_key}" />  
                 <input type="hidden" name="currency" class="currency" value="${datos.currency}" />
                 <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
@@ -68,64 +68,57 @@ btnCarrito.addEventListener('click', ()=>{
                 <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>
                 <input type="hidden" name="redirect-url" value="https://www.theberryfields.com/"/>
 
-                <button class="Wompi" id="Wompi" type="submit"> 
-                    <span class="material-symbols-outlined">
-                        close
-                    </span> 
-                </button> 
-                
                 </form>
             <div> 
             `
-
-            const btnEnviar = document.querySelector('.Wompi')
+            document.getElementById('formWompi').submit();  
+                
 
             let Products = [] 
             
-            btnEnviar.addEventListener('click',()=>{
+        
+            carts.forEach(product =>{
+               const productDetail = {
+                    id : product.product_id, 
+                    price: product.price,
+                    name: product.reference, 
+                    quantity:product.quantity
+               }
 
-                carts.forEach(product =>{
-                   const productDetail = {
-                        id : product.product_id, 
-                        price: product.price,
-                        name: product.reference, 
-                        quantity:product.quantity
-                   }
+               Products.push(productDetail) 
 
-                   Products.push(productDetail) 
-
-                })
-
-               const mapSend = {
-                    Referencia: datos.reference, 
-                    Productos : Products,
-                    Fecha: fechaHoy, 
-                    Total: totalWompi, 
-                    ID1: ID,
-                    Direccion:Direccion 
-                }
-                
-                const producto = {
-                    method:'POST', 
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-
-                    body: JSON.stringify(mapSend)  
-                }
-
-                try{
-                    const URL_BERRY = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido"
-                    fetch(URL_BERRY,producto) 
-                    .then(data =>{
-                        console.log(data.status)}) 
-
-                }
-                catch(error){
-                    console.error(error)
-                    console.error(error.message)
-                }
             })
+
+            const mapSend = { 
+                Referencia: datos.reference, 
+                Productos : Products,
+                Fecha: fechaHoy, 
+                Total: totalWompi, 
+                ID1: ID,
+                Direccion:Direccion 
+            }
+            
+            const producto = {
+                method:'POST', 
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+
+                body: JSON.stringify(mapSend)  
+            }
+
+            try{
+                const URL_BERRY = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido"
+                fetch(URL_BERRY,producto) 
+                .then(data =>{
+                    console.log(data.status)}) 
+
+            }
+            catch(error){
+                console.error(error)
+                console.error(error.message)
+            }
+           
 
         })
     })
