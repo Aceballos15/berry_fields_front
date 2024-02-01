@@ -92,8 +92,7 @@ const validacionCedula = (e) =>{
 
 //Validacion de campos vacios
 nombre.addEventListener('blur', (e) => {validacion('Ingresa tu Nombre',e) })
-apelllido.addEventListener('blur', (e) => validacion('Ingresa tu Apellido',e))
-tipoCedula.addEventListener('blur', (e) => validacion('Ingresa tu Tipo de Cedula',e))
+apelllido.addEventListener('blur', (e) => validacion('Ingresa tu Apellido',e)) 
 cedula.addEventListener('input', (e) => validacion('Ingresa tu Cedula',e))
 celular.addEventListener('input', (e) => validacion('Ingresa tu Celular',e))
 correo.addEventListener('input', (e) => validacion('Ingresa tu Correo',e))

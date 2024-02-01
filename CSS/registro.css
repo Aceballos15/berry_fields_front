@@ -70,6 +70,13 @@ form input{
     box-shadow: 0 0 5px var(--dark-grey);
 }
 
+#tipo-doc{
+    outline: none;
+    border-radius: 30px;
+    box-shadow: 0 0 10px var(--dark-grey);
+    border: none;
+    height: 28px;
+}
 
 .btn-registro{ 
     background: var(--withe);
