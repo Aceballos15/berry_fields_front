@@ -314,6 +314,9 @@
 #tipo-doc{
     outline: none; 
     padding: 5px;
+    border: none;
+    border-radius: 30px;
+    box-shadow: 0 0 3px; 
 }
 
 .check{
@@ -826,13 +829,12 @@ ul{
         height: 330px;
     }
 
-
     .logo{
         display: flex; 
         width: 165px; 
         height: 65px;
         position: relative; 
-        left: 82px; 
+        left: 50px; 
         top: 20px; 
     }
 
@@ -847,7 +849,7 @@ ul{
         width: 384px; 
     }
     .filtro button{
-        right: -410px;
+        right: -366px;
         width: 41px;
         height: 41px;
         top: -4px; 
@@ -870,7 +872,7 @@ ul{
     }
 
     #cart-product{
-        left: 360px;
+        left: 323px; 
         height: 40px;
         width: 40px;
         top: 38px;  
@@ -992,7 +994,7 @@ ul{
 
 @media screen and (max-width: 885px){  
     .logo{
-        left: 20px;   
+        left: 85px;
     }
     .buscador{
         position: absolute;
@@ -1065,17 +1067,14 @@ ul{
         right: 4px; 
     }
     #cart-product{
-        left: 530px; 
+        left: 498px;
         width: 40px;
         height: 40px; 
-        top: 36px; 
+        top: 38px;  
     }
     .container-icon-trash{
         left: 454px;
         bottom: 180px;
-    }
-    .container-products{
-        height: 690px; 
     }
 
     #offcanvasTop{
@@ -1166,11 +1165,7 @@ ul{
     .quantity button{
         width: 25px;
         height: 25px; 
-    }
-    .precio-product {
-        left: 245px;
-        bottom: 59px;
-    }
+    }  
 }
 
 @media screen and (max-width: 460px){  
