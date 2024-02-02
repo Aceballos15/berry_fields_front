@@ -57,7 +57,6 @@ const createCards = cards => cards.map (card =>
         
             </div>
 
-
         </div>
     </div>
     

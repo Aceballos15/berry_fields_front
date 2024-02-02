@@ -92,6 +92,7 @@
 
 .dad_card{ 
     width: auto; 
+    height: 156px;  
     display: flex;
     align-items: center;
     justify-content: center; 
@@ -631,9 +632,8 @@
     justify-content: center;
     margin: 0;
     width: 1240px;
-    height: 117px;
     position: relative;
-    top: 109px;
+    top: 129px; 
     left: 330px;
     z-index: -1;
 } 
@@ -658,7 +658,7 @@
     position: relative;
     left: 100px; 
     width: 1705px;
-    top: 128px;
+    top: 163px; 
 }
 
 .card { 
@@ -908,14 +908,14 @@ ul{
     }
     .cards_dad{ 
         display: flex;
-        gap: 15px;
+        gap: 52px; 
         flex-wrap: wrap;
         justify-content: center;
         z-index: -1;
         position: relative;
         left: 45px; 
         width: 1199px;
-        top: 128px
+        top: 180px 
     } 
     .filtro{
         position: relative;
@@ -1045,7 +1045,7 @@ ul{
 
 @media screen and (max-width: 885px){  
     .logo{
-        left: 85px;
+        left: 57px; 
     }
     .buscador{
         position: absolute;
@@ -1055,7 +1055,7 @@ ul{
     .filtro{
         width: 200px; 
         position: relative;
-        left: 50px; 
+        left: 111px;
     }
     .filtro_input{
         display: none;
@@ -1118,7 +1118,7 @@ ul{
         right: 4px; 
     }
     #cart-product{
-        left: 498px;
+        left: 567px; 
         width: 40px;
         height: 40px; 
         top: 38px;  
@@ -1169,14 +1169,14 @@ ul{
     }
     .cards_dad {
         display: flex;
-        gap: 20px;
+        gap: 12px;
         flex-wrap: wrap;
         justify-content: center;
         z-index: -1;
         position: relative;
         left: auto; 
         width: auto;  
-        top: 128px 
+        top: 150px; 
     }
     .dad-menu{
         display: contents; 
@@ -1198,7 +1198,7 @@ ul{
     }
 
     .banner img {
-        height: 137px;
+        height: 167px; 
         border-radius: 6px;
     }
 
@@ -1434,6 +1434,11 @@ ul{
         left: -30px; 
     }
 
+    .banner{
+        top: 116px; 
+    }
+}
+
 @media screen and (max-width: 320px) {
     .logo{
         display: none; 
@@ -1477,20 +1482,6 @@ ul{
 }
 
 
-/* @media screen and (max-height: 1025px){ 
-
-    .container-products{
-        height: 710px;
-    }
-    #offcanvasTop{
-        left: 113px;
-        height: 400px;
-        position: fixed;
-        top: 230px;
-        border-radius: 30px;
-    }
-} */ 
-
 @media screen and (max-height: 800px ) and (max-width:1280px) { 
     
     #offcanvasTop{
@@ -1506,5 +1497,4 @@ ul{
     #offcanvasTop{
         left: 0px;
     }
-}
 }
