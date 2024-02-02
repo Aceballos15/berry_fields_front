@@ -209,7 +209,9 @@ const muniBusqueda = ()=>{
 
 muniBusqueda(); 
 
+
 municipio.addEventListener('keyup', (e)=>{
+
 
     const value = e.target.value 
     const busqueda = Municipios.filter(muni => muni.Municipio.toLowerCase().includes(value.toLowerCase())) 
@@ -219,9 +221,11 @@ municipio.addEventListener('keyup', (e)=>{
     containerMun.classList.remove('hidden-mun')
 
     let NombreMun = []
+    let Departamento = []
 
     busqueda.forEach(nombre =>{
         NombreMun = nombre.Municipio 
+        Departamento = nombre.Departamento 
     })
 
     let inputMun = document.querySelector('.municipio')
@@ -239,11 +243,28 @@ municipio.addEventListener('keyup', (e)=>{
     
     nombreMun.addEventListener('click', ()=>{
 
+        const valorMun = document.querySelector('.locationMun') 
+
+        valorMun.innerHTML = ` 
+        <i class="material-icons">location_city</i> 
+        <em>Municipio </em> 
+        <input type="text" name="Municipio" id="municipio" value="${NombreMun}"> 
+        <span></span>  
+        `
         const containerMun = document.querySelector('.municipio')
 
         containerMun.classList.add('hidden-mun')
 
         Buscar = NombreMun;  
+
+        const valorDep = document.querySelector('.locationDep')
+
+        valorDep.innerHTML = `
+        <i class="material-icons">public</i> 
+        <em class="departamento">Departamento </em>  
+        <input type="text" name="Departamento" id="departamento" value="${Departamento}">  
+        <span></span> 
+        `
     
     });  
 }); 
