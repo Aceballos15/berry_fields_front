@@ -142,6 +142,34 @@ label i{
     display: block; 
 }
 
+.municipio{
+    color: var(--black);
+    cursor: pointer; 
+    padding: 10px 0px; 
+}
+
+.hidden-mun{
+    display: none; 
+}
+
+.municipio .NombreMun{
+    height: 30px; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:0 0 10px var(--gray); 
+    border-radius: 30px; 
+}
+
+.municipio .NombreMun:hover{ 
+    background: var(--gray); 
+    transition: .4s; 
+}
+
+.municipio .NombreMun:active{
+    background: var(--withe);
+    transition: .5s; 
+}
 
 @media screen and(max-width: 1380px){ 
     .dad-checkout{

@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Registro Clientes</title> 
     <link href="sweetalert2.min.css"> 
+    <link rel="icon" href="/IMG/Logo berry.svg"> 
     <link rel="stylesheet" href="/CSS/registro.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -14,7 +15,7 @@
     <div class="dad-checkout">
         <div class="container-checkout">
             <div class="titulo-checkout">
-                <H4>Regitro Nuevo Cliente</H4> 
+                <H4>Registro nuevo cliente</H4> 
             </div>
 
             <form action="">
@@ -73,10 +74,14 @@
              
                 <label>
                     <i class="material-icons">location_city</i> 
-                    <em>Municipio </em>
-                    <input type="text" name="Municipio" id="municipio"> 
-                    <span></span>
+                    <em>Municipio </em> 
+                    <input type="text" name="Municipio" id="municipio" value="">  
+                    <span></span> 
                 </label>
+                <div class="municipio hidden-mun"> 
+                    <ul> 
+                    </ul> 
+                </div>
 
                   
                 <label>
@@ -123,7 +128,6 @@
         </div>
 
     </div>  
-    
 
     <script src="/js/registro.js"></script>  
     <script src="/js/boton-registro.js"></script> 

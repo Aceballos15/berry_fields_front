@@ -195,27 +195,67 @@ cedula.addEventListener('keyup', ((e)=>{
 })) 
 
 
-//Funcion para traer el id del municipio dependiendo del departamento 
+let Municipios = [] 
 
-let idMunicipio = []
+let URL_MUNI = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Municipio1" 
 
-let idDepartamento =[] 
-
-
-const recorrido = ()=>{
-    mun.forEach(municipio =>{
-
-        idMunicipio = municipio.ID 
-
-        idDepartamento = municipio.ID
-
-    }) 
+const muniBusqueda = ()=>{
+    fetch(URL_MUNI)
+    .then(response => response.json())
+    .then(data =>{
+        Municipios = data 
+    })
 }
-//Funcion para traer los municipios 
-municipio.addEventListener('keyup', (e)=>{
-    const municipio = e.target.value 
 
-    URL_REPORT_MUNICIPIOS = URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Municipio1?where=Municipio.contains("${municipio}")` 
+muniBusqueda(); 
+
+municipio.addEventListener('keyup', (e)=>{
+
+    const value = e.target.value 
+    const busqueda = Municipios.filter(muni => muni.Municipio.toLowerCase().includes(value.toLowerCase())) 
+
+    const containerMun = document.querySelector('.municipio')
+
+    containerMun.classList.remove('hidden-mun')
+
+    let NombreMun = []
+
+    busqueda.forEach(nombre =>{
+        NombreMun = nombre.Municipio 
+    })
+
+    let inputMun = document.querySelector('.municipio')
+
+    let newMun = document.createElement('div')  
+
+    newMun.classList.add('nombreMuni') 
+
+    inputMun.innerHTML = `
+        <div class="NombreMun"> ${NombreMun} </div>  
+
+
+    `
+    const nombreMun = document.querySelector('.NombreMun') 
+    
+    nombreMun.addEventListener('click', ()=>{
+
+        const containerMun = document.querySelector('.municipio')
+
+        containerMun.classList.add('hidden-mun')
+
+        Buscar = NombreMun;  
+    
+    });  
+}); 
+
+
+let Buscar = [] 
+//Funcion para traer los municipios 
+municipio.addEventListener('keyup', (e)=>{ 
+    
+    Buscar = e.target.value 
+
+    URL_REPORT_MUNICIPIOS = URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Municipio1?where=Municipio.contains("${Buscar}")` 
 
     const busquedaMunicipios = ()=>{
         fetch(URL_REPORT_MUNICIPIOS)
@@ -232,3 +272,20 @@ municipio.addEventListener('keyup', (e)=>{
     busquedaMunicipios(); 
 
 }) 
+
+//Funcion para traer el id del municipio dependiendo del departamento 
+
+let idMunicipio = []
+
+let idDepartamento =[] 
+
+
+const recorrido = ()=>{
+    mun.forEach(municipio =>{
+
+        idMunicipio = municipio.ID 
+
+        idDepartamento = municipio.ID
+
+    }) 
+}
