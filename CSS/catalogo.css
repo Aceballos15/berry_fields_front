@@ -90,6 +90,70 @@
     left: 66px;
 }
 
+.dad_card{ 
+    width: auto; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    border-radius: 17px; 
+    font-family: var(--font-family-montserrat); 
+    border: 1px solid var(--blue); 
+    padding: 10px; 
+}
+
+.card__container{
+    flex: 1 1 auto; 
+    width: auto;  
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+
+.card__img{
+    width: 120px;  
+    object-fit: cover; 
+    transition: all .5s; 
+    position: relative; 
+}
+
+
+.card__title{
+    padding: 10px; 
+    width: 220px; 
+}
+
+.card__price{
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;  
+}
+.container-botones{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    padding: 10px 0px;
+}
+
+.container-botones button{
+    border-radius: 30px;
+    border: none;
+    background: var(--orange);
+    color: var(--withe); 
+}
+
+.container-botones button:hover{
+    background: var(--red);
+    transition: .5s;
+}
+
+
+.container-botones button:active{
+    background: var(--orange);
+    transition: .3s;
+}
+
 .filtro button {
     display: none; 
     align-items: center;
@@ -201,10 +265,6 @@
     font-family: var(--font-family-montserrat); 
 }
 
-.pedido{
-    position: relative;
-    top: 90px; 
-}
 
 #offcanvasTop{
     left: 666px; 
@@ -571,14 +631,11 @@
     justify-content: center;
     margin: 0;
     width: 1240px;
-    height: 300px;
-    padding: 20px;
+    height: 117px;
     position: relative;
-    top: 126px;
+    top: 109px;
     left: 330px;
     z-index: -1;
-
-    border-radius: 10px;
 } 
 
 .banner img{
@@ -623,8 +680,6 @@
 }
 
 .card-title{
-    position: relative;
-    top: 10px;
     font-weight: bold; 
 }
 
@@ -659,15 +714,6 @@
     color: var(--withe); 
 }
 
-.container-botones {
-    position: absolute;
-    bottom: 10px;
-    left: 100px;  
-    border-radius: 30px;
-    width: 170px;
-    height: 26px; 
-}
-
 .boton_catalogo button:hover{ 
     background: var(--purple-light);  
     color: var(--withe); 
@@ -678,29 +724,18 @@
     transition: .2s;
 }
 .contador{ 
-    display: inline-block; 
-    text-align: center;
-    outline: none;
-    border-radius: 10px; 
-    color: var(--purple-dark);
-    width: 80px;
-    border: none; 
+    display: flex; 
+    position: relative;
+    bottom: 50px;
+    left: 5px;  
+    background: var(--orange);  
+    border-radius: 30px; 
+    width: 20px; 
+    align-items: center; 
+    justify-content: center; 
+    color: var(--withe); 
 }
 
-.container-botones button {  
-    background-color: var(--red);
-    width: 170px;  
-    /* height: 34px;  */
-    border-radius: 10px; 
-    align-items: center;
-    justify-content: center; 
-    border: none; 
-    color: var(--withe); 
-    cursor: pointer; 
-    left: -35px;
-    bottom: 3px;
-    position: absolute; 
-}
 .card:hover button{ 
     background-color: var(--orange);
     transition: 0.5s; 
@@ -1202,7 +1237,7 @@ ul{
         height: 45px; 
         position: absolute;
         top: 30px;
-        left: 56px;
+        left: 20px; 
 
     }
     .filtro_input {
@@ -1216,9 +1251,9 @@ ul{
         height: 51px;
         border: none;
         outline: none;
-        left: 12px;  
+        left: -39px; 
         top: -14px;
-        width: 169px;
+        width: 217px;
     }
     .imagen-carrito img{
         width: 150px; 
@@ -1256,7 +1291,7 @@ ul{
     }
     .filtro{
         position: relative;
-        left: 147px; 
+        left: 180px;
         display: flex; 
     }
 
@@ -1277,7 +1312,7 @@ ul{
         width: 40px;
         height: 40px;
         top: 38px;
-        left: 300px; 
+        left: 335px;  
     }
 
     .container-products{
@@ -1356,7 +1391,7 @@ ul{
         height: 82px; 
     }
     .banner img{
-        height: 65px;
+        height: 82px; 
         border-radius: 6px; 
     }
 
@@ -1389,6 +1424,14 @@ ul{
     .container-borrar-carrito{
         top: 69px; 
         left: auto;
+    }
+
+    .nueva__clase{
+        left: 13px; 
+    }
+
+    .tipo_de_documento{
+        left: -30px; 
     }
 
 @media screen and (max-width: 320px) {

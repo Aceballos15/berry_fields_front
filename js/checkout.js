@@ -59,7 +59,6 @@ const check = ()=>{
             <div class="direccion"> 
                 <label for="direccion" >Direccion: </label>
                 <input type="text" class="inputCheck" id="direccion"  placeholder="" value="${i.Direccion}"> 
-                <span class="lineaInput"></span>
             </div> 
             `
            
@@ -131,8 +130,33 @@ inputCedula.addEventListener('blur', (e)=>{
     
 });  
 
-//Condicion cuando no traiga info de la API 
-
+window.addEventListener('keydown', (e)=>{
+    const cedula = e.target.value 
+    if(e.keyCode ===13){
+        if(cedula.trim().length >= 7){ 
+            Doc = cedula 
+            //API con parametro de busqueda en cedula 
+            URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
+        
+            //Funcion para traer la info 
+            const initCheckout = ()=>{
+                fetch(URL_API_Reporte_Clientes)
+                .then(response => response.json()) 
+                .then(data =>{
+                    chechkout = data; 
+                    
+                    //Funcion para mostrar en el checkout
+        
+                    check(); 
+                }) 
+                .catch(error =>console.error(error)) 
+                
+            };     
+            initCheckout(); 
+        }  
+    }
+    
+})
 
 const btnGuadarCheckout = document.querySelector('.form-submit')
 

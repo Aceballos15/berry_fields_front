@@ -237,7 +237,12 @@ body{
 
 #close{
     position: relative;
-    bottom: 50px;
+    bottom: 69px; 
+}
+
+.offcanvas-header{
+    background: var(--blue); 
+    color: var(--withe); 
 }
 
 .nuevo__form{
@@ -246,12 +251,13 @@ body{
 }
 
 .nueva__clase{
-    padding: 20px 0px; 
+    padding: 10px 0px;
 }
 .inputCheck{
     outline: none;
     border: none; 
-    width: 220px; 
+    width: 324px;  
+    border-radius: 30px; 
 }
 
 .lineaInput{

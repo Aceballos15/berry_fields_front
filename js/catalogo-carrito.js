@@ -4,7 +4,7 @@
 URL_PRODUCTOS= "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Productos_1_hora" 
 
 //Variables de contenido 
-let listProductsHTML = document.querySelector('.cards_dad')
+let listProductsHTML = document.querySelector('.cards_dad') 
 let listCartHTML = document.querySelector('.container-cart-products') 
 
 const cantidad = document.querySelector('.contador-productos')
@@ -15,12 +15,11 @@ let listProducts = []
 let carts = []  
 
 //Funcion para tomar el evento de suma y resta para los productos 
-
 listProductsHTML.addEventListener('click', (event) => { 
     let positionClick = event.target;   
-    if (positionClick.classList.contains("sumar")) {
+    if (positionClick.classList.contains("sumar")){ 
         // Encuentra el elemento padre con la clase "card"
-        const cardElement = positionClick.closest('.card');
+        const cardElement = positionClick.closest('.dad_card');
         if (cardElement) {
             // Obtén el product_id del atributo data-id del elemento encontrado
             const product_id = cardElement.dataset.id;

@@ -13,9 +13,9 @@ const dad = document.querySelector('.cards_dad')
 
 //Cargado de la pagina 
 window.addEventListener('DOMContentLoaded', async()=>{
-    const data =await loadCards()
+    const data = await loadCards()
     cards = data
-    renderCard(cards) 
+    renderCard(cards)
 })
 //Llamar a la api y traer los datos 
 const loadCards = async()=>{
@@ -35,19 +35,33 @@ input.addEventListener('keyup', ()=>{
 
 const createCards = cards => cards.map (card =>  
     
-    ` <div id= "product" class="dad-card"> 
-    <div class="card" style="width: 18rem; height: 20rem;" data-id="${card.ID}" data-price="${card.Precio_detal}" data-referencia="${card.Referencia}" data-imagen="${card.Imagen_publica.url}"> 
-        <div class="card-body"> 
-            <img src="${card.Imagen_publica.url}" class="card-img-top" alt="...">  
-            <h5 class="card-title" id="title">${card.Referencia}</h5>   
-            <p  class="card-text">${card.Caracteristicas} </p>  
-            <h6>$${new Intl.NumberFormat('es-CO').format(card.Precio_detal)}</h6> 
-            <div class="container-botones">
-                <button class="sumar"> Agregar </button>                                
-            </div> 
-        </div>                                          
-    </div> 
-    </div>  `).join(' ') 
+    ` 
+    <div class="dad_cards" id="product">
+        <div class="dad_card" data-id="${card.ID}" data-price="${card.Precio_detal}" data-referencia="${card.Referencia}" data-imagen="${card.Imagen_publica.url}">
+            <div class="card__img">
+                <img src="${card.Imagen_publica.url}" class="card-img-top" alt="...">
+            </div>
+
+            <div class="card_container"> 
+                <div class="card__title">
+                    <h5 class="card-title" id="title">${card.Referencia}</h5>
+                </div>
+
+                <div class="card__price" id="title"> 
+                    <h6>$${new Intl.NumberFormat('es-CO').format(card.Precio_detal)}</h6> 
+
+                    <div class="container-botones"> 
+                        <button class="sumar">AGREGAR</button> 
+                    </div> 
+                </div> 
+        
+            </div>
+
+
+        </div>
+    </div>
+    
+    `).join(' ') 
 
 
     
@@ -56,3 +70,20 @@ const renderCard = (cards) =>{
     const itemCard = createCards(cards)
     dad.innerHTML = itemCard
 }
+
+
+// const FunSuma = async ()=>{ 
+//     const suma = document.querySelector('.sumar')
+
+//     let sumatoria = 1
+//     suma.addEventListener('click', ()=>{
+//         const contador = document.querySelector('.contador')
+        
+//         sumatoria =+ 1
+
+//         contador.innerHTML = `
+//         <span class"cantidad">${sumatoria}<span>
+//         `
+//     })
+
+// } 
