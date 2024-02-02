@@ -74,6 +74,22 @@
     left: 290px; 
 }
 
+.tipo_de_documento{
+    padding: 0px 45px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    position: relative;
+    left: 18px;
+}
+
+.nueva__clase{
+    padding: 20px 0px;
+    position: relative;
+    left: 66px;
+}
+
 .filtro button {
     display: none; 
     align-items: center;
