@@ -25,7 +25,8 @@ const loadCards = async()=>{
 
 
 //Funcion para los filtros de busqueda 
-input.addEventListener('keyup', ()=>{
+input.addEventListener('keyup', (e)=>{
+    const value = e.target.value 
     const newCard = cards.filter(card => card.Referencia.toLowerCase().includes(input.value.toLowerCase()))
     renderCard(newCard) 
 })

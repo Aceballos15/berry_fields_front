@@ -22,9 +22,10 @@ listProductsHTML.addEventListener('click', (event) => {
         Swal.fire({
             position: "top-end",
             icon: "success",
-            title: "Tu pedido esta en el carrito", 
+            title: "Agregado",  
             showConfirmButton: false,
-            timer: 1200 
+            timer: 1200,  
+            width:200 
           });
         const cardElement = positionClick.closest('.dad_card');
         if (cardElement) {

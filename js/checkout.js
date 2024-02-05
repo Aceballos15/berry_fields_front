@@ -131,7 +131,7 @@ inputCedula.addEventListener('blur', (e)=>{
 window.addEventListener('keydown', (e)=>{
     const cedula = e.target.value 
     if(e.keyCode ===13){
-        if(cedula.trim().length >= 7){ 
+        if(cedula.trim().length >= 7){
             Doc = cedula 
             //API con parametro de busqueda en cedula 
             URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`

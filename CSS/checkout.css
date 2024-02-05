@@ -327,7 +327,7 @@ body{
     }
     
     .inputCheck{
-        width: 325px;
+        width: 405px; 
     }
 }
 
@@ -349,7 +349,7 @@ body{
         bottom: 90px; 
     }
     .inputCheck{
-        width: 300px; 
+        width: 325px; 
     }
     .boton-cerrar{
         top: -123px; 

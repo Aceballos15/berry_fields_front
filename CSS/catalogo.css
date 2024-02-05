@@ -137,6 +137,10 @@
     padding: 10px 0px;
 }
 
+.body-alert{
+    width: 30px; 
+}
+
 .container-botones button{
     border-radius: 30px;
     border: none;

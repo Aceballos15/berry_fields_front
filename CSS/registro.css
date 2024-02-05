@@ -41,8 +41,6 @@ body{
 }
 
 .regreso{ 
-    position: relative;
-    left: 100px;  
     border: none;
     border-radius: 30px; 
     background: var(--purple-lighter);
@@ -66,6 +64,7 @@ body{
     color: var(--black); 
     height: 50px;
     align-items: center; 
+    gap: 15px;
 }
 .titulo-checkout h4{
     font-weight: bold;
@@ -88,12 +87,13 @@ form input{
     box-shadow: 0 0 5px var(--dark-grey);
 }
 
-#tipo-doc{
+.tipo-doc{
     outline: none;
     border-radius: 30px;
-    box-shadow: 0 0 10px var(--dark-grey);
+    box-shadow: 0 0 5px var(--dark-grey);  
     border: none;
     height: 28px;
+    cursor: pointer; 
 }
 
 .btn-registro{ 
@@ -144,6 +144,7 @@ label i{
     right: 35px;
     top: 53px;
     color: var(--purple-light); 
+    width: 25px;
 }
 /*Clases dinamicas desde js*/
 
