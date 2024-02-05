@@ -1322,7 +1322,7 @@ ul{
     }
 
     .container-products{
-        height: 565px;
+        height: 350px; 
     }
     .carrito {
         position: absolute;
@@ -1519,15 +1519,5 @@ ul{
     
     #offcanvasTop{
         left: 370px; 
-    }
-}
-
-@media screen and (max-height: 926px) and (max-width:430px){ 
-    
-    .container-products{
-        height: 147px;  
-    }
-    #offcanvasTop{
-        left: 0px;
     }
 }
