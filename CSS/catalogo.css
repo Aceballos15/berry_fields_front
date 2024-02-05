@@ -1452,8 +1452,35 @@ ul{
     .filtro_input{
         max-width: 180px;   
     }
-    .container-cart-products{
-        width: 301px;
+    #cart-product{
+        left: 270px; 
+    }
+    .buscador{
+        left: 40px; 
+    }
+    .filtro_active{
+        left: -8px;
+        width: 184px; 
+    }
+    .banner img{
+        height: 69px; 
+    }
+    .cards_dad{
+        width: 317px;
+        top: 128px; 
+    }
+    .dad_card{
+        width: 300px; 
+    }
+
+    .cart-product{
+        height: 140px; 
+    }
+    .info-cart-product{
+        left: -106px; 
+    }
+    .container-products{
+        height: 147px; 
     }
     .filtro{
         position: relative;
@@ -1498,7 +1525,7 @@ ul{
 @media screen and (max-height: 926px) and (max-width:430px){ 
     
     .container-products{
-        height: 330px; 
+        height: 147px;  
     }
     #offcanvasTop{
         left: 0px;

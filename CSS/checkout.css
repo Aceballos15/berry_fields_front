@@ -326,7 +326,7 @@ body{
     }
     
     .inputCheck{
-        width: 405px; 
+        width: 325px;
     }
 }
 
@@ -359,5 +359,15 @@ body{
     }
     .container-wompi{
         right: -6px; 
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .inputCheck{
+        width: 265px;  
+    }
+    #close{
+        bottom: 88px; 
+        right: 5px; 
     }
 }
