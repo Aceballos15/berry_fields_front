@@ -238,6 +238,16 @@ body{
 #close{
     position: relative;
     bottom: 69px; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    color: var(--withe); 
+}
+
+#close:hover{
+    background: var(--withe);
+    transition: .5s; 
+    color: var(--aquaMarine); 
 }
 
 .offcanvas-header{
@@ -256,7 +266,7 @@ body{
 .inputCheck{
     outline: none;
     border: none; 
-    width: 324px;  
+    width: 405px;
     border-radius: 30px; 
 }
 
@@ -292,6 +302,9 @@ body{
     .form-submit{
         top: 23px;
     }
+    .inputCheck{
+        width: 405px; 
+    }
 }
 
 @media screen and (max-width: 885px){
@@ -310,6 +323,10 @@ body{
 
     .container-wompi{
         right: 415px; 
+    }
+    
+    .inputCheck{
+        width: 405px; 
     }
 }
 

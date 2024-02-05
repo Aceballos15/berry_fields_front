@@ -60,8 +60,6 @@ form{
 
 form input{
     display: flex;
-    position: relative;
-    width: 300px;
     height: 25px;
     border-radius: 30px;
     border: none; 

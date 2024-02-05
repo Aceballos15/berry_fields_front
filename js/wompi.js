@@ -8,6 +8,10 @@ btnCarrito.addEventListener('click', ()=>{
 
 let totalWompi = 0 
 
+window.addEventListener('DOMContentLoaded', ()=>{
+    totalWompi = 0; 
+})
+
 btnCarrito.addEventListener('click', ()=>{ 
 
     let DATA = []

@@ -297,6 +297,8 @@
    border: none;  
 }
 
+
+
 .icon-cart{
     width: 30px;
     height: 24px; 
@@ -1217,6 +1219,10 @@ ul{
         width: 25px;
         height: 25px; 
     }  
+
+    .container-products{
+        height: 483px;  
+    }
 }
 
 @media screen and (max-width: 460px){  
