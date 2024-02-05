@@ -40,12 +40,32 @@ body{
     background: transparent;
 }
 
-.titulo-checkout{
+.regreso{ 
+    position: relative;
+    left: 100px;  
+    border: none;
+    border-radius: 30px; 
+    background: var(--purple-lighter);
+    color: var(--withe); 
+    cursor: pointer; 
+}
+.regreso:hover{
+    background: var(--purple-dark);
+    transition: .5s; 
+    box-shadow: 0 0 6px; 
+}
+
+.regreso:active{
+    background: var(--purple-lighter);
+    transition: .2s;
+}
+
+.titulo-checkout{ 
     display: flex;
-    justify-content: center;
+    justify-content: end;   
     color: var(--black); 
     height: 50px;
-    align-items: center;
+    align-items: center; 
 }
 .titulo-checkout h4{
     font-weight: bold;

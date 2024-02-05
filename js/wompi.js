@@ -22,8 +22,6 @@ btnCarrito.addEventListener('click', ()=>{
         totalWompi = totalWompi + precio; 
     })
     
-    console.log(totalWompi) 
-
     const total = {
         amount: totalWompi , 
         ID:ID , 
@@ -40,7 +38,7 @@ btnCarrito.addEventListener('click', ()=>{
     }
 
    
-    const URL_API = "https://app-berry-fields.onrender.com/api/Signature"  
+    const URL_API = "http://3.234.15.41:443/api/Signature" 
 
     fetch(URL_API, post)
     .then(response => response.json())

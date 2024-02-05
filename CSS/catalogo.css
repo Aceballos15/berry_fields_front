@@ -514,6 +514,14 @@
     bottom: 86px;
     width: 90px;
 }
+
+.quantity input{
+    width: 30px;
+    border-radius: 30px;
+    outline: none;
+    border: none; 
+}
+
 .quantity button{
     display: flex;
     align-items: center;

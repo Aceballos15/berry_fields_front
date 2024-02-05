@@ -76,7 +76,7 @@ const check = ()=>{
             
                 Direccion =  valor
             })
-            btnPedir.disabled = false 
+            btnPedir.disabled = false
         });  
 
 
@@ -90,7 +90,7 @@ const check = ()=>{
             footer: '<a href="/HTML/registro.html">Registrate aca</a>'
         });
 
-        btnPedir.disabled = true 
+        btnPedir.disabled = true
     }
 }; 
 
@@ -105,7 +105,6 @@ inputCedula.addEventListener('blur', (e)=>{
     //variable para obtener el valor 
     const cedula = e.target.value
 
-  
     if(cedula.trim().length >= 7){ 
         Doc = cedula 
         //API con parametro de busqueda en cedula 
@@ -127,7 +126,6 @@ inputCedula.addEventListener('blur', (e)=>{
         };     
         initCheckout(); 
     }  
-    
 });  
 
 window.addEventListener('keydown', (e)=>{
@@ -154,13 +152,19 @@ window.addEventListener('keydown', (e)=>{
             };     
             initCheckout(); 
         }  
+        else if(cedula.trim().length <7){
+            Swal.fire({
+                icon: "error",
+                title: "Hay algo mal",
+                text: "Tu documento debe de tener almenos 7 caracteres", 
+            });
+        }
     }
-    
 })
 
 const btnGuadarCheckout = document.querySelector('.form-submit')
 
-//Declaraciones para los valores totales 
-let IvaTotal = 0
-let SubTOTAL = 0 
-let id = []
+
+btnPedir.addEventListener('click', ()=>{
+    check(); 
+})

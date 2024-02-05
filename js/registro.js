@@ -112,3 +112,10 @@ celular.addEventListener('input', validacionNumero)
 //Validacion de cedula  
 
 cedula.addEventListener('input', validacionCedula) 
+
+
+const volver = document.querySelector('.regreso')
+
+volver.addEventListener('click', ()=>{
+    window.location.href = "https://www.theberryfields.com/" 
+})

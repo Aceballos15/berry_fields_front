@@ -111,6 +111,11 @@ const cedulaNoRegistrada = ()=>{
                     text: "Ya estas creado en nuestra base de datos",
                     footer: '<a href="https://www.theberryfields.com/">Vuelve a tu compra</a>'   
                 });
+
+                setTimeout(()=>{
+                    window.location.href = "https://www.theberryfields.com/"
+                }, 4000) 
+
             })
             .catch(error => {
                 console.error('Fallo en la solicitud', error)

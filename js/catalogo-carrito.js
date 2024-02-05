@@ -24,7 +24,7 @@ listProductsHTML.addEventListener('click', (event) => {
             icon: "success",
             title: "Tu pedido esta en el carrito", 
             showConfirmButton: false,
-            timer: 1500
+            timer: 1200 
           });
         const cardElement = positionClick.closest('.dad_card');
         if (cardElement) {
@@ -32,7 +32,7 @@ listProductsHTML.addEventListener('click', (event) => {
             const product_id = cardElement.dataset.id;
             const price = cardElement.dataset.price; 
             const referencia = cardElement.dataset.referencia; 
-            const imagen = cardElement.dataset.imagen; 
+            const imagen = cardElement.dataset.imagen;
             addToCart(product_id,price, referencia,imagen);  
         }
     } 

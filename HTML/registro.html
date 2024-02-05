@@ -14,14 +14,22 @@
 
     <div class="dad-checkout">
         <div class="container-checkout">
+
+            
             <div class="titulo-checkout">
                 <H4>Registro nuevo cliente</H4> 
+
+                <button class="regreso">
+                    <span class="material-symbols-outlined">
+                        arrow_back
+                    </span>
+                </button> 
             </div>
 
             <form action="">
                 <label>
                     <i class="material-icons">person</i>
-                    <em>Nombre</em> 
+                    <em>Nombres</em>
                     <input type="text" name="Nombre" id="nombre">
                     <span></span>
                 </label>
@@ -59,7 +67,7 @@
                 <label>
                     <i class="material-icons">phone</i> 
                     <em>Celular </em>
-                    <input type="tel" class="celular" name="Celular" id="celular">
+                    <input type="tel" class="celular" name="Celular" id="celular" value="3" >
                     <span></span>
                 </label>
             
@@ -106,10 +114,9 @@
                     <input type="text" name="Direccion" id="direccion"> 
                     <span></span>
                 </label>
-            </form>
+                
             
-            <form action="" class="tipo-persona"> 
-                <label>
+                <label class="tipo-persona">
                     <i class="material-symbols-outlined">badge</i>
                     
                     <span></span> 
@@ -118,13 +125,14 @@
                     
                     <em>Persona Juridica</em>
                     <input type="radio" name="tipo-persona" value="persona juridica - regimen comun" class="juridica">  
-                </label>
-            </form>
+                </label> 
+                    
 
+            </form>
+            
             <div class="container-btn">
                 <button class="btn-registro" type="" disabled>Registrarse</button> 
             </div> 
-
         </div>
 
     </div>  
