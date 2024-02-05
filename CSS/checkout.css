@@ -347,6 +347,9 @@ body{
     .titulo-checkout{
         bottom: 90px; 
     }
+    .inputCheck{
+        width: 300px; 
+    }
     .boton-cerrar{
         top: -123px; 
     }
@@ -360,6 +363,10 @@ body{
     .container-wompi{
         right: -6px; 
     }
+    #close{
+        bottom: 70px;
+        right: 5px; 
+    }
 }
 
 @media screen and (max-width: 320px) {
@@ -367,7 +374,7 @@ body{
         width: 265px;  
     }
     #close{
-        bottom: 88px; 
+        bottom: 66px; 
         right: 5px; 
     }
 }

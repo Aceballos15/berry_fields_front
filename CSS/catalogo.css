@@ -1230,6 +1230,9 @@ ul{
         display: none; 
     }
 
+    .dad_card{
+        width: 340px; 
+    }
     .container-products{
         height: 520px; 
     }
@@ -1266,7 +1269,7 @@ ul{
     }
     .nombre-product{
         top: -92px;
-        left: 168px;  
+        left: 145px; 
         width: 160px; 
     }
 
@@ -1281,10 +1284,6 @@ ul{
         justify-content: center; 
         box-shadow: none;
     }
-    .container-cart-products{
-        width: 345px;
-        right: -38px; 
-    }
 
     .info-cart-product{
         width: 285px;
@@ -1297,7 +1296,7 @@ ul{
     }
     .filtro{
         position: relative;
-        left: 180px;
+        left: 154px; 
         display: flex; 
     }
 
@@ -1318,7 +1317,7 @@ ul{
         width: 40px;
         height: 40px;
         top: 38px;
-        left: 335px;  
+        left: 307px;
     }
 
     .container-products{
@@ -1342,6 +1341,7 @@ ul{
     }
     .container-total{
         top: 3px; 
+        right: 45px; 
     }
     .dad-categoria{
         display: flex; 
@@ -1397,7 +1397,7 @@ ul{
         height: 82px; 
     }
     .banner img{
-        height: 82px; 
+        height: 78px;
         border-radius: 6px; 
     }
 
@@ -1410,7 +1410,7 @@ ul{
         font-size: var(--font-size-s);
         margin-left: 10px;
         position: relative;
-        left: 255px; 
+        left: 235px;
         bottom: 63px; 
     }
 
@@ -1420,11 +1420,11 @@ ul{
     }
 
     .container-icon-trash{
-        left: 315px; 
-        bottom: 200px 
+        left: 280px;
+        bottom: 201px; 
     }
     .quantity{
-        left: 167px; 
+        left: 145px;
         bottom: 89px; 
     }
     .container-borrar-carrito{
@@ -1454,6 +1454,10 @@ ul{
     }
     #cart-product{
         left: 270px; 
+    }
+    .imagen-carrito img{
+        position: relative;
+        left: 41px;  
     }
     .buscador{
         left: 40px; 
@@ -1488,6 +1492,18 @@ ul{
     }
     .dad-container-products{
         height: 350px;
+    }
+    .nombre-product{
+        left: 165px; 
+    }
+    .quantity{
+        left: 165px;  
+    }
+    .precio-product{
+        left: 265px;
+    }
+    .container-icon-trash{
+        left: 310px; 
     }
     .carrito {
         position: relative;
