@@ -531,9 +531,15 @@
     background: var(--red); 
 }
 
+.container-wompi{
+    width: 1px;
+    height: 1px; 
+}
+
 .hidden-wompi .container-wompi{ 
     display: none; 
     position: unset; 
+
 }
 
 @media screen and (max-width:1380px){
