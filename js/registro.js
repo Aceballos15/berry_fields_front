@@ -122,17 +122,46 @@ volver.addEventListener('click', ()=>{
 
 //validar mayoria de edad 
 
-let fechaActual = new Date(); 
+const obtenerFecha = ()=>{
+    const fecha = new Date(); 
+    const dia = String(fecha.getDate()).padStart(2, '0'); 
+    const mes = String(fecha.getMonth() + 1).padStart(2 , '0'); 
+    const anio = fecha.getFullYear()
+    return `${anio}-${mes}-${dia}` 
+}
+
+let fechaActual = obtenerFecha(); 
+
+
 
 FechaNacimiento.addEventListener('blur',(e)=>{
-
     const field = e.target 
-    
-    if(isNaN(FechaNacimiento.value)){
-        errors('Ingrese una fecha de nacimiento valida', field)
+
+    const value = e.target.value 
+
+    const mayoriaEdad = (nacimiento)=>{
+        const hoy = new Date(); 
+        const edad = hoy.getFullYear() - nacimiento; 
+        const mes = hoy.getMonth() - nacimiento; 
+
+        if(mes < 0 || (mes == 0 && hoy.getDate() < nacimiento)){ 
+            edad--; 
+        }
+
+        return edad >= 18 
+
     }
-    else if(FechaNacimiento.value > fechaActual){
+
+    const mayor = mayoriaEdad(value) 
+
+    if(mayor == false){ 
+        errors('Para ingresar debes de ser mayor de edad', field)
+        
+    }
+    else if(value > fechaActual){ 
         errors('La fecha tiene que registarse en pasado', field) 
-    }
+    } 
+    
+
 
 })

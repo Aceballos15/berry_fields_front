@@ -330,7 +330,7 @@
     display: block;
     position: relative;
     left: -17px;
-    width: 433px;
+    width: auto; 
     height: 110px; 
 } 
 
