@@ -176,12 +176,12 @@ label i{
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow:0 0 10px var(--gray); 
+    box-shadow:0 0 10px var(--dark-grey);
     border-radius: 30px; 
 }
 
 .municipio .NombreMun:hover{ 
-    background: var(--gray); 
+    background: var(--gray);  
     transition: .4s; 
 }
 

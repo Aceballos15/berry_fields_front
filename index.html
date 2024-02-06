@@ -20,18 +20,19 @@
 
 <body>
     <div class="dad">
-        <div class="contenido"> 
- 
-            <div class="header">
+        <div class="header"> 
 
-                <div class="logo">
-                    <img src="/IMG/Logo berry.svg" alt="">
-                </div>
+            <!-- logos --> 
+            <div class="logo">
+                <img src="/IMG/Logo berry.svg" alt="">
+            </div>
 
-                <div class="logo-celular">
-                    <img src="/IMG/Logo berry.svg" alt="">
-                </div>
+            <!-- <div class="logo-celular">
+                <img src="/IMG/Logo berry.svg" alt="">
+            </div>  --> 
 
+            <div class="header__botones">
+                <!-- filtros de busqueda --> 
                 <div class="buscador">
                     <div class="filtro"> 
                         <input class="filtro_input filtro_active" type="text" id="buscar" placeholder="Filtrar referencia"> 
@@ -43,15 +44,18 @@
                     </div>
                 </div>
 
+                <!--boton de carrito --> 
                 <button id="cart-product" class="cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="icon-cart" viewBox="0 0 16 16">
                         <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
                     </svg>  
                     <div class="count-products">
                         <span class="contador-productos">0</span> 
-                    </div>
+                    </div> 
                 </button> 
+                
 
+                <!-- estructura del caarito  -->
                 <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
                     <div class="offcanvas-header"> 
                         <div class="nuevo__form" > 
@@ -82,93 +86,60 @@
                                 close
                             </span> 
                         </button> 
-    
-                </div>
-                <div class="offcanvas-body">
-                    <div class="container-products">
-                        <div class="container-cart-products"> </div> 
-                    </div>
-
-                    <div class="pedido">
-                        <div class="container-total">
-                            <div class="total">
-                                <h4>TOTAL: </h4>
-                            </div>
-                            <div>
-                                <span class="precio-total" > 0</span>  
-                            </div>
-                        </div>
-    
-                        
-                        <div id="container-pagar"> 
-                            <div class="dad-pagar"></div>
-                        </div>
-                        
-                        <div class="dad-pagar">
-                            <button class="pagar" id="pagar" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop" disabled>PEDIR</button> 
-                        </div> 
                     </div>
                     
-                </div>
-                </div> 
-
-                <div class="carrito">
-                    <div class="container-cart-icon ">
-                    </div >        
-                    <div class="container-cart hidden-cart">  
-                       
-                        <div class="info-cart "> 
-                            <h4>INFORMACION COMPRAS</h4>  
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="close" viewBox="0 0 16 16">
-                                <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
-                              </svg>
+                    <div class="offcanvas-body">
+                        <div class="container-products">
+                            <div class="container-cart-products"> </div> 
                         </div>
 
-                        <div class="linea-carrito"></div>
-
-                    
-
-                        <div class="dad-container-products">
-                            <div class="container-cart-products"></div>
-                        </div>
-                        
-                        <div class="container-void hidden-void"> 
-                           <h4 class="carrito-vacio"> CARRITO VACIO</h4> 
-                        </div> 
-                        <!-- <div class="linea-carrito"></div> --> 
-
-                        <div class="container-total">
-                            <div class="total">
-                                <h4>TOTAL: </h4>
+                        <div class="pedido">
+                            <div class="container-total">
+                                <div class="total">
+                                    <h4>TOTAL: </h4>
+                                </div>
+                                <div>
+                                    <span class="precio-total" > 0</span>  
+                                </div>
                             </div>
-                            <div>
-                                <span class="precio-total"> 0</span>  
+        
+                            
+                            <div id="container-pagar"> 
+                                <div class="dad-pagar"></div>
                             </div>
+                            
+                            <div class="dad-pagar">
+                                <button class="pagar" id="pagar" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop" disabled>PEDIR</button> 
+                            </div> 
                         </div>
-
                     </div>
-                </div>
-                
-                <div class="container-wompi hidden-wompi"> 
-                    <div class="btnWompi"> 
-
-                    </div>         
+                    
                 </div> 
-            </div>  
-                
-        </div>
 
+            </div>
+
+            
+            <div class="container-wompi hidden-wompi"> 
+                <div class="btnWompi"> 
+
+                </div>         
+            </div> 
+        </div>  
+        <div class="contenido"> 
 
             <div>
                 <div class="linea"></div>
             </div>
 
-            <div class="banner">
-                <img src="/IMG/Banner_Mobile.png" alt="" class="banner-1hora mobile">
-                <img src="/IMG/Banner_Dekstop.png" alt="" class="bannerDekstop">
+            <div class="body">
+
+                <div class="banner">
+                    <img src="/IMG/Banner_Dekstop.png" alt="" class="bannerDekstop"> 
+                </div>
+           
             </div>
-       
             <div class="cards_dad " id="producto"> </div>                                                                                                           
+
             
         </div>   
     </div> 

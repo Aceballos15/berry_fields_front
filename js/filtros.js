@@ -1,5 +1,3 @@
-//filtros de busqued
-
 //Url de la api para traer los datos 
 URL_PRODUCTOS= "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Productos_Berry"
 
@@ -24,11 +22,11 @@ const loadCards = async()=>{
 }
 
 
-//Funcion para los filtros de busqueda 
+//Funcion para los filtros de busqueda y renderizar los productos 
 input.addEventListener('keyup', (e)=>{
     const value = e.target.value 
-    const newCard = cards.filter(card => card.Referencia.toLowerCase().includes(input.value.toLowerCase()))
-    renderCard(newCard) 
+    const newCard = cards.filter(card => card.Referencia.toLowerCase().includes(input.value.toLowerCase())) 
+    renderCard(newCard)
 })
  
 
@@ -70,20 +68,3 @@ const renderCard = (cards) =>{
     const itemCard = createCards(cards)
     dad.innerHTML = itemCard
 }
-
-
-// const FunSuma = async ()=>{ 
-//     const suma = document.querySelector('.sumar')
-
-//     let sumatoria = 1
-//     suma.addEventListener('click', ()=>{
-//         const contador = document.querySelector('.contador')
-        
-//         sumatoria =+ 1
-
-//         contador.innerHTML = `
-//         <span class"cantidad">${sumatoria}<span>
-//         `
-//     })
-
-// } 

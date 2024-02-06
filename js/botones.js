@@ -7,11 +7,6 @@ const categoria = document.querySelector('.container-cart')
 const btnBuscar = document.querySelector('.btn-buscar') 
 const containerBuscador = document.querySelector('.filtro_input')
 btnBuscar.addEventListener('click', ()=>{
-    containerBuscador.classList.toggle('filtro_input')  
+    containerBuscador.classList.toggle('filtro_active')  
 }); 
 
-
-//Botones de el checkout 
-const btnPagar = document.querySelector('#cart-product') 
-const containerCheckout = document.querySelector('.dad-checkout')
-const btnCerrar = document.querySelector('.boton-cerrar')

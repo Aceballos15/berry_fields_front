@@ -38,7 +38,7 @@ btnCarrito.addEventListener('click', ()=>{
     }
 
    
-    const URL_API = "http://3.234.15.41:443/api/Signature" 
+    const URL_API = "http://3.234.15.41:443/api/Signature"
 
     fetch(URL_API, post)
     .then(response => response.json())

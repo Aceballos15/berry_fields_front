@@ -1,8 +1,10 @@
-//Variable de la url de la api 
-
 const url = 'https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes'  
 
 let datos = []
+
+document.querySelector('.btn-registro').addEventListener('submit', (event)=>{
+    event.preventDefault(); 
+})
 
 let habilitar = false  
 
@@ -17,7 +19,7 @@ const cedulaNoRegistrada = ()=>{
     const valorCelular = document.querySelector('#celular').value
     const valorCorreo = document.querySelector('#correo').value
     const valorDepartamento = document.querySelector('#departamento').value
-    const valorMunicipio = document.querySelector('#municipio').value
+    const valorMunicipio = document.querySelector('#municipio').value 
     const valorDireccion = document.querySelector('#direccion').value
     const fechaNacimiento = document.querySelector('#fecha_nacimiento').value 
     const natu = natural.value 
@@ -82,6 +84,7 @@ const cedulaNoRegistrada = ()=>{
         
     }
     
+    //Metodos de envio (En este caso post) 
     const personaNatural ={
         method: 'POST', 
         headers : {
@@ -99,6 +102,7 @@ const cedulaNoRegistrada = ()=>{
 
         body: JSON.stringify(objetoJSON2)
     }; 
+    //Condicionales para persona natural y juridica 
     if(natural.checked){ 
         try{
             fetch(url, personaNatural)
@@ -112,6 +116,7 @@ const cedulaNoRegistrada = ()=>{
                     footer: '<a href="https://www.theberryfields.com/">Vuelve a tu compra</a>'   
                 });
 
+                //Funcion para volver a la pagina principal despues de el registro exitoso 
                 setTimeout(()=>{
                     window.location.href = "https://www.theberryfields.com/"
                 }, 4000) 
@@ -138,6 +143,18 @@ const cedulaNoRegistrada = ()=>{
             .then(data => {
                 datos = data 
                 console.log('Respuesta', data)
+
+                Swal.fire({
+                    icon: "success", 
+                    title: "LISTO",
+                    text: "Ya estas creado en nuestra base de datos",
+                    footer: '<a href="https://www.theberryfields.com/">Vuelve a tu compra</a>'   
+                });
+
+                //Funcion para volver a la pagina principal despues de el registro exitoso 
+                setTimeout(()=>{
+                    window.location.href = "https://www.theberryfields.com/"
+                }, 4000) 
             })
         
             .catch(error => {
@@ -156,7 +173,7 @@ const cedulaNoRegistrada = ()=>{
 
 }
 
-//Evento para enviar el post 
+//Boton para validacion del del cliente 
 boton.addEventListener('click', ()=>{ 
 
     URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${Documento}"` 
@@ -204,6 +221,7 @@ let Municipios = []
 
 let URL_MUNI = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Municipio1" 
 
+//Traer municipios y departamentos 
 const muniBusqueda = ()=>{
     fetch(URL_MUNI)
     .then(response => response.json())
@@ -214,20 +232,25 @@ const muniBusqueda = ()=>{
 
 muniBusqueda(); 
 
+let Municipio = document.querySelector('.Mun') 
 
-municipio.addEventListener('keyup', (e)=>{
-
-
+//busqueda del municipio 
+Municipio.addEventListener('keyup', (e)=>{ 
     const value = e.target.value 
+
+    Buscar = value 
+    
+    //Filtrado de municipios 
     const busqueda = Municipios.filter(muni => muni.Municipio.toLowerCase().includes(value.toLowerCase())) 
 
+    //Contenedor de la busqueda de municipio 
     const containerMun = document.querySelector('.municipio')
-
     containerMun.classList.remove('hidden-mun')
 
     let NombreMun = []
     let Departamento = []
 
+    //Guardado de municipio 
     busqueda.forEach(nombre =>{
         NombreMun = nombre.Municipio 
         Departamento = nombre.Departamento 
@@ -241,21 +264,16 @@ municipio.addEventListener('keyup', (e)=>{
 
     inputMun.innerHTML = `
         <div class="NombreMun"> ${NombreMun} </div>  
-
-
     `
     const nombreMun = document.querySelector('.NombreMun') 
     
+    //Asignacion de departamento y municipio 
     nombreMun.addEventListener('click', ()=>{
 
-        const valorMun = document.querySelector('.locationMun') 
+        const valorMun = document.querySelector('.Mun') 
+        
+        valorMun.value = `${NombreMun}` 
 
-        valorMun.innerHTML = ` 
-        <i class="material-icons">location_city</i> 
-        <em>Municipio </em> 
-        <input type="text" name="Municipio" id="municipio" value="${NombreMun}"> 
-        <span></span>  
-        `
         const containerMun = document.querySelector('.municipio')
 
         containerMun.classList.add('hidden-mun')
@@ -274,10 +292,10 @@ municipio.addEventListener('keyup', (e)=>{
     });  
 }); 
 
-
 let Buscar = [] 
-//Funcion para traer los municipios 
-municipio.addEventListener('keyup', (e)=>{ 
+
+//Funcion para bsucar los municipios 
+Municipio.addEventListener('keyup', (e)=>{ 
     
     Buscar = e.target.value 
 
@@ -299,7 +317,7 @@ municipio.addEventListener('keyup', (e)=>{
 
 }) 
 
-//Funcion para traer el id del municipio dependiendo del departamento 
+//Funcion para traer el id del municipio y asignarla al departamento  
 
 let idMunicipio = []
 

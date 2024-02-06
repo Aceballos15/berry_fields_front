@@ -76,6 +76,7 @@ const check = ()=>{
             
                 Direccion =  valor
             })
+            //Deshabilitar el boton de pedir 
             btnPedir.disabled = false
         });  
 
@@ -104,6 +105,7 @@ let Doc= []
 inputCedula.addEventListener('blur', (e)=>{ 
     //variable para obtener el valor 
     const cedula = e.target.value
+    console.log(cedula) 
 
     if(cedula.trim().length >= 7){ 
         Doc = cedula 
@@ -128,7 +130,7 @@ inputCedula.addEventListener('blur', (e)=>{
     }  
 });  
 
-window.addEventListener('keydown', (e)=>{
+inputCedula.addEventListener('keydown', (e)=>{
     const cedula = e.target.value 
     if(e.keyCode ===13){
         if(cedula.trim().length >= 7){

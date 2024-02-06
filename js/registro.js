@@ -119,3 +119,20 @@ const volver = document.querySelector('.regreso')
 volver.addEventListener('click', ()=>{
     window.location.href = "https://www.theberryfields.com/" 
 })
+
+//validar mayoria de edad 
+
+let fechaActual = new Date(); 
+
+FechaNacimiento.addEventListener('blur',(e)=>{
+
+    const field = e.target 
+    
+    if(isNaN(FechaNacimiento.value)){
+        errors('Ingrese una fecha de nacimiento valida', field)
+    }
+    else if(FechaNacimiento.value > fechaActual){
+        errors('La fecha tiene que registarse en pasado', field) 
+    }
+
+})
