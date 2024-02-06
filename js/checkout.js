@@ -105,7 +105,6 @@ let Doc= []
 inputCedula.addEventListener('blur', (e)=>{ 
     //variable para obtener el valor 
     const cedula = e.target.value
-    console.log(cedula) 
 
     if(cedula.trim().length >= 7){ 
         Doc = cedula 
