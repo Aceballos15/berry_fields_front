@@ -161,56 +161,6 @@ body{
     height: 50px; 
 }
 
-.hidden-wompi{
-    display: none; 
-    transition: 0.5s;
-}
-
-.container-wompi{
-    position: relative;
-    top: 250px; 
-    right: 106px; 
-    height: 120px; 
-    width:  auto;  
-    box-shadow: 0 0 6px;
-    border-radius: 15px;
-    background: var(--withe); 
-    transition: 0.5s;
-}
-.btnWompi .Wompi{
-    height: 50px; 
-    background: var(--blue);
-    width: 40px;
-    height: 40px;
-    border-radius: 30px;
-    border: none; 
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    color: var(--withe); 
-}
-
-.btnWompi .Wompi:hover{
-    background: var(--red);
-    transition: .5s; 
-}
-
-.wompi-titulo{
-    display: flex;
-    align-items: center; 
-    justify-content: center; 
-}
-
-.wompi-titulo h5{
-    font-weight: bold; 
-}
-
-.botones-wompi{
-    display: flex;
-    align-items: center;
-    justify-content: space-between; 
-    padding: 0px 90px;  
-}
 .revisarPedido{
     width: 40px; 
     height: 40px;
@@ -321,10 +271,6 @@ body{
         bottom: 0px; 
         gap: 70px;
     }
-
-    .container-wompi{
-        right: 415px; 
-    }
     
     .inputCheck{
         width: 405px; 
@@ -361,9 +307,7 @@ body{
     .form-label{
         left: -115px; 
     }
-    .container-wompi{
-        right: -6px; 
-    }
+    
     #close{
         bottom: 50px; 
         right: 5px; 
