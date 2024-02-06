@@ -457,6 +457,7 @@
     z-index: -1;
     position: relative;  
     width: auto;
+    padding: 10px; 
 }
 
 .card { 
