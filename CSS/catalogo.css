@@ -4,7 +4,7 @@
     --purple-light: #7e35e4;
     --purple-dark: #54267d;
     --withe: #ffffff;
-    --gray: #D6DBDF ; 
+    --gray: #dadfe4 ; 
     --black: #000000; 
     --red: #DC3731; 
     --aquaMarine: #01D1A0; 
@@ -12,6 +12,7 @@
     --orange : #FE7E00; 
     --yellow: #FED700; 
     --beige: #fef1e1; 
+    --shadow: #ced1d3;
 
     --font-size-xs: 8.5px;
     --font-size-s: 14.5px; 
@@ -162,7 +163,7 @@
     justify-content: center; 
     border-radius: 17px; 
     font-family: var(--font-family-montserrat); 
-    border: 1px solid var(--blue); 
+    box-shadow: 0 0 6px var(--shadow);
     padding: 10px; 
 }
 
@@ -176,9 +177,8 @@
 
 
 .card__img{
-    width: 120px;  
+    width: 175px;  
     object-fit: cover; 
-    transition: all .5s; 
     position: relative; 
 }
 
@@ -191,7 +191,8 @@
 .card__price{
     padding: 10px 10px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items:flex-start ;
     justify-content: space-between;  
 }
 .container-botones{
@@ -207,6 +208,9 @@
     border: none;
     background: var(--orange);
     color: var(--withe); 
+    padding: 5px 8px;
+    font-size: 12px;
+    font-weight: bold;
 }
 
 .container-botones button:hover{
@@ -572,7 +576,7 @@
         padding: 0px 30px ; 
     }
     .banner img{
-        height: 180px 
+        height: 124px 
     }
     .cards_dad{
         width: auto; 
@@ -639,4 +643,9 @@
     .container-products{
         height: 325px; 
     }
+
+    .card__img{
+        width: 167px;
+    }
+
 }
