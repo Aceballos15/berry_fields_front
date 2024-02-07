@@ -86,8 +86,7 @@
     color: var(--withe); 
     width: 38px;
     height: 38px;  
-    display: flex;
-    align-items: center; 
+     
 }
 
 .btn-buscar:hover{

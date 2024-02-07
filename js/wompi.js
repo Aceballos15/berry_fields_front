@@ -38,7 +38,7 @@ btnCarrito.addEventListener('click', ()=>{
     }
 
    
-    const URL_API = "https://berryfieldsbackend-production.up.railway.app//api/Signature" 
+    const URL_API = "https://berryfieldsbackend-production.up.railway.app/api/Signature" 
 
     fetch(URL_API, post)
     .then(response => response.json())
