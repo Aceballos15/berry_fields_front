@@ -139,12 +139,14 @@ FechaNacimiento.addEventListener('blur',(e)=>{
 
     const value = e.target.value 
 
-    const mayoriaEdad = (nacimiento)=>{
-        const hoy = new Date(); 
-        const edad = hoy.getFullYear() - nacimiento; 
-        const mes = hoy.getMonth() - nacimiento; 
+    let fechaNueva = new Date(value) 
 
-        if(mes < 0 || (mes == 0 && hoy.getDate() < nacimiento)){ 
+    const mayoriaEdad = (nacimiento)=>{ 
+        var hoy = new Date(); 
+        var edad = hoy.getFullYear() - nacimiento.getFullYear();   
+        var mes = hoy.getMonth() - nacimiento.getMonth();  
+
+        if(mes < 0 || (mes == 0 && hoy.getDate() < nacimiento.getDate())){ 
             edad--; 
         }
 
@@ -152,7 +154,7 @@ FechaNacimiento.addEventListener('blur',(e)=>{
 
     }
 
-    const mayor = mayoriaEdad(value) 
+    const mayor = mayoriaEdad(fechaNueva)
 
     if(mayor == false){ 
         errors('Para ingresar debes de ser mayor de edad', field)

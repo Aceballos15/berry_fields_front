@@ -1,5 +1,3 @@
-//Mostrar las cards en el html y en el carrito 
-
 //Url de la api 
 URL_PRODUCTOS= "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Productos_1_hora" 
 

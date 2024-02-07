@@ -28,8 +28,6 @@ input.addEventListener('keyup', (e)=>{
     const newCard = cards.filter(card => card.Referencia.toLowerCase().includes(input.value.toLowerCase())) 
     renderCard(newCard)
 
-    console.log(newCard) 
-
     if(newCard.length == 0){
         Swal.fire({
             icon: "error",

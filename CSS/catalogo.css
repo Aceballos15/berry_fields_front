@@ -58,14 +58,25 @@
     display: none; 
 }
 
-.filtro_input{
+.filtro_input{ 
     border: none; 
     border-radius: 30px;
     box-shadow: 0 0 6px var(--gray);
     height: 40px; 
     width: 300px;  
     outline: none;  
-    padding: 0px 15px; 
+    padding: 0px 15px;  
+    animation: mover 2s;
+}
+
+@keyframes mover{
+    0% {
+        transform: translateX(-20px); 
+    }
+
+    100%{
+        transform: translate(0); 
+    }
 }
 
 .btn-buscar{
@@ -400,6 +411,14 @@
     justify-content: center;
     position: absolute;
     bottom: 24px;
+}
+
+.card__cantidad{
+    width: 50px;
+    height: 20px;
+    border-radius: 30px; 
+    outline:none;
+    border: none; 
 }
 
 .total{
