@@ -617,17 +617,17 @@
     .imagen-carrito img{
         width: 160px; 
         position: relative;
-        right: 40px; 
+        right: 21px;
     }
     .nombre-product{
-        left: 125px; 
+        left: 140px; 
         width: 160px; 
     }
     .quantity{
-        left: 125px; 
+        left: 140px;
     }
     .precio-product{
-        left: 200px;
+        left: 220px;
     }
     .container-icon-trash{
         left: 290px;
@@ -645,7 +645,7 @@
     }
 
     .card__img{
-        width: 167px;
+        width: 105px; 
     }
 
 }
