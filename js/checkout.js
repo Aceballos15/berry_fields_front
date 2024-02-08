@@ -22,8 +22,6 @@ const Tipo_documento = document.querySelector('.tipo-doc')
 const Celular = document.querySelector('.celular')
 const Correo = document.querySelector('.correo') 
 const Departamento = document.querySelector('.departamento')
-// const Municipio = document.querySelector('.municipio')
-// const Direccion = document.querySelector('#direccion')
 
 let ID = []
 let Direccion = []
@@ -135,11 +133,4 @@ inputCedula.addEventListener('keydown', (e)=>{
             });
         }
     }
-})
-
-const btnGuadarCheckout = document.querySelector('.form-submit')
-
-
-btnPedir.addEventListener('click', ()=>{
-    check(); 
 })
