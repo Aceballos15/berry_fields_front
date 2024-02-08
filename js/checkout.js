@@ -120,7 +120,6 @@ inputCedula.addEventListener('keydown', (e)=>{
                     
                     //Funcion para mostrar en el checkout
                     check(); 
-                    console.log('so') 
                 }) 
                 .catch(error =>console.error(error)) 
                 
