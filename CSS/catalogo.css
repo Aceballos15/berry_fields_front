@@ -139,9 +139,9 @@
 } 
 
 .banner img{
-    height: 220px;      
+    height: 252px;      
     width: auto; 
-    border-radius: 6px;
+    border-radius: 13px; 
 } 
 .contenido{
     height: 1px; 

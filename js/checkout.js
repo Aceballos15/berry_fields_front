@@ -101,39 +101,13 @@ const inputCedula = document.querySelector('#cedula')
 
 let Doc= []
 
- 
-inputCedula.addEventListener('blur', (e)=>{ 
-    //variable para obtener el valor 
-    const cedula = e.target.value
-
-    if(cedula.trim().length >= 7){ 
-        Doc = cedula 
-        //API con parametro de busqueda en cedula 
-        URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
-    
-        //Funcion para traer la info 
-        const initCheckout = ()=>{
-            fetch(URL_API_Reporte_Clientes)
-            .then(response => response.json()) 
-            .then(data =>{
-                chechkout = data; 
-                
-                //Funcion para mostrar en el checkout
-    
-                check(); 
-            }) 
-            .catch(error =>console.error(error)) 
-            
-        };     
-        initCheckout(); 
-    }  
-});  
-
 inputCedula.addEventListener('keydown', (e)=>{
     const cedula = e.target.value 
-    if(e.keyCode ===13){
+
+
+    if(e.keyCode == 13){ 
         if(cedula.trim().length >= 7){
-            Doc = cedula 
+            Doc = cedula
             //API con parametro de busqueda en cedula 
             URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
         
@@ -145,12 +119,13 @@ inputCedula.addEventListener('keydown', (e)=>{
                     chechkout = data; 
                     
                     //Funcion para mostrar en el checkout
-        
                     check(); 
+                    console.log('so') 
                 }) 
                 .catch(error =>console.error(error)) 
                 
             };     
+
             initCheckout(); 
         }  
         else if(cedula.trim().length <7){
