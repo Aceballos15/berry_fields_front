@@ -15,21 +15,11 @@ const obtenerFecha = ()=>{
 
 fechaHoy = obtenerFecha() 
 
-//Constantes para agregar al checkout cuando ya se tiene un registro del cliente 
-const Nombre = document.querySelector('.nombre')
-const Apellido = document.querySelector('.apellido')
-const Tipo_documento = document.querySelector('.tipo-doc')
-const Celular = document.querySelector('.celular')
-const Correo = document.querySelector('.correo') 
-const Departamento = document.querySelector('.departamento')
 
 let ID = []
 let Direccion = []
 let Cedula =[] 
-let subTotal = []
-let ivaTotal = [] 
-let Detalle = []
-let DetalleTotal = [] 
+
 
 let Total = 0 
 
@@ -39,7 +29,7 @@ let cedulaCheckout = []
 const btnPedir = document.querySelector('.pagar') 
 
 
-// //Funcion para mostrar en el checkout 
+//Funcion para mostrar en el checkout 
 const check = ()=>{
    
     if(chechkout.length === 1){        
@@ -48,17 +38,9 @@ const check = ()=>{
             //Cedula 
             cedulaCheckout = i.Documento  
             
-            let containerCedula = document.querySelector('.container-direccion')
-        
-            let direccion = document.createElement('div') 
-            direccion.classList.add('input-direccion') 
-        
-            containerCedula.innerHTML =` 
-            <div class="direccion"> 
-                <label for="direccion" >Direccion: </label>
-                <input type="text" class="inputCheck" id="direccion"  placeholder="" value="${i.Direccion}"> 
-            </div> 
-            `
+            let containerCedula = document.querySelector('#direccion')
+
+            containerCedula.value = `${i.Direccion}` 
            
             const cedula = document.querySelector('#cedula')
             
@@ -93,12 +75,43 @@ const check = ()=>{
     }
 }; 
 
+//Fucion para buscar cedula 
+const searchDirection = (cedula)=>{
+
+    URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
+    
+    //Funcion para traer la info 
+    const initCheckout = ()=>{
+        fetch(URL_API_Reporte_Clientes)
+        .then(response => response.json()) 
+        .then(data =>{
+            chechkout = data; 
+            
+            //Funcion para mostrar en el checkout
+            check(); 
+        }) 
+        .catch(error =>console.error(error)) 
+        
+    };     
+
+    initCheckout(); 
+}
+
+//Funcion para mostrar alerta 
+const alerta = ()=>{
+    Swal.fire({
+        icon: "error",
+        title: "Hay algo mal",
+        text: "Tu documento debe de tener almenos 7 caracteres", 
+    });
+}
 
 //Constante para almacenar la info del input 
 const inputCedula = document.querySelector('#cedula')
 
 let Doc= []
 
+//Busqueda por enter
 inputCedula.addEventListener('keydown', (e)=>{
     const cedula = e.target.value 
 
@@ -106,31 +119,27 @@ inputCedula.addEventListener('keydown', (e)=>{
     if(e.keyCode == 13){ 
         if(cedula.trim().length >= 7){
             Doc = cedula
-            //API con parametro de busqueda en cedula 
-            URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
-        
-            //Funcion para traer la info 
-            const initCheckout = ()=>{
-                fetch(URL_API_Reporte_Clientes)
-                .then(response => response.json()) 
-                .then(data =>{
-                    chechkout = data; 
-                    
-                    //Funcion para mostrar en el checkout
-                    check(); 
-                }) 
-                .catch(error =>console.error(error)) 
-                
-            };     
-
-            initCheckout(); 
+            searchDirection(cedula);  
         }  
-        else if(cedula.trim().length <7){
-            Swal.fire({
-                icon: "error",
-                title: "Hay algo mal",
-                text: "Tu documento debe de tener almenos 7 caracteres", 
-            });
+        else{
+           alerta(); 
         }
     }
+})
+
+
+//Busqueda por boton 
+const btnValidar = document.querySelector('.validacion'); 
+
+btnValidar.addEventListener('click', ()=>{
+    const cedula = inputCedula.value 
+    
+    if(cedula.trim().length >= 7){
+        Doc = cedula
+        searchDirection(cedula) 
+    }  
+    else if(cedula.trim().length <7){
+        alerta(); 
+    }
+
 })

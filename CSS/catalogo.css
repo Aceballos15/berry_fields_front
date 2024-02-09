@@ -152,7 +152,39 @@
 .nueva__clase{
     padding: 20px 0px;
     position: relative;
-    left: 66px;
+    left: 10%; 
+}
+
+.container__btn{
+    padding: 14px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.validacion{
+    border: none;
+    border-radius: 30px;
+    width: 80px; 
+    height: 30px;
+    background: var(--aquaMarine);
+    color: var(--withe); 
+    padding: 10px;
+    font-weight: bold; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.validacion:hover{
+    box-shadow: 0 0 6px var(--withe); 
+    transition: .5s; 
+    background: var(--blue);  
+}
+
+.validacion:active{
+    background: var(--aquaMarine);
+    transition: .3s; 
 }
 
 .dad_card{ 

@@ -187,7 +187,7 @@ body{
 
 #close{
     position: relative;
-    bottom: 50px;
+    bottom: 100px;
     display: flex;
     align-items: center;
     justify-content: center; 
