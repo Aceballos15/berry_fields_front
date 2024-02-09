@@ -60,9 +60,9 @@ const createCards = cards => cards.map (card =>
                     <div class="container-botones"> 
                         <button class="sumar">AGREGAR</button> 
                     </div> 
-                </div> 
-        
+                </div>    
             </div>
+
 
         </div>
     </div>

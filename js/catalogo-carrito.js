@@ -17,14 +17,6 @@ listProductsHTML.addEventListener('click', (event) => {
     let positionClick = event.target;   
     if (positionClick.classList.contains("sumar")){ 
         // Encuentra el elemento padre con la clase "card"
-        Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Agregado",  
-            showConfirmButton: false,
-            timer: 1200,  
-            width:200 
-          });
         const cardElement = positionClick.closest('.dad_card');
         if (cardElement) {
             // Obtén el product_id del atributo data-id del elemento encontrado
