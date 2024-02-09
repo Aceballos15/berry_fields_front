@@ -90,7 +90,8 @@ btnCarrito.addEventListener('click', ()=>{
                 Total: totalWompi, 
                 ID1: ID,
                 Direccion:Direccion, 
-                Descripcion: "Berry Fields" 
+                Descripcion: "Berry Fields", 
+                Estado : "PENDING"
             }
 
             console.log(mapSend) 
