@@ -130,8 +130,7 @@ const obtenerFecha = ()=>{
     return `${anio}-${mes}-${dia}` 
 }
 
-let fechaActual = obtenerFecha(); 
-
+let fechaActual = obtenerFecha();
 
 
 FechaNacimiento.addEventListener('blur',(e)=>{

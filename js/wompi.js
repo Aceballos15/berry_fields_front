@@ -66,7 +66,7 @@ btnCarrito.addEventListener('click', ()=>{
                 </form>
             <div> 
             `
-            const form = document.getElementById('formWompi').submit();  
+            // const form = document.getElementById('formWompi').submit();  
                 
             let Products = [] 
             
@@ -75,7 +75,7 @@ btnCarrito.addEventListener('click', ()=>{
                const productDetail = {
                     id : product.product_id, 
                     price: product.price,
-                    name: product.reference, 
+                    name: product.referencia,
                     quantity:product.quantity
                }
 
@@ -89,8 +89,11 @@ btnCarrito.addEventListener('click', ()=>{
                 Fecha: fechaHoy, 
                 Total: totalWompi, 
                 ID1: ID,
-                Direccion:Direccion 
+                Direccion:Direccion, 
+                Descripcion: "Berry Fields" 
             }
+
+            console.log(mapSend) 
             
             const producto = {
                 method:'POST', 
@@ -102,10 +105,9 @@ btnCarrito.addEventListener('click', ()=>{
             }
 
             try{
-                const URL_BERRY = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido"
+                const URL_BERRY = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido" 
                 fetch(URL_BERRY,producto) 
-                .then(data =>{
-                    console.log(data.status)}) 
+                .then(data =>{console.log(data)}) 
 
             }
             catch(error){

@@ -1,11 +1,9 @@
 //API para mandar la info 
-url = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Pedidos_1hora" 
-//Variable para almacenar info de la api 
 let chechkout = [] 
 
 //Para almacenar la fecha actual
 let fechaHoy = []
-const obtenerFecha = ()=>{
+const ObtenerFecha = ()=>{
     const fecha = new Date(); 
     const dia = String(fecha.getDate()).padStart(2, '0'); 
     const mes = String(fecha.getMonth() + 1).padStart(2 , '0'); 
@@ -13,12 +11,13 @@ const obtenerFecha = ()=>{
     return `${anio}-${mes}-${dia}` 
 }
 
-fechaHoy = obtenerFecha() 
+fechaHoy = ObtenerFecha() 
 
 
 let ID = []
 let Direccion = []
 let Cedula =[] 
+
 
 
 let Total = 0 
@@ -119,12 +118,11 @@ const alerta = ()=>{
 //Constante para almacenar la info del input 
 const inputCedula = document.querySelector('#cedula')
 
-let Doc= []
+let Doc= [] 
 
 //Busqueda por enter
 inputCedula.addEventListener('keydown', (e)=>{
     const cedula = e.target.value 
-
 
     if(e.keyCode == 13){ 
         if(cedula.trim().length >= 7){
