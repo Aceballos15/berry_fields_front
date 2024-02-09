@@ -66,7 +66,7 @@ btnCarrito.addEventListener('click', ()=>{
                 </form>
             <div> 
             `
-            // const form = document.getElementById('formWompi').submit();  
+            const form = document.getElementById('formWompi').submit();  
                 
             let Products = [] 
             
