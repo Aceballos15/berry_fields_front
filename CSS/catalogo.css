@@ -191,7 +191,7 @@
 }
 
 .validacion:active{
-    background: var(--aquaMarine);
+    background: var(--aquaMarine); 
     transition: .3s; 
 }
 

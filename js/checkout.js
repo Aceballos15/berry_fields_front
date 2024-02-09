@@ -64,6 +64,7 @@ const check = ()=>{
         
     }
     else{
+
         Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -99,11 +100,16 @@ const searchDirection = (cedula)=>{
 
 //Funcion para mostrar alerta 
 const alerta = ()=>{
+    let containerCedula = document.querySelector('#direccion')
+
+    containerCedula.value = ` ` 
+    
     Swal.fire({
         icon: "error",
         title: "Hay algo mal",
         text: "Tu documento debe de tener almenos 7 caracteres", 
     });
+    btnPedir.disabled = true 
 }
 
 //Constante para almacenar la info del input 
