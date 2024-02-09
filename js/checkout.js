@@ -65,6 +65,10 @@ const check = ()=>{
     }
     else{
 
+        let containerCedula = document.querySelector('#direccion')
+
+        containerCedula.value = ` ` 
+
         Swal.fire({
             icon: "error",
             title: "Oops...",
@@ -102,8 +106,8 @@ const searchDirection = (cedula)=>{
 const alerta = ()=>{
     let containerCedula = document.querySelector('#direccion')
 
-    containerCedula.value = ` ` 
-    
+    containerCedula.value = `` 
+
     Swal.fire({
         icon: "error",
         title: "Hay algo mal",
