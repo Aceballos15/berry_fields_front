@@ -43,7 +43,6 @@ btnCarrito.addEventListener('click', ()=>{
     fetch(URL_API, post)
     .then(response => response.json() )
     .then(data =>{
-        console.log(`responde to signature: ${data}`); 
         
         DATA = data; 
 
@@ -93,8 +92,6 @@ btnCarrito.addEventListener('click', ()=>{
                 Estado : "PENDING"
             }
 
-            console.log(mapSend) 
-            
             const producto = {
                 method:'POST', 
                 headers: {
