@@ -109,7 +109,7 @@ btnCarrito.addEventListener('click', ()=>{
             try{
                 const URL_BERRY = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido" 
                 fetch(URL_BERRY,producto) 
-                .then(data =>{console.log(`Data of pedido: ${data}`)}) 
+                .then(data =>{console.log(`Data of pedido: ${data.data}`)}) 
 
             }
             catch(error){
