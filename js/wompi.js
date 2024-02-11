@@ -66,9 +66,7 @@ btnCarrito.addEventListener('click', ()=>{
 
                 </form>
             <div> 
-            `
-            const form = document.getElementById('formWompi').submit();  
-                
+            `    
             let Products = [] 
             
         
@@ -109,7 +107,11 @@ btnCarrito.addEventListener('click', ()=>{
             try{
                 const URL_BERRY = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido" 
                 fetch(URL_BERRY,producto) 
-                .then(data =>{console.log(`Data of pedido: ${data.data}`)}) 
+                .then(response => response.json())
+                .then(data >= {
+                    console.log(data)
+                    const form = document.getElementById('formWompi').submit(); 
+                })
 
             }
             catch(error){
