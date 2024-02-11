@@ -41,8 +41,9 @@ btnCarrito.addEventListener('click', ()=>{
     const URL_API = "https://berryfieldsbackend-production.up.railway.app/api/Signature" 
 
     fetch(URL_API, post)
-    .then(response => response.json())
+    .then(response => response.json() )
     .then(data =>{
+        console.log(`responde to signature: ${data}`); 
         
         DATA = data; 
 
@@ -108,7 +109,7 @@ btnCarrito.addEventListener('click', ()=>{
             try{
                 const URL_BERRY = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido" 
                 fetch(URL_BERRY,producto) 
-                .then(data =>{console.log(data)}) 
+                .then(data =>{console.log(`Data of pedido: ${data}`)}) 
 
             }
             catch(error){
