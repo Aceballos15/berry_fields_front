@@ -103,13 +103,13 @@ btnCarrito.addEventListener('click', ()=>{
 
             try{
                 const URL_BERRY = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido" 
-                fetch(URL_BERRY,producto) 
+                fetch(URL_BERRY,producto)
                 .then(response => response.json())
-                .then(data >= {
+                .then(data =>{
                     console.log(data)
-                    const form = document.getElementById('formWompi').submit(); 
-                })
-
+                    const form = document.getElementById('formWompi').submit();  
+                }
+                )
             }
             catch(error){
                 console.error(error)
