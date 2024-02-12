@@ -25,8 +25,24 @@ const loadCards = async()=>{
 //Funcion para los filtros de busqueda y renderizar los productos 
 input.addEventListener('keyup', (e)=>{
     const value = e.target.value 
-    const newCard = cards.filter(card => card.Referencia.toLowerCase().includes(input.value.toLowerCase())) 
-    renderCard(newCard)
+
+    const newCard = car.filter(card => card.Referencia.trim().toLowerCase().includes(input.value.trim().toLowerCase())) 
+    renderCard(newCard) 
+
+    if(newCard.length == 0){
+        Swal.fire({
+            icon: "error",
+            title: "Lo sentimos",
+            text: `En este momento no contamos con ${value}`, 
+        });
+    }
+})
+
+input.addEventListener('input', (e)=>{
+    const value = e.target.value 
+
+    const newCard = cards.filter(card => card.Referencia.trim().toLowerCase().includes(input.value.trim().toLowerCase()))
+    renderCard(newCard) 
 
     if(newCard.length == 0){
         Swal.fire({

@@ -307,11 +307,6 @@ body{
     .form-label{
         left: -115px; 
     }
-    
-    #close{
-        bottom: 50px; 
-        right: 5px; 
-    }
 }
 
 @media screen and (max-width: 320px) {

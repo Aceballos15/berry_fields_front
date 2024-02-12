@@ -110,7 +110,7 @@ const alerta = ()=>{
     Swal.fire({
         icon: "error",
         title: "Hay algo mal",
-        text: "Tu documento debe de tener almenos 7 caracteres", 
+        text: "Tu numero de documento debe de tener almenos 7 caracteres", 
     });
     btnPedir.disabled = true 
 }
