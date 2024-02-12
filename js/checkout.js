@@ -110,7 +110,7 @@ const alerta = ()=>{
     Swal.fire({
         icon: "error",
         title: "Hay algo mal",
-        text: "Tu numero de documento debe de tener almenos 7 caracteres", 
+        text: "Tu numero de documento debe de tener almenos 5 caracteres", 
     });
     btnPedir.disabled = true 
 }
@@ -142,11 +142,11 @@ const btnValidar = document.querySelector('.validacion');
 btnValidar.addEventListener('click', ()=>{
     const cedula = inputCedula.value 
     
-    if(cedula.trim().length >= 7){
+    if(cedula.trim().length >= 5){
         Doc = cedula
         searchDirection(cedula) 
     }  
-    else if(cedula.trim().length <7){
+    else if(cedula.trim().length <5){
         alerta(); 
     }
 
