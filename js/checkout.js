@@ -125,7 +125,7 @@ inputCedula.addEventListener('keydown', (e)=>{
     const cedula = e.target.value 
 
     if(e.keyCode == 13){ 
-        if(cedula.trim().length >= 7){
+        if(cedula.trim().length >= 5){ 
             Doc = cedula
             searchDirection(cedula);  
         }  
