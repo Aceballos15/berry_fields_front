@@ -34,6 +34,7 @@ input.addEventListener('keyup', (e)=>{
             icon: "error",
             title: "Lo sentimos",
             text: `En este momento no contamos con ${value}`, 
+            confirmButtonColor: "#172E58"
         });
     }
 })
@@ -49,6 +50,7 @@ input.addEventListener('input', (e)=>{
             icon: "error",
             title: "Lo sentimos",
             text: `En este momento no contamos con ${value}`, 
+            confirmButtonColor: "#172E58"
         });
     }
 })

@@ -72,7 +72,8 @@ const check = ()=>{
             icon: "error",
             title: "Oops...",
             text: "Lo sentimos no estas en nuestra base de datos",
-            footer: '<a href="/HTML/registro.html">Registrate aca</a>'
+            footer: '<a href="/HTML/registro.html">Registrate aca</a>',
+            confirmButtonColor: "#172E58"
         });
 
         btnPedir.disabled = true
@@ -111,6 +112,7 @@ const alerta = ()=>{
         icon: "error",
         title: "Hay algo mal",
         text: "Tu numero de documento debe de tener almenos 5 caracteres", 
+        confirmButtonColor: "#172E58"
     });
     btnPedir.disabled = true 
 }

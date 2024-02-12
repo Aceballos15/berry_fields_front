@@ -131,13 +131,6 @@
     width: 20px; 
 }
 
-.body {
-    display: flex;
-    flex-direction: column;
-    gap: 25px;
-    width: 100%;
-    padding-top: 6rem;
-}
 
 .banner{
     display: flex;
@@ -363,18 +356,64 @@
     border-radius: 50px;
     background: var(--blue);
     color: var(--withe); 
-    width: 260px;
+    width: 160px;
     height: 50px;
     border: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;   
 }
+
+
+
 .pagar:hover{
     background: var(--aquaMarine);
     transition: .5s;
+    animation: pedido 2s;
 }
+
+/* @keyframes pedido{
+    100%{
+        width: 200px; 
+    }
+} */
+
 .pagar:active{
     background: var(--blue);
     transition: .2s; 
 }
+
+.pedido{
+    display: flex; 
+    flex-direction: column; 
+}
+
+.info__pedido{
+    display: flex; 
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0px 20px; 
+}
+
+.btn__envio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 30px;
+    background: var(--blue); 
+    color: var(--withe);
+    padding: 7px;
+}
+
+
+.btn__envio:hover{ 
+    transition: .5s;
+    background: var(--aquaMarine);
+    box-shadow: 0 0 6px var(--black); 
+}
+
 
 .cart-product{
     display: flex;  
