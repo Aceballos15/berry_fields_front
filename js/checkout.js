@@ -46,7 +46,7 @@ const check = ()=>{
 
                 containerCedula.value = `${i.Direccion} `
             }else{
-                containerCedula.value = `${Municipio} ${i.Direccion} ` 
+                containerCedula.value = `${Municipio}, ${i.Direccion} ` 
             }
 
             const cedula = document.querySelector('#cedula')
