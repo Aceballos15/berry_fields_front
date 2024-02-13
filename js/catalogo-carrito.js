@@ -16,6 +16,8 @@ let carts = []
 listProductsHTML.addEventListener('click', (event) => { 
     let positionClick = event.target;   
     if (positionClick.classList.contains("sumar")){ 
+
+        alertify.success('Agregado con exito al carrito') 
         // Encuentra el elemento padre con la clase "card"
         const cardElement = positionClick.closest('.dad_card');
         if (cardElement) {

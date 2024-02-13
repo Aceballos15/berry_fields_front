@@ -1,7 +1,7 @@
 .slider{
     height: auto;
     margin: 135px auto 0 ; 
-    width: 1540px; 
+    width: 1730px;
     overflow: hidden;  
     border-radius: 7px;
 }
@@ -35,8 +35,8 @@
     70%{margin-left: -200%; } 
 
     75%{margin-left: -300%; }
-    100%{margin-left: -300%; } 
-} */
+    100%{margin-left: -300%; }  
+} */ 
 
 @media(max-width:1380px){
     .slider{
