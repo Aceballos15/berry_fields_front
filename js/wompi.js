@@ -1,16 +1,11 @@
 const btnCarrito = document.querySelector('.pagar')  
 
-btnCarrito.addEventListener('click', ()=>{
-    containerWompi.classList.toggle('hidden-wompi') 
-})
-
 let totalWompi = 0 
-
 
 btnCarrito.addEventListener('click', ()=>{ 
 
-    const cedula = document.querySelector('#cedula').value  
-    const direccion = document.querySelector('#direccion').value
+    const cedula = document.querySelector('#cedula')
+    const direccion = document.querySelector('#direccion')
 
     let DATA = []
     
@@ -35,13 +30,21 @@ btnCarrito.addEventListener('click', ()=>{
         body: JSON.stringify(total)  
     }
     
-    
-    if(cedula.trim() == 0 || direccion.trim() == 0){ 
+    //validacion y alertas de la cedula y direccion 
+
+    if(cedula.value.trim() == 0 || direccion.value.trim() == 0){
         Swal.fire({
             icon: "error",
             title: "Hay algo mal",
             text: "Antes de pagar debes de validar primero tu numero de documento y dirección de envio",
             confirmButtonColor: "#172E58"
+        }).then((result) =>{
+            if(result.isConfirmed){
+                cedula.focus(); 
+            }
+            else if(result.dismiss === Swal.DismissReason.cancel){
+                cedula.focus(); 
+            }
         });
     }  
     else if(totalWompi == 0){
