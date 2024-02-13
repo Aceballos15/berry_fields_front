@@ -123,4 +123,6 @@ btnCarrito.addEventListener('click', ()=>{
 
     btnPedir.disabled = true 
 
+    sessionStorage.clear(); 
+
 }) 

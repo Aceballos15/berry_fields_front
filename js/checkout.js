@@ -27,6 +27,8 @@ let cedulaCheckout = []
 
 const btnPedir = document.querySelector('.pagar') 
 
+const inputDireccion = document.querySelector('#direccion')
+
 
 //Funcion para mostrar en el checkout 
 const check = ()=>{
@@ -39,7 +41,7 @@ const check = ()=>{
             
             let containerCedula = document.querySelector('#direccion')
 
-            containerCedula.value = `${i.Direccion}` 
+            containerCedula.value = `${i.Municipio.Municipio} ${i.Direccion} `
            
             const cedula = document.querySelector('#cedula')
             
@@ -56,7 +58,8 @@ const check = ()=>{
                 Direccion =  valor
             })
             //Deshabilitar el boton de pedir 
-            btnPedir.disabled = false
+            btnPedir.disabled = false 
+            inputDireccion.disabled = false 
         });  
 
 
@@ -80,6 +83,7 @@ const check = ()=>{
     }
 }; 
 
+
 //Fucion para buscar cedula 
 const searchDirection = (cedula)=>{
 
@@ -100,6 +104,7 @@ const searchDirection = (cedula)=>{
     };     
 
     initCheckout(); 
+
 }
 
 //Funcion para mostrar alerta 
@@ -115,6 +120,7 @@ const alerta = ()=>{
         confirmButtonColor: "#172E58"
     });
     btnPedir.disabled = true 
+    inputDireccion.disabled = true 
 }
 
 //Constante para almacenar la info del input 
