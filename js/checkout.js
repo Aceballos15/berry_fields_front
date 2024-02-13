@@ -13,18 +13,15 @@ const ObtenerFecha = ()=>{
 
 fechaHoy = ObtenerFecha() 
 
-
 let ID = []
 let Direccion = []
 let Cedula =[] 
-
-
 
 let Total = 0 
 
 let cedulaCheckout = []
 
-
+//Deshabilitar y habilitar la direccion y boton
 const btnPedir = document.querySelector('.pagar') 
 
 const inputDireccion = document.querySelector('#direccion')
@@ -65,7 +62,7 @@ const check = ()=>{
             
                 Direccion =  valor
             })
-            
+
             //Deshabilitar el boton de pedir y el envio de direccion 
             btnPedir.disabled = false 
             inputDireccion.disabled = false 
@@ -89,6 +86,7 @@ const check = ()=>{
         });
 
         btnPedir.disabled = true
+        inputDireccion.disabled = true 
     }
 }; 
 
