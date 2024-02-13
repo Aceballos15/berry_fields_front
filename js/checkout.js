@@ -35,16 +35,24 @@ const check = ()=>{
    
     if(chechkout.length === 1){        
         chechkout.forEach(i =>{ 
+
+            //ID del cliente y cedula 
             ID = i.ID 
-            //Cedula 
             cedulaCheckout = i.Documento  
             
             let containerCedula = document.querySelector('#direccion')
 
-            containerCedula.value = `${i.Municipio.Municipio} ${i.Direccion} `
-           
+            const Municipio = i.Municipio.Municipio
+
+            //Validacion de existencia de municipio 
+            if(Municipio == undefined){
+
+                containerCedula.value = `${i.Direccion} `
+            }else{
+                containerCedula.value = `${Municipio} ${i.Direccion} ` 
+            }
+
             const cedula = document.querySelector('#cedula')
-            
             
             Cedula = cedula.value 
             
@@ -57,7 +65,8 @@ const check = ()=>{
             
                 Direccion =  valor
             })
-            //Deshabilitar el boton de pedir 
+            
+            //Deshabilitar el boton de pedir y el envio de direccion 
             btnPedir.disabled = false 
             inputDireccion.disabled = false 
         });  
