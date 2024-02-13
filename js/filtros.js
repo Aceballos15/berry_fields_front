@@ -81,6 +81,12 @@ const createCards = cards => cards.map (card =>
                 </div>    
             </div>
 
+            <span class="contador__dinamico">
+                </span>
+                    
+                </span>
+            </span> 
+
 
         </div>
     </div>

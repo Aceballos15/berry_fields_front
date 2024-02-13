@@ -36,18 +36,20 @@
 }
 
 .header{
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center; 
-    height: 100px; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
     width: 100%;
     position: fixed;
     top: 0;
     left: 0;
-    background-color: var(--withe);
+    background-color: #fdfeff;
     z-index: 1000;
-    padding: 0px 110px; 
+    padding: 0px 110px;
+    box-shadow: 0 0 5px var(--shadow);  
 }
+
 
 .header__botones{
     display: flex; 
@@ -318,12 +320,7 @@
 .info-cart h4{ 
     font-weight: bold; 
 }
-.linea-carrito{
-    background:var(--gray); 
-    width: 100%; 
-    height: 1px; 
-    display: flex; 
-}
+
 
 .dad-container-products{
     height: 705px; 
@@ -373,11 +370,6 @@
     animation: pedido 2s;
 }
 
-/* @keyframes pedido{
-    100%{
-        width: 200px; 
-    }
-} */
 
 .pagar:active{
     background: var(--blue);
@@ -407,13 +399,11 @@
     padding: 7px;
 }
 
-
 .btn__envio:hover{ 
     transition: .5s;
     background: var(--aquaMarine);
     box-shadow: 0 0 6px var(--black); 
 }
-
 
 .cart-product{
     display: flex;  
@@ -423,7 +413,6 @@
     gap: 30px;  
     height: 160px; 
 }
-
 
 .info-cart-product{
     display: block;
@@ -540,16 +529,6 @@
     height: 20px; 
 }
 
-
-.linea {
-    background-color: var(--blue); 
-    height: 3px;
-    width: 100%; 
-    position: fixed;
-    top: 98px; 
-}
-
-
 .contenido {
     display: flex;
     flex-direction: column;
@@ -565,6 +544,13 @@
     position: relative;  
     width: auto;
     padding: 10px; 
+}
+
+.product-quantity {
+    width: 3.5rem;
+    border-radius: 8px;
+    border: 1px solid #e1e1e1;
+    outline:none; 
 }
 
 .card { 
@@ -734,7 +720,7 @@
         left: 140px;
     }
     .precio-product{
-        left: 220px;
+        left: 250px;
     }
     .container-icon-trash{
         left: 290px;

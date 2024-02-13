@@ -64,7 +64,7 @@ const check = ()=>{
             })
 
             //Deshabilitar el boton de pedir y el envio de direccion 
-            btnPedir.disabled = false 
+            // btnPedir.disabled = false 
             inputDireccion.disabled = false 
         });  
 
@@ -81,12 +81,16 @@ const check = ()=>{
             icon: "error",
             title: "Oops...",
             text: "Lo sentimos no estas en nuestra base de datos",
-            footer: '<a href="/HTML/registro.html">Registrate aca</a>',
-            confirmButtonColor: "#172E58"
-        });
+            confirmButtonColor: "#172E58", 
+            confirmButtonText: "Registrate aca"
+            
 
-        btnPedir.disabled = true
-        inputDireccion.disabled = true 
+        })//Evento al boton de la alerta y redireccion a el formulario de registro 
+        .then(result =>{
+            if(result.isConfirmed){
+                window.location.href = "/HTML/registro.html" 
+            }
+        });
     }
 }; 
 
@@ -126,7 +130,7 @@ const alerta = ()=>{
         text: "Tu numero de documento debe de tener almenos 5 caracteres", 
         confirmButtonColor: "#172E58"
     });
-    btnPedir.disabled = true 
+    // btnPedir.disabled = true 
     inputDireccion.disabled = true 
 }
 
