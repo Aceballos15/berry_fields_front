@@ -45,7 +45,7 @@ bntDescuento.addEventListener('click',()=>{
                     let porcentajeAlerta = 0 
                     
                     Data.forEach(percent =>{
-                        porcentaje = percent.Percent 
+                        porcentaje = percent.Porcentaje 
                         
                         const suma = precioCard * porcentaje / 100; 
                         

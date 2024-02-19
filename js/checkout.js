@@ -16,7 +16,7 @@ fechaHoy = ObtenerFecha()
 let ID = []
 let Direccion = []
 let Cedula =[] 
-
+let Municipio = [] 
 let Total = 0 
 
 let cedulaCheckout = []
@@ -26,7 +26,7 @@ const btnPedir = document.querySelector('.pagar')
 
 const inputDireccion = document.querySelector('#direccion')
 
-const containerCedula = document.querySelector('#direccion') 
+const containerDireccion = document.querySelector('#direccion') 
 const cedula = document.querySelector('#cedula')
 
 //Funcion para mostrar en el checkout 
@@ -41,17 +41,17 @@ const check = ()=>{
             cedulaCheckout = i.Documento  
             
 
-            const Municipio = i.Municipio.Municipio
+            Municipio = i.Municipio.Municipio
 
             const Departamento = i.Departamento1.Departamento
 
             //Validacion de existencia de municipio 
             if(Municipio == undefined){
 
-                containerCedula.value = `${i.Direccion}` 
+                containerDireccion.value = `${i.Direccion}, ${Departamento}` 
 
             }else{
-                containerCedula.value = `${i.Direccion}`
+                containerDireccion.value = `${i.Direccion}, ${Municipio}, ${Departamento} ` 
             }
             
             Cedula = cedula.value 
@@ -65,6 +65,7 @@ const check = ()=>{
             })
 
             inputDireccion.disabled = false 
+
         });  
         
     }
@@ -167,3 +168,66 @@ btnValidar.addEventListener('click', ()=>{
     }
 
 })
+
+
+// const coordenas = ()=>{
+//     // Dirección que deseas convertir a latitud y longitud
+//     let direccion =  `${Direccion}, Colombia`;  
+
+//     console.log(direccion) 
+
+//     let lat = 0; 
+//     let long= 0; 
+
+//     // Tu API Key de Google
+//     let apiKey = 'AIzaSyAPV5If0IjvWEM5cX0qL_w2gg_gEoJULHw';
+  
+//     // URL para hacer la consulta a la API de Geocoding de Google
+//     let url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${direccion}`; 
+  
+//     // Realizar la consulta a la API utilizando fetch
+//     fetch(url)
+//     // Procesar la respuesta como JSON
+//     .then(response => response.json())
+//     // Obtener la latitud y longitud de los resultados
+//     .then(data => {
+//         let latitud = data.results[0].geometry.location.lat;
+//         let longitud = data.results[0].geometry.location.lng;
+
+//         lat = latitud; 
+//         long = longitud;
+
+//         const URL__coordenadas = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/direccion_envio`
+
+//         const datos = {
+//             Longitud : long, 
+//             Latitud : lat, 
+//             Clientes : ID,  
+//             Municipio : Municipio
+//         }
+    
+    
+//         const newAdress= {
+//             method : 'POST', 
+//             headers : { 
+//                 'Content-Type': 'application/json'
+//             }, 
+
+//             body : JSON.stringify(datos) 
+//         }
+    
+    
+//         fetch(URL__coordenadas,newAdress) 
+//         .then(res => res.json())
+//         .then(data => console.log(`${data.ID} Post realizo con exito`))
+//         .catch(err => console.error(err)) 
+//     });
+
+// }
+
+// const btnCoordenas = document.querySelector('#pagar'); 
+
+// btnCoordenas.addEventListener('click', ()=>{
+//     coordenas()    
+// })
+
