@@ -662,6 +662,36 @@
     margin-top:13px;
 }
 
+.pedido__descuento{
+    display: flex;
+    justify-content: space-between; 
+    padding: 0px 32px;  
+}
+
+.pedido__descuento input{
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 4px var(--shadow);
+    outline: none; 
+}
+
+.bntDescuento{
+    border: none;
+    border-radius: 30px;
+    background: var(--blue);
+    color: var(--withe);
+}
+
+.bntDescuento:hover{
+    background: var(--aquaMarine);
+    transition: .5s;
+    box-shadow: 0 0 15px var(--shadow); 
+}
+
+.bntDescuento:active{
+    background: var(--blue);
+    transition: .3s;
+}
 
 @media screen and (max-width:1380px){
     .header{
@@ -672,7 +702,7 @@
     }
     .pedido{
         position: relative;
-        bottom: 30px; 
+        bottom: 17px;
         height: 100px; 
     }
     .container-products{

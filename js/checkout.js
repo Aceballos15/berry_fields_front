@@ -26,35 +26,36 @@ const btnPedir = document.querySelector('.pagar')
 
 const inputDireccion = document.querySelector('#direccion')
 
+const containerCedula = document.querySelector('#direccion') 
+const cedula = document.querySelector('#cedula')
 
 //Funcion para mostrar en el checkout 
 const check = ()=>{
    
     if(chechkout.length === 1){        
-        chechkout.forEach(i =>{ 
+        chechkout.forEach(i =>{
 
             //ID del cliente y cedula 
             ID = i.ID 
+
             cedulaCheckout = i.Documento  
             
-            let containerCedula = document.querySelector('#direccion')
 
             const Municipio = i.Municipio.Municipio
+
+            const Departamento = i.Departamento1.Departamento
 
             //Validacion de existencia de municipio 
             if(Municipio == undefined){
 
-                containerCedula.value = `${i.Direccion} `
-            }else{
-                containerCedula.value = `${Municipio}, ${i.Direccion} ` 
-            }
+                containerCedula.value = `${i.Direccion}` 
 
-            const cedula = document.querySelector('#cedula')
+            }else{
+                containerCedula.value = `${i.Direccion}`
+            }
             
             Cedula = cedula.value 
             
-            const inputDireccion = document.querySelector('#direccion')
-
             Direccion = inputDireccion.value
             
             inputDireccion.addEventListener('keyup', (e)=>{ 
@@ -63,12 +64,8 @@ const check = ()=>{
                 Direccion =  valor
             })
 
-            //Deshabilitar el boton de pedir y el envio de direccion 
-            // btnPedir.disabled = false 
             inputDireccion.disabled = false 
         });  
-
-
         
     }
     else{
@@ -82,7 +79,7 @@ const check = ()=>{
             title: "Oops...",
             text: "Lo sentimos no estas en nuestra base de datos",
             confirmButtonColor: "#172E58", 
-            confirmButtonText: "Registrate aca"
+            confirmButtonText: "Registrate aquí"
             
 
         })//Evento al boton de la alerta y redireccion a el formulario de registro 

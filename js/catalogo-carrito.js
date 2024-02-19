@@ -14,9 +14,6 @@ let carts = []
 
 let listProducts = []
 
-const contador = (product_id)=>{
-    
-} 
 
 //Funcion para tomar el evento de suma y resta para los productos 
 listProductsHTML.addEventListener('click', (event) => { 
@@ -32,7 +29,7 @@ listProductsHTML.addEventListener('click', (event) => {
             const price = cardElement.dataset.price; 
             const referencia = cardElement.dataset.referencia; 
             const imagen = cardElement.dataset.imagen;
-            contador(product_id); 
+                        
             addToCart(product_id,price, referencia,imagen);  
         }
     } 
