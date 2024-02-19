@@ -702,7 +702,7 @@
     }
     .pedido{
         position: relative;
-        bottom: 17px;
+        bottom: -11px;
         height: 100px; 
     }
     .container-products{
@@ -716,6 +716,14 @@
     }
     .banner img{
         height: 106px; 
+    }
+    .pedido{
+        position: relative;
+        bottom: -20px; 
+        height: 100px; 
+    }
+    .container-products{
+        height: 480px; 
     }
 }
 
@@ -769,5 +777,10 @@
 
     .card__img{
         width: 105px;  
+    }
+    .pedido__descuento{
+        position: relative;
+        top: 26px; 
+        padding: 0px 10px;
     }
 }
