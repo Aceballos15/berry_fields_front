@@ -144,8 +144,14 @@ bntDescuento.addEventListener('click',()=>{
                         
                                             //Parseo de el monto 
                                             const precioDescuento = new Intl.NumberFormat('es-CO').format(totalWompi)
-                                            const precio = document.querySelector('.precio-total'); 
-                                            precio.innerText = `$${precioDescuento}` 
+                                            const precio = document.querySelector('.subtotal'); 
+
+                                            precio.innerHTML = `
+                                            <div class="subtotal_precio">
+                                                <h6>Subtotal: $${precioDescuento}</h6> 
+                                            </div>
+                                            `
+ 
                                         }
                                         else{
                                             
@@ -215,8 +221,13 @@ bntDescuento.addEventListener('click',()=>{
             
                                 //Parseo de el monto 
                                 const precioDescuento = new Intl.NumberFormat('es-CO').format(totalWompi)
-                                const precio = document.querySelector('.precio-total'); 
-                                precio.innerText = `$${precioDescuento}` 
+                                const precio = document.querySelector('.subtotal'); 
+
+                                precio.innerHTML = `
+                                <div class="subtotal_precio">
+                                    <h6>Subtotal: $${precioDescuento}</h6>
+                                </div>
+                                ` 
                             }
                         }
                         

@@ -271,15 +271,23 @@
     border-radius: 27px;
 }
 
-
-.precio-total{
-    width: 89px;
+.txt_total{
     display: flex;
-    height: 44px;
-    justify-content: center;
-    align-items: center;
+    align-items: center; 
+    justify-content: center;  
+    position: relative;
+    top: 2px;
 }
 
+.txt_total h4{
+    font-weight: 600; 
+}
+
+.precio-total{
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
 .offcanvas-title{
     position: relative;
     left: 155px; 
@@ -337,10 +345,10 @@
 
 .container-total{
     display: flex;
-    position: relative;
     padding: 20px; 
-    top: 5px; 
     font-weight: bold;
+    align-items: center;
+    justify-content: space-between; 
 }
 
 .dad-pagar{
@@ -500,9 +508,13 @@
 
 .total{
     display: flex; 
-    position: relative;
-    top: 10px;
-    
+    align-items: center;
+    justify-content: center; 
+    gap: 10px; 
+}
+
+.subtotal h6{ 
+    font-weight: 700;
 }
 
 .total h3{

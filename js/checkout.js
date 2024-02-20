@@ -169,7 +169,7 @@ btnValidar.addEventListener('click', ()=>{
 
 })
 
-//Funcion para mandar las coordenadas a direcciones de envio 
+// Funcion para mandar las coordenadas a direcciones de envio 
 // const coordenas = ()=>{
 //     // Dirección que deseas convertir a latitud y longitud
 //     let direccion =  `${Direccion}, Colombia`;  
@@ -249,4 +249,4 @@ btnValidar.addEventListener('click', ()=>{
 
 // btnCoordenas.addEventListener('click', ()=>{
 //     coordenas()
-// })
+// }) 
