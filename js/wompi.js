@@ -17,91 +17,240 @@ let Data = []
 let IdDescuento = [] 
 
 let porcentaje = 0; 
+let Referencia = [] 
 
 let Cantidad_Descuento = 0; 
 
+let cupon = [] 
+
+const InputCecula = document.querySelector('#cedula')
+
+let NumCedula = [] 
+
+InputCecula.addEventListener('keyup', (e)=>{
+    NumCedula = e.target.value 
+})
+
+const InputDireccion = document.querySelector('#direccion')
+
+let fechaActual = []
+const actual = ()=>{
+    const fecha = new Date(); 
+    const dia = String(fecha.getDate()).padStart(2, '0'); 
+    const mes = String(fecha.getMonth() + 1).padStart(2 , '0'); 
+    const anio = fecha.getFullYear()
+    return `${anio}-${mes}-${dia}` 
+}
+
+fechaActual = actual()
+
+
 bntDescuento.addEventListener('click',()=>{
+    if(inputDireccion.value == null||inputDireccion.value == "" || inputDireccion.value == undefined){
+        Swal.fire({
+            icon: "error",
+            title: "Hay algo mal",
+            text: "Debes validar primero tu numero de documento para aplicar el descuento", 
+            confirmButtonColor: "#172E58"
+        });
+    }
+    else{
+        try{
+            if(value.length > 1){
+                //Validar el cupon de descuento 
+                const url__descuento = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/All_Descuentos_Berries?where=Estado%20%3D%3D%22Activo%22%26%26Codigo_Descuento%20%3D%3D%20%22${value}%22%26` 
+            
+                fetch(url__descuento)
+                .then(res => res.json())
+                .then(data =>{
+                    Data = data 
+
+                    let uso = [] 
+                    let Fecha_Inicio = []
+                    let Fecha_Fin = [] 
+
+                    //validar primero el cliente 
+                    if(Data.length == 0|| Data.length == null || Data.length == undefined){
+                        Swal.fire({
+                            icon: "error",
+                            title: "Hay algo mal",
+                            text: "Tu cupon de descuento no existe", 
+                            confirmButtonColor: "#172E58"
+                        });
+                    }
+                    else{
+                        Data.forEach(cupon =>{
+                            uso = cupon.Un_solo_uso
+                            Fecha_Inicio = cupon.Fecha_Inicio1 
+                            Fecha_Fin = cupon.Fecha_Fin1
+                        })
+                        
+                        //Validacion de las fechas
+                        if( Fecha_Inicio <= fechaActual && Fecha_Fin >= fechaActual){
+                            
+                            if(uso == "Si"){
+                                //Validacion de uso de de cupon para solo una vez 
+                                const url_verificar_pedido = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido_Report?where=Cupon%3D%3D%22${value}%22%26%26Clientes.Documento%3D%3D%22${NumCedula}%22%26%26Estado%3D%3D%22APPROVED%22`
+                
+                                let pedido = [] 
+                
+                                fetch(url_verificar_pedido)
+                                .then(res => res.json())
+                                .then(data => {
+                                    pedido = data
+            
+                                    if(pedido.length == 0 ||pedido.length == null||pedido.length == undefined){
+                                        if(Data.length === 1){ 
+                                            let precioCard = 0 
+                                            carts.forEach(price =>{
+                                                const precio = price.price * price.quantity
+                                                
+                                                precioCard = precioCard + precio  
+                                            })
+                        
+                                            let porcentajeAlerta = 0 
+                                            
+                                            Data.forEach(percent =>{
+                                                porcentaje = percent.Porcentaje 
+                                                
+                                                const suma = precioCard * porcentaje / 100; 
+                                                
+                                                const totalPercent = precioCard - suma 
+                                                
+                                                Descuento = totalPercent 
+                            
+                                                totalWompi = totalPercent 
+                            
+                                                IdDescuento = percent.ID 
+                        
+                                                porcentajeAlerta = parseInt(porcentaje) 
+                        
+                                                Cantidad_Descuento = percent.Cantidad_de_cupones; 
+                        
+                                                if(percent.Un_solo_uso == "Si"){
+                                                    cupon = percent.Codigo_Descuento 
+                                                }
+                                                else{
+                                                    cupon = "no" 
+                                                }
+                        
+                                            })
+                                            Swal.fire({
+                                                icon: "success", 
+                                                title: "Perfecto",
+                                                text: `Has obtenido un descuento del ${porcentajeAlerta}% en tu compra`, 
+                                                confirmButtonColor: "#172E58" 
+                                            });
+                        
+                                            //Parseo de el monto 
+                                            const precioDescuento = new Intl.NumberFormat('es-CO').format(totalWompi)
+                                            const precio = document.querySelector('.precio-total'); 
+                                            precio.innerText = `$${precioDescuento}` 
+                                        }
+                                        else{
+                                            
+                                            Swal.fire({
+                                                icon: "error",
+                                                title: "Hay algo mal",
+                                                text: "Tu cupon de descuento ya fue usado, no existe o ya caduco", 
+                                                confirmButtonColor: "#172E58"
+                                            });
+                                             
+                                        }
+                                    }
+                                    else{
+                                        Swal.fire({
+                                            icon: "error",
+                                            title: "Hay algo mal",
+                                            text: "Este cupon de descuento es de un solo uso", 
+                                            confirmButtonColor: "#172E58"
+                                        });
+                                    }
+                                    
+                                }) 
+            
+                            } 
+                            //Aplicaion del descuento cuando el uso del cupon tiene mas de un uso 
+                            else if(uso != "Si" && Fecha_Inicio <= fechaActual && Fecha_Fin >= fechaActual){ 
+                                let precioCard = 0 
+                                carts.forEach(price =>{
+                                    const precio = price.price * price.quantity
+                                    
+                                    precioCard = precioCard + precio  
+                                })
+            
+                                let porcentajeAlerta = 0 
+                                
+                                Data.forEach(percent =>{
+                                    porcentaje = percent.Porcentaje 
+                                    
+                                    const suma = precioCard * porcentaje / 100; 
+                                    
+                                    const totalPercent = precioCard - suma 
+                                    
+                                    Descuento = totalPercent 
+                
+                                    totalWompi = totalPercent 
+                
+                                    IdDescuento = percent.ID 
+            
+                                    porcentajeAlerta = parseInt(porcentaje) 
+            
+                                    Cantidad_Descuento = percent.Cantidad_de_cupones; 
+            
+                                    if(percent.Un_solo_uso == "Si"){
+                                        cupon = percent.Codigo_Descuento 
+                                    }
+                                    else{
+                                        cupon = "no" 
+                                    }
+            
+                                })
+                                Swal.fire({
+                                    icon: "success", 
+                                    title: "Perfecto",
+                                    text: `Has obtenido un descuento del ${porcentajeAlerta}% en tu compra`, 
+                                    confirmButtonColor: "#172E58" 
+                                });
+            
+                                //Parseo de el monto 
+                                const precioDescuento = new Intl.NumberFormat('es-CO').format(totalWompi)
+                                const precio = document.querySelector('.precio-total'); 
+                                precio.innerText = `$${precioDescuento}` 
+                            }
+                        }
+                        
+                        else{
+                            
+                            Swal.fire({
+                                icon: "error",
+                                title: "Hay algo mal",
+                                text: "Tu cupon de descuento caduco o aún no inicia",  
+                                confirmButtonColor: "#172E58"
+                            });
+                             
+                        }
+                    }
+    
+                })
+            }
+            else{ 
+                Swal.fire({
+                    icon: "error",
+                    title: "Hay algo mal",
+                    text: "Para poder validar tu descuento debes de colocarlo",  
+                    confirmButtonColor: "#172E58"
+                });
+            }
+    
+        }
+        catch(err){
+            console.error('El cupon no existe o ya fue usado', err) 
+        }
+
+    }
 
     //Validacion de descuento 
-    try{
-        if(value.length > 1){
-
-            const url__descuento = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/All_Descuentos_Berries?where=Estado%20%3D%3D%22Activo%22%26%26Codigo_Descuento%20%3D%3D%20%22${value}%22%26%26Cantidad_de_cupones%3E0`
-        
-            fetch(url__descuento)
-            .then(res => res.json())
-            .then(data =>{
-                Data = data 
-    
-                //Aplicaion del descuento 
-                if(Data.length === 1){ 
-                    let precioCard = 0 
-                    carts.forEach(price =>{
-                        const precio = price.price * price.quantity
-                        
-                        precioCard = precioCard + precio  
-                    })
-
-                    let porcentajeAlerta = 0 
-                    
-                    Data.forEach(percent =>{
-                        porcentaje = percent.Porcentaje 
-                        
-                        const suma = precioCard * porcentaje / 100; 
-                        
-                        const totalPercent = precioCard - suma 
-                        
-                        Descuento = totalPercent 
-    
-                        totalWompi = totalPercent 
-    
-                        IdDescuento = percent.ID 
-
-                        porcentajeAlerta = parseInt(porcentaje) 
-
-                        Cantidad_Descuento = percent.Cantidad_de_cupones; 
-                        
-                        console.log(Cantidad_Descuento)   
-
-                    })
-                    Swal.fire({
-                        icon: "success", 
-                        title: "Perfecto",
-                        text: `Has obtenido un descuento del ${porcentajeAlerta}% en tu compra`, 
-                        confirmButtonColor: "#172E58" 
-                    });
-
-                    //Parseo de el monto 
-                    const precioDescuento = new Intl.NumberFormat('es-CO').format(totalWompi)
-                    const precio = document.querySelector('.precio-total'); 
-                    precio.innerText = `$${precioDescuento}` 
-                }
-                else{
-                    
-                    Swal.fire({
-                        icon: "error",
-                        title: "Hay algo mal",
-                        text: "Tu codigo de descuento ya fue usado o no existe", 
-                        confirmButtonColor: "#172E58"
-                    });
-                     
-                }
-
-            })
-        }
-        else{ 
-            Swal.fire({
-                icon: "error",
-                title: "Hay algo mal",
-                text: "Para poder validar tu descuento debes de colocarlo",  
-                confirmButtonColor: "#172E58"
-            });
-        }
-
-    }
-    catch(err){
-        console.error('El codigo no existe o ya fue usado', err) 
-    }
 })
 //Funcion para cuando se aplica un Descuento 
 const funcionPostDescuento = ()=>{
@@ -123,15 +272,7 @@ const funcionPostDescuento = ()=>{
         },
         body: JSON.stringify(TotalDescuento)   
     }
-    const post = {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
-        },
-        body: JSON.stringify(total)  
-    }
-    
+
     const URL_API = "https://berryfieldsbackend-production.up.railway.app/api/Signature" 
 
     fetch(URL_API, PostDescuento)  
@@ -179,6 +320,8 @@ const funcionPostDescuento = ()=>{
 
         })
 
+        Referencia = datos.reference 
+
         const mapSend = { 
             Referencia: datos.reference, 
             Productos : Products,
@@ -188,8 +331,9 @@ const funcionPostDescuento = ()=>{
             Direccion:Direccion, 
             Descripcion: "Berry Fields", 
             Estado : "PENDING",
-            Clientes: ID 
-        }
+            Clientes: ID, 
+            Cupon: cupon 
+        }  
 
         const producto = {
             method:'POST', 
@@ -206,7 +350,7 @@ const funcionPostDescuento = ()=>{
             .then(response => response.json())
             .then(data =>{
                 console.log(data)
-                const form = document.getElementById('formWompi').submit(); 
+                const form = document.getElementById('formWompi').submit();
             }
             ) 
         }
@@ -223,7 +367,7 @@ const funcionPostDescuento = ()=>{
 
     sessionStorage.clear();
 }
-
+//Funcion normal del pos 
 const funcionPost =() =>{
     let DATA =[] 
 
@@ -285,6 +429,8 @@ const funcionPost =() =>{
 
         })
 
+        Referencia = datos.reference 
+
         const mapSend = { 
             Referencia: datos.reference, 
             Productos : Products,
@@ -294,7 +440,8 @@ const funcionPost =() =>{
             Direccion:Direccion, 
             Descripcion: "Berry Fields", 
             Estado : "PENDING",
-            Clientes: ID 
+            Clientes: ID, 
+            Cupon : "No uso cupon" 
         }
 
         const producto = {
@@ -332,30 +479,7 @@ const funcionPost =() =>{
     sessionStorage.clear(); 
 } 
 
-const patch__Descuento = ()=>{
-    const estadoDescuento = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/All_Descuentos_Berries/${IdDescuento}` 
-    
-        const descuento = Cantidad_Descuento - 1;
-    
-        const estado = {
-            Cantidad_de_cupones : descuento 
-        }
-    
-        const opciones = {
-            method: 'PATCH', 
-            headers: {
-                'Content-Type': 'application/json'
-            }, 
-            body: JSON.stringify(estado) 
-        }
-    
-        fetch(estadoDescuento, opciones)
-        .then(res => res.json())
-        .then(data =>{
-            
-    }) 
-}
-
+//Evento del carrito 
 btnCarrito.addEventListener('click', ()=>{ 
 
     //Creacion de el precio para la card 
@@ -388,15 +512,13 @@ btnCarrito.addEventListener('click', ()=>{
         Swal.fire({
             icon: "error",
             title: "Hay algo mal",
-            text: "Tu carrito debe de tener al menos uno de nuestros deliciosos productos", 
+            text: "Tu carrito debe de tener al menos uno de nuestros productos",
             confirmButtonColor: "#172E58"
         }); 
  
     } 
     else if(Data.length ===1){
         funcionPostDescuento();  
-        patch__Descuento(); 
-        
     }
     else{
         funcionPost();  

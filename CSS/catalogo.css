@@ -766,7 +766,7 @@
     }
     .pedido{
         position: relative;
-        bottom: 30px; 
+        top: 0px;
     }
     .nueva__clase{
         left: 30px; 
@@ -780,7 +780,6 @@
     }
     .pedido__descuento{
         position: relative;
-        top: 26px; 
         padding: 0px 10px;
     }
 }

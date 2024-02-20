@@ -10,8 +10,8 @@ const btn_envio = document.querySelector('.btn__envio');
 btn_envio.addEventListener('click', ()=>{
     Swal.fire({
         icon: "info",
-        title: "Informacion de envio",
-        text: "Los envios en Medellin se realizan martes, jueves y viernes y en el Oriente Antioquieño el dia Miercoles.", 
+        title: "Información de envío",
+        text: "Los envios en Medellín se realizan martes, jueves y viernes; en el Oriente Antioqueño y Alto de las Palmas el día Miércoles.", 
         confirmButtonColor: "#172E58"
     });
 })
