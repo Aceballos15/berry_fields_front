@@ -131,7 +131,7 @@ bntDescuento.addEventListener('click',()=>{
                                                     cupon = percent.Codigo_Descuento 
                                                 }
                                                 else{
-                                                    cupon = "no" 
+                                                    cupon = percent.Codigo_Descuento  
                                                 }
                         
                                             })
