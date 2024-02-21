@@ -192,14 +192,15 @@
 
 .dad_card{ 
     width: auto; 
-    height: 156px;  
+    height: 300px;   
     display: flex;
+    flex-direction: column; 
     align-items: center;
     justify-content: center; 
     border-radius: 17px; 
     font-family: var(--font-family-montserrat); 
     box-shadow: 0 0 6px var(--shadow);
-    padding: 10px; 
+    padding: 20px; 
 }
 
 .card__container{
@@ -212,7 +213,7 @@
 
 
 .card__img{
-    width: 175px;  
+    width: 233px;  
     object-fit: cover; 
     position: relative; 
 }
@@ -705,6 +706,10 @@
     transition: .3s;
 }
 
+.mobile{
+    display: none; 
+}
+
 @media screen and (max-width:1380px){
     .header{
         padding: 0px 30px ; 
@@ -788,10 +793,15 @@
     }
 
     .card__img{
-        width: 105px;  
+        width: 125px;
     }
     .pedido__descuento{
         position: relative;
         padding: 0px 10px;
+    }
+    .dad_card{
+        flex-direction: row; 
+        height: 170px; 
+        padding: 0px; 
     }
 }

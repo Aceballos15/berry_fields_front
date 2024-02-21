@@ -36,7 +36,7 @@
 
     75%{margin-left: -300%; }
     100%{margin-left: -300%; }  
-}   */  
+}   */
 
 @media(max-width:1380px){
     .slider{
@@ -53,7 +53,15 @@
 
 @media(max-width:460px){
     .slider{
-        width: 340px;  
+        width: 350px;  
+    }
+
+    .destok{
+        display: none; 
+    }
+
+    .mobile{
+        display: flex; 
     }
 
 }
