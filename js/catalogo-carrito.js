@@ -274,9 +274,6 @@ listCartHTML.addEventListener('click', (event) =>{
     }
 })
 
-
-
-
 //Funcion para cambiar cantidad 
 const changeQuantity = (product_id, type) =>{
     let positionItemInCart = carts.findIndex((value)=> value.product_id == product_id); 

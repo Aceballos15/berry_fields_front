@@ -45,18 +45,32 @@ const actual = () => {
 fechaActual = actual();
 
 bntDescuento.addEventListener("click", () => {
-  if (
-    inputDireccion.value == null ||
-    inputDireccion.value == "" ||
-    inputDireccion.value == undefined
-  ) {
+
+  if(Data.length == 0 || Data.length == undefined || Data.length == null) {
+    carts.forEach((price) => {
+      const precio = price.price * price.quantity;
+
+      totalWompi = totalWompi + precio;
+    });
+  }
+
+  if (InputDireccion.value == null ||InputDireccion.value == " " ||InputDireccion.value == undefined) {
     Swal.fire({
       icon: "error",
       title: "Hay algo mal",
       text: "Debes validar primero tu numero de documento para aplicar el descuento",
       confirmButtonColor: "#172E58",
     });
-  } else {
+  }
+  else if(totalWompi ==0){
+    Swal.fire({
+      icon: "error",
+      title: "Hay algo mal",
+      text: "Para aplicar un descuento debes de tener al menos 1 producto", 
+      confirmButtonColor: "#172E58",
+    });
+  }
+  else{
     try {
       if (value.length > 1) {
         //Validar el cupon de descuento
@@ -127,7 +141,7 @@ bntDescuento.addEventListener("click", () => {
 
                             Descuento = totalPercent;
 
-                            totalWompi = totalPercent;
+                            // totalWompi = totalPercent;
 
                             IdDescuento = percent.ID;
 
@@ -151,14 +165,21 @@ bntDescuento.addEventListener("click", () => {
                           //Parseo de el monto
                           const precioDescuento = new Intl.NumberFormat(
                             "es-CO"
-                          ).format(totalWompi);
+                          ).format(Descuento); 
                           const precio = document.querySelector(".subtotal");
 
                           precio.innerHTML = `
-                                            <div class="subtotal_precio">
-                                                <h6>Subtotal: $${precioDescuento}</h6> 
-                                            </div>
-                                            `;
+                            <div class="subtotal_precio">
+                                <h6>Subtotal: $${precioDescuento}</h6> 
+                            </div>
+                            `;
+                            const descuento_porcentaje = document.querySelector('.descuento_porcentaje')
+                    
+                            descuento_porcentaje.innerHTML = `
+                            <div class="porcentaje">
+                                <h6>Descuento: ${porcentajeAlerta}%</h6>
+                            </div>
+                            ` 
                         } else {
                           Swal.fire({
                             icon: "error",
@@ -201,7 +222,7 @@ bntDescuento.addEventListener("click", () => {
 
                     Descuento = totalPercent;
 
-                    totalWompi = totalPercent;
+                    // totalWompi = totalPercent;
 
                     IdDescuento = percent.ID;
 
@@ -224,15 +245,23 @@ bntDescuento.addEventListener("click", () => {
 
                   //Parseo de el monto
                   const precioDescuento = new Intl.NumberFormat("es-CO").format(
-                    totalWompi
+                    Descuento 
                   );
                   const precio = document.querySelector(".subtotal");
 
                   precio.innerHTML = `
-                                <div class="subtotal_precio">
-                                    <h6>Subtotal: $${precioDescuento}</h6>
-                                </div>
-                                `;
+                    <div class="subtotal_precio">
+                        <h6>Subtotal: $${precioDescuento}</h6>
+                    </div>
+                    `;
+
+                    const descuento_porcentaje = document.querySelector('.descuento_porcentaje')
+                    
+                    descuento_porcentaje.innerHTML = `
+                    <div class="porcentaje">
+                        <h6>Descuento del :${porcentajeAlerta}%</h6>
+                    </div>
+                    `
                 }
               } else {
                 Swal.fire({
@@ -260,7 +289,7 @@ bntDescuento.addEventListener("click", () => {
   //Validacion de descuento
 });
 //Funcion para cuando se aplica un Descuento
-const funcionPostDescuento = () => {
+const funcionPostDescuento = (percent) => {
   let DATA = [];
 
   const total = {
@@ -332,7 +361,7 @@ const funcionPostDescuento = () => {
           Referencia: datos.reference,
           Productos: Products,
           Fecha: fechaHoy,
-          Total: totalWompi,
+          Total: percent,
           ID1: ID,
           Direccion: Direccion,
           Descripcion: "Berry Fields",
@@ -357,7 +386,7 @@ const funcionPostDescuento = () => {
             .then((response) => response.json())
             .then((data) => {
               console.log(data);
-              const form = document.getElementById("formWompi").submit();
+              const form = document.getElementById("formWompi").submit(); 
             });
         } catch (error) {
           console.error(error);
@@ -461,7 +490,7 @@ const funcionPost = () => {
             .then((response) => response.json())
             .then((data) => {
               if (data) {
-                const form = document.getElementById("formWompi").submit();
+                const form = document.getElementById("formWompi").submit(); 
               }
             });
         } catch (error) {
@@ -479,18 +508,17 @@ const funcionPost = () => {
 
 //Evento del carrito
 btnCarrito.addEventListener("click", () => {
-  //Creacion de el precio para la card
-  if (Data.length == 0 || Data.length == undefined || Data.length == null) {
-    carts.forEach((price) => {
-      const precio = price.price * price.quantity;
 
-      totalWompi = totalWompi + precio;
-    });
-  }
+  carts.forEach((price) => {
+    const precio = price.price * price.quantity;
+
+    totalWompi = totalWompi + precio;
+  }); 
 
   //validacion y alertas de la cedula y direccion
 
   if (cedula.value.trim() == 0 || direccion.value.trim() == 0) {
+    totalWompi = 0; 
     Swal.fire({
       icon: "error",
       title: "Hay algo mal",
@@ -503,16 +531,43 @@ btnCarrito.addEventListener("click", () => {
         cedula.focus();
       }
     });
-  } else if (totalWompi == 0) {
+  } 
+  else if (totalWompi == 0) {
     Swal.fire({
       icon: "error",
       title: "Hay algo mal",
       text: "Tu carrito debe de tener al menos uno de nuestros productos",
       confirmButtonColor: "#172E58",
     });
-  } else if (Data.length === 1) {
-    funcionPostDescuento();
-  } else {
-    funcionPost();
+  }
+  else if (Data.length === 1) {
+
+    totalWompi = 0; 
+    
+    carts.forEach((price) => {
+      const precio = price.price * price.quantity;
+  
+      totalWompi = totalWompi + precio;
+    }); 
+ 
+    const resta = (totalWompi * porcentaje) / 100; 
+
+    const percent = totalWompi - resta;
+
+    if(percent == Descuento){
+      funcionPostDescuento(percent);
+    }
+    else{
+      Swal.fire({
+        icon: "info",
+        title: "Hay algo mal",
+        text: "Aplica de nuevo el descuento para obtnerlo",
+        confirmButtonColor: "#172E58",
+      });
+    }
+  }
+  else {
+    funcionPost(); 
   }
 });
+ 

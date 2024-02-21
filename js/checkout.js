@@ -89,6 +89,8 @@ const check = ()=>{
                 window.location.href = "/HTML/registro.html" 
             }
         });
+
+        containerCedula.disabled = true 
     }
 }; 
 

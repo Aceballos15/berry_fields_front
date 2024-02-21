@@ -15,3 +15,11 @@ btn_envio.addEventListener('click', ()=>{
         confirmButtonColor: "#172E58"
     });
 })
+
+const btnLogo = document.querySelector('.logo')
+
+btnLogo.addEventListener('click', ()=>{
+    setTimeout(()=>{
+        location.reload() 
+    }, 1000)
+})
