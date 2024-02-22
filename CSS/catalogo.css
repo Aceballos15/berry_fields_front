@@ -203,24 +203,20 @@
   font-family: var(--font-family-montserrat);
   box-shadow: 0 0 6px var(--shadow);
   padding: 36px;
-}
-
-.card__container {
-  flex: 1 1 auto;
-  width: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  background: #ffffff;
 }
 
 .card__img {
-  width: 226px;
-  object-fit: cover;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  height: 141px;
 }
 
 .card__img img{
     width: 99%; 
+    border-radius: 8px; 
+    box-shadow: 0 0 6px var(--shadow); 
 }
 .card__title {
   padding: 10px;
@@ -544,7 +540,7 @@
 
 .cards_dad {
   display: flex;
-  gap: 20px;
+  gap: 38px;
   flex-wrap: wrap;
   justify-content: center;
   z-index: -1;
@@ -702,21 +698,49 @@
   display: none;
 }
 
-.prom {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
 
 .cont-promocion {
-  color: var(--red);
+  color: var(--withe);
+  font-weight: 900;
+  gap: 5px;
+  background: var(--red);
   display: flex;
-  justify-content: center; 
+  width: 106px;
+  border-radius: 13px 0 8px 5px;
+  padding: 5px;
+  justify-content: center;
+  position: relative;
+  bottom: 34px;
+  
 }
 
-.cont-promocion span {
-  font-weight: bold;
-  font-size: 20px;
+.cont-recursos{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  animation: prom 1.5s infinite alternate; 
+  transition: transform 0.3s ease-in-out;
+
+}
+
+
+@keyframes prom {
+  0% {
+    transform: scale(1);
+
+  }
+  50% {
+    transform: scale(1.1);
+
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cont-promocion img{ 
+  width: 20px; 
+  color: var(--withe); 
 }
 
 @media screen and (max-width: 1380px) {
@@ -797,16 +821,33 @@
     height: 325px;
   }
 
-  .card__img {
-    width: 125px;
-  }
+
   .pedido__descuento {
     position: relative;
     padding: 0px 10px;
   }
   .dad_card {
     flex-direction: row;
-    height: 170px;
+    height: 140px;
     padding: 0px;
+  }
+  .cont-promocion{
+    border-radius: 2px 14px 3px 7px;
+    display: flex;
+    bottom: 0px;
+ 
+  }
+
+  .card__price{
+    justify-content: space-around;
+  }
+
+  .card__img img{
+    box-shadow: none;
+  }
+
+  .card__img{
+    justify-content: center;
+    align-items: flex-start; 
   }
 }

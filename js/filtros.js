@@ -67,10 +67,13 @@ const createCards = cards => cards.map (card =>  {
             <div class="card__img">
                 <img src="${card.Imagen_publica.url}" class="card-img-top" alt="...">
                 `
-    if (card.ID == 1889220000134895229) {
+    if (card.ID == 1889220000134895229 || card.ID == 1889220000132516209) {
     html += `
     <div class="cont-promocion">
-        <span>Promo</span>
+        <div class="cont-recursos">
+            <img src="/IMG/Recurso 3.svg" alt="">
+            <span>Promo</span>
+        </div>
     </div>
     `
     }  
