@@ -24,7 +24,7 @@
     border-radius: 7px; 
 }
 
-/* @keyframes sliders {
+@keyframes sliders {
     0%{margin-left: 0; }
     20%{margin-left: 0; }
 
@@ -36,7 +36,7 @@
 
     75%{margin-left: -300%; }
     100%{margin-left: -300%; }  
-}   */
+}
 
 @media(max-width:1380px){
     .slider{
