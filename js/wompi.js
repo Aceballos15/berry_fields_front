@@ -8,6 +8,7 @@ let value = [];
 
 descuento.addEventListener("keyup", (e) => {
   value = e.target.value;
+  value = value.toLowerCase(); 
 });
 
 const bntDescuento = document.querySelector(".bntDescuento");
@@ -62,7 +63,7 @@ bntDescuento.addEventListener("click", () => {
       confirmButtonColor: "#172E58",
     });
   }
-  else if(totalWompi ==0){
+  else if(totalWompi ===0){
     Swal.fire({
       icon: "error",
       title: "Hay algo mal",
@@ -74,7 +75,7 @@ bntDescuento.addEventListener("click", () => {
     try {
       if (value.length > 1) {
         //Validar el cupon de descuento
-        const url__descuento = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/All_Descuentos_Berries?where=Estado%20%3D%3D%22Activo%22%26%26Codigo_Descuento%20%3D%3D%20%22${value}%22%26`;
+        const url__descuento = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/All_Descuentos_Berries?where=Codigo_Descuento.contains(%22${value}%22)%26%26Estado%3D%3D%22Activo%22`; 
 
         fetch(url__descuento)
           .then((res) => res.json())
@@ -85,12 +86,7 @@ bntDescuento.addEventListener("click", () => {
             let Fecha_Inicio = [];
             let Fecha_Fin = [];
 
-            //validar primero el cliente
-            if (
-              Data.length == 0 ||
-              Data.length == null ||
-              Data.length == undefined
-            ) {
+            if (Data.length == 0 ||Data.length == null ||Data.length == undefined) {
               Swal.fire({
                 icon: "error",
                 title: "Hay algo mal",
@@ -117,10 +113,7 @@ bntDescuento.addEventListener("click", () => {
                     .then((data) => {
                       pedido = data;
 
-                      if (
-                        pedido.length == 0 ||
-                        pedido.length == null ||
-                        pedido.length == undefined
+                      if (pedido.length == 0 ||pedido.length == null ||pedido.length == undefined 
                       ) {
                         if (Data.length === 1) {
                           let precioCard = 0;
@@ -199,10 +192,7 @@ bntDescuento.addEventListener("click", () => {
                     });
                 }
                 //Aplicaion del descuento cuando el uso del cupon tiene mas de un uso
-                else if (
-                  uso != "Si" &&
-                  Fecha_Inicio <= fechaActual &&
-                  Fecha_Fin >= fechaActual
+                else if (uso != "Si" &&Fecha_Inicio <= fechaActual &&Fecha_Fin >= fechaActual
                 ) {
                   let precioCard = 0;
                   carts.forEach((price) => {

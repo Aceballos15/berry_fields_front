@@ -116,5 +116,4 @@ const createCards = cards => {
 const renderCard = (cards) => {
     const itemCard = createCards(cards);
     dad.innerHTML = itemCard;
-    console.log(cards);
 };
