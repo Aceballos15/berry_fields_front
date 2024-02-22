@@ -561,7 +561,7 @@ btnCarrito.addEventListener("click", () => {
       Swal.fire({
         icon: "info",
         title: "Hay algo mal",
-        text: "Aplica de nuevo el descuento para obtnerlo",
+        text: "Aplica de nuevo el descuento para calcularlo",
         confirmButtonColor: "#172E58",
       });
     }
