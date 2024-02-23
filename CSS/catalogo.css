@@ -193,7 +193,7 @@
 }
 
 .dad_card {
-  width: auto;
+  width: 100%;
   height: 300px;
   display: flex;
   flex-direction: column;
@@ -202,7 +202,7 @@
   border-radius: 17px;
   font-family: var(--font-family-montserrat);
   box-shadow: 0 0 6px var(--shadow);
-  padding: 36px;
+
   background: #ffffff;
 }
 
@@ -211,12 +211,12 @@
   flex-direction: column;
   align-items: flex-end;
   height: 141px;
+
 }
 
 .card__img img{
-    width: 99%; 
-    border-radius: 8px; 
-    box-shadow: 0 0 6px var(--shadow); 
+    width: 100%; 
+    border-bottom: 1px solid var(--shadow);
 }
 .card__title {
   padding: 10px;
@@ -226,7 +226,7 @@
 .card__price {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 .container-botones {
   display: flex;
@@ -540,7 +540,7 @@
 
 .cards_dad {
   display: flex;
-  gap: 38px;
+  gap: 50px;
   flex-wrap: wrap;
   justify-content: center;
   z-index: -1;
@@ -564,6 +564,7 @@
   align-items: center;
   overflow: hidden;
 }
+
 
 .card img {
   position: relative;
@@ -706,12 +707,12 @@
   background: var(--red);
   display: flex;
   width: 106px;
-  border-radius: 13px 0 8px 5px;
+  border-radius: 2px 15px 1px 15px;
   padding: 5px;
   justify-content: center;
   position: relative;
-  bottom: 34px;
-  
+  bottom: 175px;
+
 }
 
 .cont-recursos{
@@ -834,7 +835,7 @@
   .cont-promocion{
     border-radius: 2px 14px 3px 7px;
     display: flex;
-    bottom: 0px;
+    bottom: -10px;
  
   }
 
@@ -843,7 +844,7 @@
   }
 
   .card__img img{
-    box-shadow: none;
+    border-bottom: none;
   }
 
   .card__img{

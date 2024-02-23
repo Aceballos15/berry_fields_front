@@ -34,6 +34,7 @@ InputCecula.addEventListener("keyup", (e) => {
 
 const InputDireccion = document.querySelector("#direccion");
 
+//Fecha actual 
 let fechaActual = [];
 const actual = () => {
   const fecha = new Date();
@@ -54,7 +55,7 @@ bntDescuento.addEventListener("click", () => {
       totalWompi = totalWompi + precio;
     });
   }
-
+  //Validacion de la existencia de cliente 
   if(InputDireccion.value == null ||InputDireccion.value == "" ||InputDireccion.value == undefined) {
     Swal.fire({
       icon: "error",
@@ -64,7 +65,7 @@ bntDescuento.addEventListener("click", () => {
     });
 
 
-  }
+  }//Validacion de el total a descontar 
   else if(totalWompi ===0){
     Swal.fire({
       icon: "error",
@@ -74,7 +75,7 @@ bntDescuento.addEventListener("click", () => {
     });
   }
   else{
-    try {
+    try {//validacion de que exista algo en el campo de descuentos 
       if (value.length > 1) {
         //Validar el cupon de descuento
         const url__descuento = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/All_Descuentos_Berries?where=Codigo_Descuento.contains(%22${value}%22)%26%26Estado%3D%3D%22Activo%22`; 
@@ -87,7 +88,7 @@ bntDescuento.addEventListener("click", () => {
             let uso = [];
             let Fecha_Inicio = [];
             let Fecha_Fin = [];
-
+            //Validacion de existencia de cupon 
             if (Data.length == 0 ||Data.length == null ||Data.length == undefined) {
               Swal.fire({
                 icon: "error",
@@ -95,11 +96,11 @@ bntDescuento.addEventListener("click", () => {
                 text: "Tu cupon de descuento no existe",
                 confirmButtonColor: "#172E58",
               });
-            } else {
+            } else {//Recorrido de la informacion del cupon 
               Data.forEach((cupon) => {
                 uso = cupon.Un_solo_uso;
                 Fecha_Inicio = cupon.Fecha_Inicio1;
-                Fecha_Fin = cupon.Fecha_Fin1;
+                Fecha_Fin = cupon.Fecha_Fin1; 
               });
 
               //Validacion de las fechas
@@ -127,6 +128,7 @@ bntDescuento.addEventListener("click", () => {
                           let porcentajeAlerta = 0;
 
                           Data.forEach((percent) => {
+                            //Descuento del cupon sobre el total 
                             porcentaje = percent.Porcentaje;
 
                             const suma = (precioCard * porcentaje) / 100;
@@ -134,8 +136,6 @@ bntDescuento.addEventListener("click", () => {
                             const totalPercent = precioCard - suma;
 
                             Descuento = totalPercent;
-
-                            // totalWompi = totalPercent;
 
                             IdDescuento = percent.ID;
 
@@ -161,7 +161,7 @@ bntDescuento.addEventListener("click", () => {
                             "es-CO"
                           ).format(Descuento); 
                           const precio = document.querySelector(".subtotal");
-
+                          //mostrar el descuento del cupon y el subtotal 
                           precio.innerHTML = `
                             <div class="subtotal_precio">
                                 <h6>Subtotal: $${precioDescuento}</h6> 
@@ -277,8 +277,6 @@ bntDescuento.addEventListener("click", () => {
       console.error("El cupon no existe o ya fue usado", err);
     }
   }
-
-  //Validacion de descuento
 });
 //Funcion para cuando se aplica un Descuento
 const funcionPostDescuento = (percent) => {
@@ -289,6 +287,7 @@ const funcionPostDescuento = (percent) => {
     return cadena.replace(/#/g, ''); 
   }
 
+  //Direccion sin # 
   let NuevaDireccion = cadenaEspecial(direccion); 
 
   let lat = 0; 
@@ -313,11 +312,8 @@ const funcionPostDescuento = (percent) => {
       long = longitud;
 
       let DATA = [];
-    
-      const total = {
-        amount: totalWompi,
-        ID: ID,
-      };
+
+      //Aplicacion del descuento a facturacion 
       const TotalDescuento = {
         amount: Descuento,
         ID: ID,
@@ -331,6 +327,7 @@ const funcionPostDescuento = (percent) => {
         body: JSON.stringify(TotalDescuento),
       };
     
+      //Peticion para encriptacion de datos para wompi 
       const URL_API =
         "https://berryfieldsbackend-production.up.railway.app/api/Signature";
     
@@ -378,7 +375,8 @@ const funcionPostDescuento = (percent) => {
             });
     
             Referencia = datos.reference;
-    
+            
+            //Datos de verificar pedido  
             const mapSend = {
               Referencia: datos.reference,
               Productos: Products,
@@ -402,7 +400,8 @@ const funcionPostDescuento = (percent) => {
     
               body: JSON.stringify(mapSend),
             };
-    
+            
+            //Mandar a verificar pedido para hacer la validacion y creacion de la factura 
             try {
               const URL_BERRY =
                 "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido";
@@ -419,9 +418,11 @@ const funcionPostDescuento = (percent) => {
           });
         })
         .catch((error) => console.error(error));
-    
+        
+        //Deshabilitar btn de pagar 
       btnPedir.disabled = true;
-    
+      
+      //Borrar el chache de la pagina 
       sessionStorage.clear();
       
   });
@@ -520,6 +521,8 @@ const funcionPost = (totalW) => {
             });
     
             Referencia = datos.reference;
+
+            //Datos de verificar pedido 
     
             const mapSend = {
               Referencia: datos.reference,
@@ -563,8 +566,10 @@ const funcionPost = (totalW) => {
         })
         .catch((error) => console.error(error));
     
+        //Deshabilitar btn de pagar 
       btnPedir.disabled = true;
-    
+      
+      //Borrar cache de la pagina 
       sessionStorage.clear();
   });
 
@@ -595,7 +600,7 @@ btnCarrito.addEventListener("click", () => {
         cedula.focus();
       }
     });
-  } 
+  } //Validacion del total 
   else if (totalWompi == 0) {
     Swal.fire({
       icon: "error",
@@ -603,7 +608,7 @@ btnCarrito.addEventListener("click", () => {
       text: "Tu carrito debe de tener al menos uno de nuestros productos",
       confirmButtonColor: "#172E58",
     });
-  }
+  }//Validaciones para cuando se aplica el descuento 
   else if (Data.length === 1) {
 
     totalWompi = 0; 
@@ -629,7 +634,7 @@ btnCarrito.addEventListener("click", () => {
         confirmButtonColor: "#172E58",
       });
     }
-  }
+  }//Validacion de el valor que va a wompi 
   else {
     totalWompi = 0; 
     
