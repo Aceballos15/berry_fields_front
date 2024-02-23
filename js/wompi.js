@@ -55,13 +55,17 @@ bntDescuento.addEventListener("click", () => {
     });
   }
 
-  if (InputDireccion.value == null ||InputDireccion.value == " " ||InputDireccion.value == undefined) {
+  console.log(InputDireccion.value) 
+
+  if(InputDireccion.value == null ||InputDireccion.value == "" ||InputDireccion.value == undefined) {
     Swal.fire({
       icon: "error",
       title: "Hay algo mal",
       text: "Debes validar primero tu numero de documento para aplicar el descuento",
       confirmButtonColor: "#172E58",
     });
+
+
   }
   else if(totalWompi ===0){
     Swal.fire({
@@ -432,7 +436,7 @@ const funcionPostDescuento = (percent) => {
 };
 
 //Funcion normal del pos
-const funcionPost = () => {
+const funcionPost = (totalW) => {
 
   // Dirección que deseas convertir a latitud y longitud
   let direccion =  `${Direccion}, Colombia`;  
@@ -470,7 +474,7 @@ const funcionPost = () => {
       let DATA = [];
     
       const total = {
-        amount: totalWompi,
+        amount: totalW, 
         ID: ID,
       };
     
@@ -530,7 +534,7 @@ const funcionPost = () => {
               Referencia: datos.reference,
               Productos: Products,
               Fecha: fechaHoy,
-              Total: totalWompi,
+              Total: totalW,
               ID1: ID,
               Direccion: Direccion,
               Descripcion: "Berry Fields",
@@ -540,8 +544,6 @@ const funcionPost = () => {
               Longitud : long, 
               Latitud : lat
             };
-
-            console.log(mapSend) 
     
             const producto = {
               method: "POST",
@@ -559,7 +561,7 @@ const funcionPost = () => {
                 .then((response) => response.json())
                 .then((data) => {
                   if (data) {
-                    const form = document.getElementById("formWompi").submit(); 
+                    const form = document.getElementById("formWompi").submit();
                   }
                 });
             } catch (error) {
@@ -638,7 +640,27 @@ btnCarrito.addEventListener("click", () => {
     }
   }
   else {
-    funcionPost();
+    totalWompi = 0; 
+    
+    carts.forEach((price) => {
+      const precio = price.price * price.quantity;
+  
+      totalWompi = totalWompi + precio;
+
+      if(totalWompi){ 
+        funcionPost(totalWompi); 
+      }
+      else{
+        Swal.fire({
+          icon: "info",
+          title: "Hay algo mal",
+          text: "Aplica de nuevo el descuento para calcularlo",
+          confirmButtonColor: "#172E58",
+        });
+      }
+    }); 
+ 
+    console.log(totalWompi) 
   }
 });
  
