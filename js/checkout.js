@@ -171,84 +171,9 @@ btnValidar.addEventListener('click', ()=>{
 
 })
 
-// Funcion para mandar las coordenadas a direcciones de envio 
-// const coordenas = ()=>{
-//     // Dirección que deseas convertir a latitud y longitud
-//     let direccion =  `${Direccion}, Colombia`;  
 
-//     let lat = 0; 
-//     let long= 0; 
+const btnCoordenas = document.querySelector('#pagar'); 
 
-//     // Tu API Key de Google
-//     let apiKey = 'AIzaSyAPV5If0IjvWEM5cX0qL_w2gg_gEoJULHw';
-  
-//     // URL para hacer la consulta a la API de Geocoding de Google
-//     let url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${direccion}`; 
-  
-//     // Realizar la consulta a la API utilizando fetch
-//     fetch(url)
-//     // Procesar la respuesta como JSON
-//     .then(response => response.json())
-//     // Obtener la latitud y longitud de los resultados
-//     .then(data => {
-//         let latitud = data.results[0].geometry.location.lat;
-//         let longitud = data.results[0].geometry.location.lng;
-
-//         lat = latitud; 
-//         long = longitud;
-
-//         const URL__coordenadas = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/direccion_envio`
-
-//         const datos = {
-//             Longitud : long, 
-//             Latitud : lat, 
-//             Clientes : ID,  
-//             Municipio : Municipio, 
-//             Direccion: direccion, 
-//             Fecha_Inicio : fechaHoy,
-//             Referencia : `${long}_${lat}`, 
-//             Estado: "Pendiente" 
-//         }
-
-//         const post_back = `https://f486-190-0-247-116.ngrok-free.app/api/Rutas`
-
-//         const ruta = {
-//             Referencia : `${long}_${lat}`
-//         }
-
-//         const reference = {
-//             method : 'POST', 
-//             headers: {
-//                 'Content-Type': 'application/json'
-                
-//             }, 
-//             body: JSON.stringify(ruta) 
-//         }
-
-//         fetch(post_back, reference)
-//         .then(res => res.json())
-//         .then(data => console.log(data)) 
-    
-//         const newAdress= {
-//             method : 'POST', 
-//             headers : { 
-//                 'Content-Type': 'application/json'
-//             }, 
-
-//             body : JSON.stringify(datos) 
-//         }
-    
-    
-//         fetch(URL__coordenadas,newAdress) 
-//         .then(res => res.json())
-//         .then(data => data) 
-//         .catch(err => console.error(err)) 
-//     });
-
-// }
-
-// const btnCoordenas = document.querySelector('#pagar'); 
-
-// btnCoordenas.addEventListener('click', ()=>{
-//     coordenas()
-// }) 
+btnCoordenas.addEventListener('click', ()=>{
+    coordenas()
+}) 

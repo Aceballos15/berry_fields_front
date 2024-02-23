@@ -113,8 +113,7 @@ bntDescuento.addEventListener("click", () => {
                     .then((data) => {
                       pedido = data;
 
-                      if (pedido.length == 0 ||pedido.length == null ||pedido.length == undefined 
-                      ) {
+                      if (pedido.length == 0 ||pedido.length == null ||pedido.length == undefined ) {
                         if (Data.length === 1) {
                           let precioCard = 0;
                           carts.forEach((price) => {
@@ -177,7 +176,7 @@ bntDescuento.addEventListener("click", () => {
                           Swal.fire({
                             icon: "error",
                             title: "Hay algo mal",
-                            text: "Tu cupon de descuento ya fue usado, no existe o ya caduco",
+                            text: "Tu cupon de descuento ya fue usado",
                             confirmButtonColor: "#172E58",
                           });
                         }
@@ -253,7 +252,8 @@ bntDescuento.addEventListener("click", () => {
                     </div>
                     `
                 }
-              } else {
+              }
+              else {
                 Swal.fire({
                   icon: "error",
                   title: "Hay algo mal",
@@ -280,220 +280,301 @@ bntDescuento.addEventListener("click", () => {
 });
 //Funcion para cuando se aplica un Descuento
 const funcionPostDescuento = (percent) => {
-  let DATA = [];
+  // Dirección que deseas convertir a latitud y longitud
+  let direccion =  `${Direccion}, Colombia`;  
 
-  const total = {
-    amount: totalWompi,
-    ID: ID,
-  };
-  const TotalDescuento = {
-    amount: Descuento,
-    ID: ID,
-  };
-  const PostDescuento = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
-    body: JSON.stringify(TotalDescuento),
-  };
+  const cadenaEspecial = (cadena)=>{
+    return cadena.replace(/#/g, ''); 
+  }
 
-  const URL_API =
-    "https://berryfieldsbackend-production.up.railway.app/api/Signature";
+  let NuevaDireccion = cadenaEspecial(direccion); 
 
-  fetch(URL_API, PostDescuento)
-    .then((response) => response.json())
-    .then((data) => {
-      DATA = data;
+  console.log(direccion); 
+  console.log(NuevaDireccion); 
 
-      DATA.forEach((datos) => {
-        let wompi = document.querySelector(".btnWompi");
+  let lat = 0; 
+  let long= 0; 
 
-        let pay = document.createElement("div");
-        pay.classList.add("wompi");
+  // Tu API Key de Google
+  let apiKey = 'AIzaSyAPV5If0IjvWEM5cX0qL_w2gg_gEoJULHw';
 
-        wompi.innerHTML = `
-        
-        <div>   
-            <form id="formWompi" action="https://checkout.wompi.co/p/" method="GET"> 
-            <input type="hidden" name="public-key" class="key" value="${datos.public_key}" />  
-            <input type="hidden" name="currency" class="currency" value="${datos.currency}" />
-            <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
-            <input type="hidden" name="reference" class="reference" value="${datos.reference}" /> 
-            <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>
-            <input type="hidden" name="redirect-url" value="https://www.theberryfields.com/"/>
+  // URL para hacer la consulta a la API de Geocoding de Google
+  let url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${NuevaDireccion}`; 
 
-            </form>
-        <div> 
-        `;
-        let Products = [];
+  // Realizar la consulta a la API utilizando fetch
+  fetch(url)
+  // Procesar la respuesta como JSON
+  .then(response => response.json())
+  // Obtener la latitud y longitud de los resultados
+  .then(data => {
+      console.log(direccion) 
+      let latitud = data.results[0].geometry.location.lat;
+      let longitud = data.results[0].geometry.location.lng;
 
-        let suma = 0;
-        let total = 0;
-        //Aplicaion del descuento a cada producto
-        carts.forEach((product) => {
-          suma = (product.price * porcentaje) / 100;
-          total = product.price - suma;
-          const productDetail = {
-            id: product.product_id,
-            price: total,
-            name: product.referencia,
-            quantity: product.quantity,
-          };
+      lat = latitud; 
+      long = longitud;
 
-          Products.push(productDetail);
-        });
-
-        Referencia = datos.reference;
-
-        const mapSend = {
-          Referencia: datos.reference,
-          Productos: Products,
-          Fecha: fechaHoy,
-          Total: percent,
-          ID1: ID,
-          Direccion: Direccion,
-          Descripcion: "Berry Fields",
-          Estado: "PENDING",
-          Clientes: ID,
-          Cupon: cupon,
-        };
-
-        const producto = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify(mapSend),
-        };
-
-        try {
-          const URL_BERRY =
-            "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido";
-          fetch(URL_BERRY, producto)
-            .then((response) => response.json())
-            .then((data) => {
-              console.log(data);
-              const form = document.getElementById("formWompi").submit(); 
+      let DATA = [];
+    
+      const total = {
+        amount: totalWompi,
+        ID: ID,
+      };
+      const TotalDescuento = {
+        amount: Descuento,
+        ID: ID,
+      };
+      const PostDescuento = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify(TotalDescuento),
+      };
+    
+      const URL_API =
+        "https://berryfieldsbackend-production.up.railway.app/api/Signature";
+    
+      fetch(URL_API, PostDescuento)
+        .then((response) => response.json())
+        .then((data) => {
+          DATA = data;
+    
+          DATA.forEach((datos) => {
+            let wompi = document.querySelector(".btnWompi");
+    
+            let pay = document.createElement("div");
+            pay.classList.add("wompi");
+    
+            wompi.innerHTML = `
+            
+            <div>   
+                <form id="formWompi" action="https://checkout.wompi.co/p/" method="GET"> 
+                <input type="hidden" name="public-key" class="key" value="${datos.public_key}" />  
+                <input type="hidden" name="currency" class="currency" value="${datos.currency}" />
+                <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
+                <input type="hidden" name="reference" class="reference" value="${datos.reference}" /> 
+                <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>
+                <input type="hidden" name="redirect-url" value="https://www.theberryfields.com/"/>
+    
+                </form>
+            <div> 
+            `;
+            let Products = [];
+    
+            let suma = 0;
+            let total = 0;
+            //Aplicaion del descuento a cada producto
+            carts.forEach((product) => {
+              suma = (product.price * porcentaje) / 100;
+              total = product.price - suma;
+              const productDetail = {
+                id: product.product_id,
+                price: total,
+                name: product.referencia,
+                quantity: product.quantity,
+              };
+    
+              Products.push(productDetail);
             });
-        } catch (error) {
-          console.error(error);
-          console.error(error.message);
-        }
-      });
-    })
-    .catch((error) => console.error(error));
+    
+            Referencia = datos.reference;
+    
+            const mapSend = {
+              Referencia: datos.reference,
+              Productos: Products,
+              Fecha: fechaHoy,
+              Total: percent,
+              ID1: ID,
+              Direccion: Direccion,
+              Descripcion: "Berry Fields",
+              Estado: "PENDING",
+              Clientes: ID,
+              Cupon: cupon,
+              Latitud: lat, 
+              Longitud : long
+            };
+    
+            const producto = {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+    
+              body: JSON.stringify(mapSend),
+            };
+    
+            try {
+              const URL_BERRY =
+                "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido";
+              fetch(URL_BERRY, producto)
+                .then((response) => response.json())
+                .then((data) => {
+                  console.log(data);
+                  const form = document.getElementById("formWompi").submit(); 
+                });
+            } catch (error) {
+              console.error(error);
+              console.error(error.message);
+            }
+          });
+        })
+        .catch((error) => console.error(error));
+    
+      btnPedir.disabled = true;
+    
+      sessionStorage.clear();
+      
+  });
 
-  btnPedir.disabled = true;
 
-  sessionStorage.clear();
 };
+
 //Funcion normal del pos
 const funcionPost = () => {
-  let DATA = [];
 
-  const total = {
-    amount: totalWompi,
-    ID: ID,
-  };
+  // Dirección que deseas convertir a latitud y longitud
+  let direccion =  `${Direccion}, Colombia`;  
 
-  const post = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "Access-Control-Allow-Origin": "*",
-    },
-    body: JSON.stringify(total),
-  };
+  const cadenaEspecial = (cadena)=>{
+    return cadena.replace(/#/g, ''); 
+  }
 
-  const URL_API =
-    "https://berryfieldsbackend-production.up.railway.app/api/Signature";
+  let NuevaDireccion = cadenaEspecial(direccion); 
 
-  fetch(URL_API, post)
-    .then((response) => response.json())
-    .then((data) => {
-      DATA = data;
+  console.log(direccion); 
+  console.log(NuevaDireccion); 
 
-      DATA.forEach((datos) => {
-        let wompi = document.querySelector(".btnWompi");
+  let lat = 0; 
+  let long= 0; 
 
-        let pay = document.createElement("div");
-        pay.classList.add("wompi");
+  // Tu API Key de Google
+  let apiKey = 'AIzaSyAPV5If0IjvWEM5cX0qL_w2gg_gEoJULHw';
 
-        wompi.innerHTML = `
-        
-        <div>   
-            <form id="formWompi" action="https://checkout.wompi.co/p/" method="GET"> 
-            <input type="hidden" name="public-key" class="key" value="${datos.public_key}" />  
-            <input type="hidden" name="currency" class="currency" value="${datos.currency}" />
-            <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
-            <input type="hidden" name="reference" class="reference" value="${datos.reference}" /> 
-            <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>
-            <input type="hidden" name="redirect-url" value="https://www.theberryfields.com/"/>
+  // URL para hacer la consulta a la API de Geocoding de Google
+  let url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${NuevaDireccion}`; 
 
-            </form>
-        <div> 
-        `;
-        let Products = [];
+  // Realizar la consulta a la API utilizando fetch
+  fetch(url)
+  // Procesar la respuesta como JSON
+  .then(response => response.json())
+  // Obtener la latitud y longitud de los resultados
+  .then(data => {
+      let latitud = data.results[0].geometry.location.lat;
+      let longitud = data.results[0].geometry.location.lng;
 
-        carts.forEach((product) => {
-          const productDetail = {
-            id: product.product_id,
-            price: product.price,
-            name: product.referencia,
-            quantity: product.quantity,
-          };
+      lat = latitud; 
+      long = longitud;
 
-          Products.push(productDetail);
-        });
-
-        Referencia = datos.reference;
-
-        const mapSend = {
-          Referencia: datos.reference,
-          Productos: Products,
-          Fecha: fechaHoy,
-          Total: totalWompi,
-          ID1: ID,
-          Direccion: Direccion,
-          Descripcion: "Berry Fields",
-          Estado: "PENDING",
-          Clientes: ID,
-          Cupon: "No uso cupon",
-        };
-
-        const producto = {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify(mapSend),
-        };
-
-        try {
-          const URL_BERRY =
-            "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido";
-          fetch(URL_BERRY, producto)
-            .then((response) => response.json())
-            .then((data) => {
-              if (data) {
-                const form = document.getElementById("formWompi").submit(); 
-              }
+      let DATA = [];
+    
+      const total = {
+        amount: totalWompi,
+        ID: ID,
+      };
+    
+      const post = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify(total),
+      };
+    
+      const URL_API =
+        "https://berryfieldsbackend-production.up.railway.app/api/Signature";
+    
+      fetch(URL_API, post)
+        .then((response) => response.json())
+        .then((data) => {
+          DATA = data;
+    
+          DATA.forEach((datos) => {
+            let wompi = document.querySelector(".btnWompi");
+    
+            let pay = document.createElement("div");
+            pay.classList.add("wompi");
+    
+            wompi.innerHTML = `
+            
+            <div>   
+                <form id="formWompi" action="https://checkout.wompi.co/p/" method="GET"> 
+                <input type="hidden" name="public-key" class="key" value="${datos.public_key}" />  
+                <input type="hidden" name="currency" class="currency" value="${datos.currency}" />
+                <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
+                <input type="hidden" name="reference" class="reference" value="${datos.reference}" /> 
+                <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>
+                <input type="hidden" name="redirect-url" value="https://www.theberryfields.com/"/>
+    
+                </form>
+            <div> 
+            `;
+            let Products = [];
+    
+            carts.forEach((product) => {
+              const productDetail = {
+                id: product.product_id,
+                price: product.price,
+                name: product.referencia,
+                quantity: product.quantity,
+              };
+    
+              Products.push(productDetail);
             });
-        } catch (error) {
-          console.error(error);
-          console.error(error.message);
-        }
-      });
-    })
-    .catch((error) => console.error(error));
+    
+            Referencia = datos.reference;
+    
+            const mapSend = {
+              Referencia: datos.reference,
+              Productos: Products,
+              Fecha: fechaHoy,
+              Total: totalWompi,
+              ID1: ID,
+              Direccion: Direccion,
+              Descripcion: "Berry Fields",
+              Estado: "PENDING",
+              Clientes: ID,
+              Cupon: "No uso cupon",
+              Longitud : long, 
+              Latitud : lat
+            };
 
-  btnPedir.disabled = true;
+            console.log(mapSend) 
+    
+            const producto = {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+    
+              body: JSON.stringify(mapSend),
+            };
+    
+            try {
+              const URL_BERRY =
+                "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido";
+              fetch(URL_BERRY, producto)
+                .then((response) => response.json())
+                .then((data) => {
+                  if (data) {
+                    const form = document.getElementById("formWompi").submit(); 
+                  }
+                });
+            } catch (error) {
+              console.error(error);
+              console.error(error.message);
+            }
+          });
+        })
+        .catch((error) => console.error(error));
+    
+      btnPedir.disabled = true;
+    
+      sessionStorage.clear();
+  });
 
-  sessionStorage.clear();
 };
 
 //Evento del carrito
@@ -557,7 +638,7 @@ btnCarrito.addEventListener("click", () => {
     }
   }
   else {
-    funcionPost(); 
+    funcionPost();
   }
 });
  
