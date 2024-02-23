@@ -55,8 +55,6 @@ bntDescuento.addEventListener("click", () => {
     });
   }
 
-  console.log(InputDireccion.value) 
-
   if(InputDireccion.value == null ||InputDireccion.value == "" ||InputDireccion.value == undefined) {
     Swal.fire({
       icon: "error",
@@ -293,9 +291,6 @@ const funcionPostDescuento = (percent) => {
 
   let NuevaDireccion = cadenaEspecial(direccion); 
 
-  console.log(direccion); 
-  console.log(NuevaDireccion); 
-
   let lat = 0; 
   let long= 0; 
 
@@ -310,8 +305,7 @@ const funcionPostDescuento = (percent) => {
   // Procesar la respuesta como JSON
   .then(response => response.json())
   // Obtener la latitud y longitud de los resultados
-  .then(data => {
-      console.log(direccion) 
+  .then(data => { 
       let latitud = data.results[0].geometry.location.lat;
       let longitud = data.results[0].geometry.location.lng;
 
@@ -446,9 +440,6 @@ const funcionPost = (totalW) => {
   }
 
   let NuevaDireccion = cadenaEspecial(direccion); 
-
-  console.log(direccion); 
-  console.log(NuevaDireccion); 
 
   let lat = 0; 
   let long= 0; 
@@ -660,7 +651,6 @@ btnCarrito.addEventListener("click", () => {
       }
     }); 
  
-    console.log(totalWompi) 
   }
 });
  
