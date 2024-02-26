@@ -43,7 +43,7 @@
   height: 100px;
   width: 100%;
   position: fixed;
-  top: 0;
+  top: 25px; 
   left: 0;
   background-color: #fdfeff;
   z-index: 1000;
@@ -722,6 +722,43 @@
   animation: prom 1.5s infinite alternate; 
   transition: transform 0.3s ease-in-out;
 
+}
+
+.envioGratis {
+  display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--orange); 
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    position: fixed;
+    height: 27px;
+    width: 100%;
+    top: 0px; 
+    left: 50%;
+    transform: translateX(-50%);
+    animation: animacionEnvioGratis 2s ease-in-out infinite alternate;
+}
+
+.envioGratis p{
+  position: relative;
+  top: 5px; 
+}
+
+.envioGratis img {
+  width: 24px;
+  height: 24px;
+  margin-right: 5px;
+}
+
+@keyframes animacionEnvioGratis {
+  0% {
+    transform: translateX(-50%) scale(1);
+  }
+  100% {
+    transform: translateX(-50%) scale(1.1);
+  }
 }
 
 
