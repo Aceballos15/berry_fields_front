@@ -175,5 +175,5 @@ btnValidar.addEventListener('click', ()=>{
 const btnCoordenas = document.querySelector('#pagar'); 
 
 btnCoordenas.addEventListener('click', ()=>{
-    coordenas()
+    // coordenas()
 }) 

@@ -466,9 +466,11 @@ const funcionPost = (totalW) => {
       let DATA = [];
     
       const total = {
-        amount: totalW, 
+        amount: totalW,
         ID: ID,
       };
+
+      console.log(total) 
     
       const post = {
         method: "POST",
@@ -643,18 +645,21 @@ btnCarrito.addEventListener("click", () => {
   
       totalWompi = totalWompi + precio;
 
-      if(totalWompi){ 
-        funcionPost(totalWompi); 
-      }
-      else{
-        Swal.fire({
-          icon: "info",
-          title: "Hay algo mal",
-          text: "Aplica de nuevo el descuento para calcularlo",
-          confirmButtonColor: "#172E58",
-        });
-      }
     }); 
+
+    console.log(totalWompi) 
+
+    if(totalWompi>0){  
+      funcionPost(totalWompi); 
+    }
+    else{
+      Swal.fire({
+        icon: "info",
+        title: "Hay algo mal",
+        text: "Tu pedido debe de tener al menos un producto",
+        confirmButtonColor: "#172E58",
+      });
+    }
  
   }
 });
