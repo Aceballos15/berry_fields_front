@@ -190,6 +190,29 @@ label i{
     transition: .5s; 
 }
 
+.mapa button{
+    border: none;
+    border-radius: 10px;
+    background: var(--purple-lighter);
+    color: var(--withe);
+    cursor: pointer; 
+}
+
+.hidden-map{
+    display: none;
+}
+
+.map{
+    height: 300px; 
+    width: 300px;
+}
+
+.mapa button:hover{
+    background: var(--purple-dark);
+    box-shadow: 0 0 6px var(--dark-grey);
+    transition: .5s; 
+}
+
 @media screen and(max-width: 1380px){ 
     .dad-checkout{
         width: 640px;

@@ -281,14 +281,9 @@ Municipio.addEventListener('keyup', (e)=>{
 
         Buscar = NombreMun;  
 
-        const valorDep = document.querySelector('.locationDep')
+        const valorDep = document.querySelector('#departamento')
 
-        valorDep.innerHTML = `
-        <i class="material-icons">public</i> 
-        <em class="departamento">Departamento </em>  
-        <input type="text" name="Departamento" id="departamento" value="${Departamento}">  
-        <span></span> 
-        `
+        valorDep.value = `${Departamento}`
     
     });  
 }); 

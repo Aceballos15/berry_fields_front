@@ -97,7 +97,7 @@
                 <label class="locationDep"> 
                     <i class="material-icons">public</i> 
                     <em class="departamento">Departamento </em>  
-                    <input type="text" name="Departamento" id="departamento"> 
+                    <input type="text" name="Departamento" id="departamento" value=""> 
                     <span></span>
                 </label>
 
@@ -116,8 +116,9 @@
                     <input type="text" name="Direccion" id="direccion"> 
                     <span></span>
                 </label>
+
                 
-            
+                
                 <label class="tipo-persona">
                     <i class="material-symbols-outlined">badge</i>
                     
@@ -128,10 +129,18 @@
                     <em>Persona Juridica</em>
                     <input type="radio" name="tipo-persona" value="persona juridica - regimen comun" class="juridica">  
                 </label> 
-                    
-
+                
+                
             </form>
             
+            <!-- <div class="mapa">
+                <button class="btn_mapa">Mapa</button>  
+                <div id="map" class="map hidden-map"></div> 
+                <label for="latitud">Latitud:</label>
+                <input type="text" id="latitud" readonly>
+                <label for="longitud">Longitud:</label>
+                <input type="text" id="longitud" readonly> 
+            </div> -->
             <div class="container-btn">
                 <button class="btn-registro" type="" disabled>Registrarse</button> 
             </div> 
@@ -142,5 +151,7 @@
     <script src="/js/registro.js"></script>  
     <script src="/js/boton-registro.js"></script> 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/mapa.js"></script> 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBUIJvwNYiAS-kXFKh--vmfsgEORUEPQSU"></script>
 </body>
 </html>
