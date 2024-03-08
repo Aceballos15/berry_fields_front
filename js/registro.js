@@ -1,5 +1,7 @@
 //Variables para obtener el input 
 
+//Validaciones de el registro 
+
 const nombre = document.querySelector("[name = Nombre]")
 const apelllido = document.querySelector("[name = Apellido]")
 const tipoCedula = document.querySelector("[name = Tipo-Documento]")

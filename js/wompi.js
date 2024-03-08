@@ -317,6 +317,7 @@ const funcionPostDescuento = (percent) => {
       const TotalDescuento = {
         amount: Descuento,
         ID: ID,
+        Fecha: fechaActual
       };
       const PostDescuento = {
         method: "POST",
@@ -369,6 +370,7 @@ const funcionPostDescuento = (percent) => {
                 price: total,
                 name: product.referencia,
                 quantity: product.quantity,
+                gramo : product.quantity * product.gramos
               };
     
               Products.push(productDetail);
@@ -468,9 +470,8 @@ const funcionPost = (totalW) => {
       const total = {
         amount: totalW,
         ID: ID,
+        Fecha: fechaActual
       };
-
-      console.log(total) 
     
       const post = {
         method: "POST",
@@ -482,9 +483,9 @@ const funcionPost = (totalW) => {
       };
     
       const URL_API =
-        "https://berryfieldsbackend-production.up.railway.app/api/Signature";
+        "https://berry-connect.accsolutions.tech/api/Signature"; 
     
-      fetch(URL_API, post)
+        fetch(URL_API, post)
         .then((response) => response.json())
         .then((data) => {
           DATA = data;
@@ -512,16 +513,53 @@ const funcionPost = (totalW) => {
             let Products = [];
     
             carts.forEach((product) => {
+              const new_gramos = [];   
+              const type = product.compuesto;
+              if(type == "No"){
+                const gramaje = product.gramos.gramos * product.quantity;   
+                const id = product.gramos.ID_Product;   
+                
+                const grams = {
+                  ID_Product : id, 
+                  Gramos: gramaje 
+                }
+
+                new_gramos.push(grams); 
+                
+              }
+              else{
+                for(let gr = 0; product.gramos.length; ){
+                  
+                  const gramaje = product.gramos[gr].Cantidad * product.quantity; 
+                  const ref = product.gramos[gr].Referencia; 
+                  const id = product.gramos[gr].ID; 
+
+                  const datos_gramos = {
+                    ID_Product: id, 
+                    Gramos : gramaje, 
+                    // Referencia : ref
+                  }
+                  new_gramos.push(datos_gramos); 
+  
+                  gr++; 
+  
+                  if(gr == product.gramos.length){
+                    break 
+                  }
+                }
+              }
+
               const productDetail = {
                 id: product.product_id,
                 price: product.price,
                 name: product.referencia,
                 quantity: product.quantity,
+                gramos :new_gramos
               };
     
               Products.push(productDetail);
             });
-    
+
             Referencia = datos.reference;
 
             //Datos de verificar pedido 
@@ -540,7 +578,7 @@ const funcionPost = (totalW) => {
               Longitud : long, 
               Latitud : lat
             };
-    
+
             const producto = {
               method: "POST",
               headers: {
@@ -646,8 +684,6 @@ btnCarrito.addEventListener("click", () => {
       totalWompi = totalWompi + precio;
 
     }); 
-
-    console.log(totalWompi) 
 
     if(totalWompi>0){  
       funcionPost(totalWompi); 
