@@ -24,7 +24,7 @@ btnLogo.addEventListener('click', ()=>{
     }, 1000)
 })
 
-const alerta = ()=>{
+const New_alert = ()=>{
     Swal.fire({
         icon: "info",
         title: "Política de Tratamientos de Datos Personales",
@@ -66,11 +66,11 @@ const alerta = ()=>{
 const politica = document.querySelector('.politica'); 
 
 politica.addEventListener('click',()=>{
-   alerta(); 
+   New_alert(); 
 })
 
 const politica_img = document.querySelector('.footer__politica'); 
 
 politica_img.addEventListener('click', ()=>{
-    alerta(); 
+    New_alert(); 
 })

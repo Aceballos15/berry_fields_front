@@ -98,7 +98,7 @@ const check = ()=>{
 //Fucion para buscar cedula 
 const searchDirection = (cedula)=>{
 
-    URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${cedula}"`
+    URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?where=Documento=="${cedula}"`
     
     //Funcion para traer la info 
     const initCheckout = ()=>{
