@@ -29,40 +29,156 @@ listProductsHTML.addEventListener('click', (event) => {
             const price = cardElement.dataset.price; 
             const referencia = cardElement.dataset.referencia; 
             const imagen = cardElement.dataset.imagen;
-                        
-            addToCart(product_id,price, referencia,imagen);  
+            const gramos = cardElement.dataset.gramos; 
+            const compuesto = cardElement.dataset.idcompuesto; 
+            const validation = cardElement.dataset.product; 
+
+            addToCart(product_id,price, referencia,imagen, gramos, compuesto, validation);  
+             
         }
+        
     } 
     
 });
 
+//Funcion para validar un producto compuesto 
+const validacion_Product = (compuesto, product_id, price,referencia,imagen, gramos)=>{
+    //Busqueda de los productos por medio de la api 
+    const url = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Productos_Berry?where=ID==${compuesto}`;
 
-//Constante de info para añadir al carrito 
-const addToCart = (product_id,price,referencia,imagen) =>{  
+    //Posicion en el carrito 
+    let position = carts.findIndex((value) => value.product_id == product_id); 
+    fetch(url)
+    .then(res => res.json())
+    .then(data => {
+        
+        //Recorrido de la respuesta de api 
+        data.forEach(card =>{
+
+            //Productos compuestos 
+            if(card.Producto_Compuesto == "true"){
+                const productos = [] 
+                
+                //For para asignar en un arreglo los parametros de cantidad de cada producto compuesto 
+                for(let i=0; card.Plano_de_Producto.length;){
+            
+                    const Cantidad = card.Plano_de_Producto[i].Cantidad;
+                    const ref = card.Plano_de_Producto[i].Productos.Referencia; 
+                    const id = card.Plano_de_Producto[i].Productos.ID; 
+                    
+                    const data = {
+                        ID : id, 
+                        Referencia: ref,  
+                        Cantidad : Cantidad
+                    }
+                    productos.push(data) 
+                    
+                    i ++; 
+                    
+                    if(i >= card.Plano_de_Producto.length){ 
+                        break
+                    }
+                    
+                }
+
+                //Validacion de la posicion en el carrito 
+                if(position < 0){ 
+
+                    carts.push ({
+                        product_id : product_id, 
+                        quantity : 1, 
+                        price : price, 
+                        referencia : referencia,
+                        imagen : imagen, 
+                        gramos : productos, 
+                        compuesto: "Si" 
+                    })
+
+                    //Añadir al carrito 
+                    addCartToHTML(); 
+                   
+                }
+                //creacion de el array
+                if(carts.length == 0){
+                    carts = [{
+                        product_id : product_id, 
+                        quantity : 1, 
+                        price : price, 
+                        referencia : referencia,
+                        imagen : imagen, 
+                        gramos : productos, 
+                        compuesto: "Si"
+                    }] 
+
+                    addCartToHTML(); 
+                }
+                
+            }
+            else{
+                //Organizar en el array los productos que no son compuestos
+                if(position < 0){
+
+                    
+
+                    const gramaje = {
+                        gramos : gramos, 
+                        ID_Product: card.ID 
+                    }
+
+                    carts.push ({
+                        product_id : product_id, 
+                        quantity : 1, 
+                        price : price, 
+                        referencia : referencia,
+                        imagen : imagen, 
+                        gramos : gramaje, 
+                        compuesto: "No"
+                    }) 
+
+                    addCartToHTML(); 
+
+                }
+                else{
+                    const gramaje = {
+                        gramos : gramos, 
+                        ID_Product: card.ID 
+                    }
+                    carts = [{
+                        product_id : product_id, 
+                        quantity : 1, 
+                        price : price, 
+                        referencia : referencia,
+                        imagen : imagen, 
+                        gramos : gramaje, 
+                        compuesto: "No"
+                    }] 
+                    addCartToHTML(); 
+                    
+                }
+            }
+
+        }) 
+    })  
+    
+}
+
+//Funcion para añadir al carrito
+const addToCart = (product_id,price,referencia,imagen, gramos, compuesto, validation) =>{ 
+
     let position = carts.findIndex((value) => value.product_id == product_id);  
     if(carts.length <= 0){
-        carts = [{
-            product_id : product_id, 
-            quantity : 1, 
-            price : price, 
-            referencia : referencia,
-            imagen : imagen, 
-        }] 
+        validacion_Product(compuesto, product_id, price, referencia, imagen, gramos)  
     }else if (position < 0){
-        carts.push({
-            product_id : product_id, 
-            quantity : 1, 
-            price: price, 
-            referencia: referencia, 
-            imagen: imagen,
-        })
-    }else{
+        validacion_Product(compuesto, product_id, price, referencia, imagen, gramos) 
+    }
+    else{
         carts[position].quantity = carts[position].quantity + 1; 
     }
 
     addCartToHTML(); 
     // Llamad de funcion para el local storage
     addCartToMemory(); 
+
 }
 
 

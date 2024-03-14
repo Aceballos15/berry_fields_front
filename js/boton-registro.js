@@ -54,7 +54,7 @@ const cedulaNoRegistrada = ()=>{
             postal_Code2: "05001" 
         }
         
-    } 
+    }
     //JSON para regimen de persona juridica
     const objetoJSON2 = {
         // Added_User: addedUser, 
@@ -116,7 +116,7 @@ const cedulaNoRegistrada = ()=>{
                     footer: '<a href="https://www.theberryfields.com/">Vuelve a tu compra</a>'   
                 });
 
-                //Funcion para volver a la pagina principal despues de el registro exitoso 
+                // Funcion para volver a la pagina principal despues de el registro exitoso
                 setTimeout(()=>{
                     window.location.href = "https://www.theberryfields.com/"
                 }, 4000) 
@@ -133,7 +133,7 @@ const cedulaNoRegistrada = ()=>{
         }
         catch(error){
             console.error('Error', error) 
-        }
+        } 
     }
 
     if(juridica.checked){
