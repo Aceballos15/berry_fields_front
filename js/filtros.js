@@ -58,22 +58,8 @@ input.addEventListener('input', (e)=>{
 
 // Creacion de las cards dinamicas 
 const createCards = cards => {
-    // Ordenar los productos: los que tienen promoción primero
-    cards.sort((a, b) => {
-        // Si a tiene promoción y b no, a debe ir antes
-        console.log(b) 
-        if (a.Productos_Berry[0].Promocion=== "Si" && Productos_Berry[1].Promocion !== "Si") {
-            return -1;
-        }
-        // Si b tiene promoción y a no, b debe ir antes
-        if (b.Productos_Berry[0].Promocion === "Si" && a.Productos_Berry[1].Promocion !== "Si") {
-            return 1;
-        }
-        // En cualquier otro caso, no cambia el orden
-        return 0;
-    });
 
-    // Generar el HTML de las tarjetas
+    // Generar el HTML de las tarjetas}
     const products = cards.map(card => {
 
         const nuevos_productos = card.Productos_Berry.length;

@@ -361,6 +361,20 @@ const funcionPostDescuento = (percent) => {
     
             let suma = 0;
             let total = 0;
+            //Aplicaion del descuento a cada producto
+            // carts.forEach((product) => {
+            //   suma = (product.price * porcentaje) / 100;
+            //   total = product.price - suma;
+            //   const productDetail = {
+            //     id: product.product_id,
+            //     price: total,
+            //     name: product.referencia,
+            //     quantity: product.quantity,
+            //     gramo : product.quantity * product.gramos
+            //   };
+    
+            //   Products.push(productDetail);
+            // });
 
             carts.forEach((product) => {
               const new_gramos = [];   
