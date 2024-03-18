@@ -59,6 +59,19 @@ input.addEventListener('input', (e)=>{
 // Creacion de las cards dinamicas 
 const createCards = cards => {
 
+    cards.sort((a, b) => {
+        // Si a tiene promoción y b no, a debe ir antes
+        if (a.Promosion === "Si" && b.Promosion !== "Si") {
+            return -1;
+        }
+        // Si b tiene promoción y a no, b debe ir antes
+        if (b.Promosion === "Si" && a.Promosion !== "Si") {
+            return 1;
+        }
+        // En cualquier otro caso, no cambia el orden
+        return 0;
+    });
+
     // Generar el HTML de las tarjetas}
     const products = cards.map(card => {
 
