@@ -247,8 +247,8 @@
   background: var(--orange);
   color: var(--withe);
   padding: 5px 8px;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: 15px;
+  font-weight: bolder; 
 }
 
 .container-botones button:hover {
@@ -750,6 +750,8 @@
 .envioGratis p{
   position: relative;
   top: 5px; 
+  font-weight: bolder;
+  font-size: 20px;  
 }
 
 .envioGratis img {
