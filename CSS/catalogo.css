@@ -228,6 +228,12 @@
   align-items: center;
   justify-content: space-around;
 }
+
+.card__price h6{
+  font-weight: bolder;
+  font-size: 1.2rem; 
+}
+
 .container-botones {
   display: flex;
   align-items: center;
