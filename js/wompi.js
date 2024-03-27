@@ -280,38 +280,7 @@ bntDescuento.addEventListener("click", () => {
 });
 //Funcion para cuando se aplica un Descuento
 const funcionPostDescuento = (percent) => {
-  // Dirección que deseas convertir a latitud y longitud
-  let direccion =  `${Direccion}, Colombia`;  
-
-  const cadenaEspecial = (cadena)=>{
-    return cadena.replace(/#/g, ''); 
-  }
-
-  //Direccion sin # 
-  let NuevaDireccion = cadenaEspecial(direccion); 
-
-  let lat = 0; 
-  let long= 0; 
-
-  // Tu API Key de Google
-  let apiKey = 'AIzaSyAPV5If0IjvWEM5cX0qL_w2gg_gEoJULHw';
-
-  // URL para hacer la consulta a la API de Geocoding de Google
-  let url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${NuevaDireccion}`; 
-
-  // Realizar la consulta a la API utilizando fetch
-  fetch(url)
-  // Procesar la respuesta como JSON
-  .then(response => response.json())
-  // Obtener la latitud y longitud de los resultados
-  .then(data => { 
-      let latitud = data.results[0].geometry.location.lat;
-      let longitud = data.results[0].geometry.location.lng;
-
-      lat = latitud; 
-      long = longitud;
-
-      let DATA = [];
+    let DATA = [];
 
       //Aplicacion del descuento a facturacion 
       const TotalDescuento = {
@@ -329,8 +298,7 @@ const funcionPostDescuento = (percent) => {
       };
     
       //Peticion para encriptacion de datos para wompi 
-      const URL_API =
-        "https://berryfieldsbackend-production.up.railway.app/api/Signature";
+      const URL_API ="https://berryfieldsbackend-production.up.railway.app/api/Signature";
     
       fetch(URL_API, PostDescuento)
         .then((response) => response.json())
@@ -361,20 +329,6 @@ const funcionPostDescuento = (percent) => {
     
             let suma = 0;
             let total = 0;
-            //Aplicaion del descuento a cada producto
-            // carts.forEach((product) => {
-            //   suma = (product.price * porcentaje) / 100;
-            //   total = product.price - suma;
-            //   const productDetail = {
-            //     id: product.product_id,
-            //     price: total,
-            //     name: product.referencia,
-            //     quantity: product.quantity,
-            //     gramo : product.quantity * product.gramos
-            //   };
-    
-            //   Products.push(productDetail);
-            // });
 
             carts.forEach((product) => {
               const new_gramos = [];   
@@ -440,8 +394,6 @@ const funcionPostDescuento = (percent) => {
               Estado: "PENDING",
               Clientes: ID,
               Cupon: cupon,
-              Latitud: lat, 
-              Longitud : long
             };
     
             const producto = {
@@ -477,44 +429,11 @@ const funcionPostDescuento = (percent) => {
       //Borrar el chache de la pagina 
       sessionStorage.clear();
       
-  });
-
 
 };
 
 //Funcion normal del pos
 const funcionPost = (totalW) => {
-
-  // Dirección que deseas convertir a latitud y longitud
-  let direccion =  `${Direccion}, Colombia`;  
-
-  const cadenaEspecial = (cadena)=>{
-    return cadena.replace(/#/g, ''); 
-  }
-
-  let NuevaDireccion = cadenaEspecial(direccion); 
-
-  let lat = 0; 
-  let long= 0; 
-
-  // Tu API Key de Google
-  let apiKey = 'AIzaSyAPV5If0IjvWEM5cX0qL_w2gg_gEoJULHw';
-
-  // URL para hacer la consulta a la API de Geocoding de Google
-  let url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${NuevaDireccion}`; 
-
-  // Realizar la consulta a la API utilizando fetch
-  fetch(url)
-  // Procesar la respuesta como JSON
-  .then(response => response.json())
-  // Obtener la latitud y longitud de los resultados
-  .then(data => {
-      let latitud = data.results[0].geometry.location.lat;
-      let longitud = data.results[0].geometry.location.lng;
-
-      lat = latitud; 
-      long = longitud;
-
       let DATA = [];
     
       const total = {
@@ -581,7 +500,6 @@ const funcionPost = (totalW) => {
                 for(let gr = 0; product.gramos.length; ){
                   
                   const gramaje = product.gramos[gr].Cantidad * product.quantity; 
-                  const ref = product.gramos[gr].Referencia; 
                   const id = product.gramos[gr].ID; 
 
                   const datos_gramos = {
@@ -625,8 +543,6 @@ const funcionPost = (totalW) => {
               Estado: "PENDING",
               Clientes: ID,
               Cupon: "No uso cupon",
-              Longitud : long, 
-              Latitud : lat
             };
 
             const producto = {
@@ -661,7 +577,7 @@ const funcionPost = (totalW) => {
       
       //Borrar cache de la pagina 
       sessionStorage.clear();
-  });
+ 
 
 };
 
