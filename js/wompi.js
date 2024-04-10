@@ -385,12 +385,15 @@ bntDescuento.addEventListener("click", () => {
 const funcionPostDescuento = (percent) => {
     let DATA = [];
 
+    let Numero_ID = Math.random() * 10;  
+
+
       //Aplicacion del descuento a facturacion 
       const TotalDescuento = {
         amount: Descuento,
-        ID: ID,
+        ID: Numero_ID,
         Fecha: fechaActual, 
-        E_Cormers : "Bfs"
+        E_Cormers : "bfs"
       };
       const PostDescuento = {
         method: "POST",
@@ -539,13 +542,17 @@ const funcionPostDescuento = (percent) => {
 //Funcion normal del pos
 const funcionPost = (totalW) => {
       let DATA = [];
+
+      let Numero_ID = Math.random() * 10;  
     
       const total = {
         amount: totalW,
-        ID: ID,
+        ID: Numero_ID,
         Fecha: fechaActual, 
         E_Cormers : "bfs"
       };
+
+      console.log(total); 
     
       const post = {
         method: "POST",
