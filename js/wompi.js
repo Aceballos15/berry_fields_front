@@ -402,7 +402,7 @@ const funcionPostDescuento = (percent) => {
       };
     
       //Peticion para encriptacion de datos para wompi 
-      const URL_API ="https://berryfieldsbackend-production.up.railway.app/api/Signature"; 
+      const URL_API ="https://berry-connect.accsolutions.tech/api/Signature"; 
     
       fetch(URL_API, PostDescuento)
         .then((response) => response.json())
@@ -557,7 +557,7 @@ const funcionPost = (totalW) => {
       };
     
       const URL_API =
-        "https://berryfieldsbackend-production.up.railway.app/api/Signature";
+        "https://berry-connect.accsolutions.tech/api/Signature";
     
         fetch(URL_API, post)
         .then((response) => response.json())
