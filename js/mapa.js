@@ -23,6 +23,8 @@
 
 //         latitud = nuevaLatitud; 
 //         longitud = nuevaLongitud; 
+
+//         console.log(nuevaLatitud, nuevaLongitud); 
 //     }
     
 // };
@@ -31,7 +33,7 @@
 // function initMap() {
 //     map = new google.maps.Map(document.getElementById("map"), {
 //       center: { lat: 4.9815673, lng: -75.1703632 }, // Coordenadas iniciales del mapa
-//       zoom: 6,
+//       zoom: 12,
 //     });
 //     geocoder = new google.maps.Geocoder();
 
@@ -50,6 +52,7 @@
     
 //         // Centrar el mapa en la nueva posición del marcador
 //         map.setCenter(event.latLng);
+
     
 //         // Capturar las nuevas coordenadas
 //         capturarNuevasCoordenadas();
@@ -77,6 +80,7 @@
             
 //             latitud = lat; 
 //             longitud = long; 
+
 //         } else {
 //             console.log('La dirección no se pudo encontrar debido a: ' + status)
 //         }

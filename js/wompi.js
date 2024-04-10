@@ -46,6 +46,109 @@ const actual = () => {
 
 fechaActual = actual();
 
+// let maping; 
+// let geocoder; 
+
+// document.querySelector('.validacion').addEventListener('submit', (event)=>{
+//     event.preventDefault(); 
+// }) 
+
+// const mapa = document.querySelector('.validacion'); 
+
+
+// let marcador; 
+
+// let latitud = []; 
+// let longitud = []; 
+
+// const capturarNuevasCoordenadas = () => {
+//     if (marcador) {
+//         const nuevaLatitud = marcador.getPosition().lat();
+//         const nuevaLongitud = marcador.getPosition().lng();
+
+//         latitud = nuevaLatitud; 
+//         longitud = nuevaLongitud; 
+
+//         console.log(nuevaLatitud, nuevaLongitud); 
+//     }
+    
+// };
+
+
+// function initMap() {
+//     maping = new google.maps.Map(document.getElementById("map"), {
+//       center: { lat: 4.9815673, lng: -75.1703632 }, // Coordenadas iniciales del mapa
+//       zoom: 12,
+//     });
+//     geocoder = new google.maps.Geocoder();
+
+//     maping.addListener("click", (event) => {
+//         // Si ya existe un marcador, eliminarlo antes de agregar uno nuevo
+//         if (marcador) {
+//             marcador.setMap(null); // Eliminar el marcador anterior del mapa
+//         }
+    
+//         // Crear un nuevo marcador en la posición del clic
+//         marcador = new google.maps.Marker({
+//             maping,
+//             position: event.latLng,
+//             title: "Posición seleccionada"
+//         });
+    
+//         // Centrar el mapa en la nueva posición del marcador
+//         maping.setCenter(event.latLng);
+
+    
+//         // Capturar las nuevas coordenadas
+//         capturarNuevasCoordenadas();
+//     });
+     
+// }; 
+
+// const mostrarDireccion = () => {
+//     const new_direccion = `calle 7a, la ceja, antioquia, Colombia`;
+//     const geoCode = new google.maps.Geocoder();
+
+//     geoCode.geocode({ address: new_direccion }, function (results, status) {
+//         if (status == "OK") {
+//             const latLng = results[0].geometry.location;
+//             maping.setCenter(latLng);
+//             new google.maps.Marker({
+//                 maping,
+//                 position: latLng,
+//                 title: new_direccion
+//             });
+
+//             // Capturar las coordenadas
+//             const lat= latLng.lat();
+//             const long= latLng.lng();
+            
+//             latitud = lat; 
+//             longitud = long; 
+
+//         } else {
+//             console.log('La dirección no se pudo encontrar debido a: ' + status)
+//         }
+//     });
+// }
+
+// fecha = actual(); 
+
+
+// mapa.addEventListener('click', ()=>{
+//     mostrarDireccion(); 
+//     initMap(); 
+// })
+
+
+
+// const hidden_map= document.querySelector('.map')
+
+// mapa.addEventListener('click', ()=>{
+//     hidden_map.classList.toggle('hidden-map')
+// })
+
+
 bntDescuento.addEventListener("click", () => {
 
   if(Data.length == 0 || Data.length == undefined || Data.length == null) {
@@ -286,7 +389,8 @@ const funcionPostDescuento = (percent) => {
       const TotalDescuento = {
         amount: Descuento,
         ID: ID,
-        Fecha: fechaActual
+        Fecha: fechaActual, 
+        E_Cormers : "Bfs"
       };
       const PostDescuento = {
         method: "POST",
@@ -298,7 +402,7 @@ const funcionPostDescuento = (percent) => {
       };
     
       //Peticion para encriptacion de datos para wompi 
-      const URL_API ="https://berryfieldsbackend-production.up.railway.app/api/Signature";
+      const URL_API ="https://berryfieldsbackend-production.up.railway.app/api/Signature"; 
     
       fetch(URL_API, PostDescuento)
         .then((response) => response.json())
@@ -439,7 +543,8 @@ const funcionPost = (totalW) => {
       const total = {
         amount: totalW,
         ID: ID,
-        Fecha: fechaActual
+        Fecha: fechaActual, 
+        E_Cormers : "bfs"
       };
     
       const post = {
@@ -452,7 +557,7 @@ const funcionPost = (totalW) => {
       };
     
       const URL_API =
-        "https://berry-connect.accsolutions.tech/api/Signature"; 
+        "https://berryfieldsbackend-production.up.railway.app/api/Signature";
     
         fetch(URL_API, post)
         .then((response) => response.json())

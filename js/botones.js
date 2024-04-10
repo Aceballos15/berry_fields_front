@@ -74,3 +74,10 @@ const politica_img = document.querySelector('.footer__politica');
 politica_img.addEventListener('click', ()=>{
     New_alert(); 
 })
+
+const validar = document.querySelector('.validacion'); 
+const map = document.querySelector('#map'); 
+
+validar.addEventListener('click', ()=>{
+    map.classList.toggle('active'); 
+})
