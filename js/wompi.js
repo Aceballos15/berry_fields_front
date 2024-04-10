@@ -549,7 +549,7 @@ const funcionPost = (totalW) => {
         amount: totalW,
         ID: Numero_ID,
         Fecha: fechaActual, 
-        E_Cormers : "bfs"
+        E_Cormers : "bfs" 
       };
 
       console.log(total); 
@@ -777,4 +777,3 @@ btnCarrito.addEventListener("click", () => {
  
   }
 });
- 
