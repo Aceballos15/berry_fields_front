@@ -46,6 +46,109 @@ const actual = () => {
 
 fechaActual = actual();
 
+// let maping; 
+// let geocoder; 
+
+// document.querySelector('.validacion').addEventListener('submit', (event)=>{
+//     event.preventDefault(); 
+// }) 
+
+// const mapa = document.querySelector('.validacion'); 
+
+
+// let marcador; 
+
+// let latitud = []; 
+// let longitud = []; 
+
+// const capturarNuevasCoordenadas = () => {
+//     if (marcador) {
+//         const nuevaLatitud = marcador.getPosition().lat();
+//         const nuevaLongitud = marcador.getPosition().lng();
+
+//         latitud = nuevaLatitud; 
+//         longitud = nuevaLongitud; 
+
+//         console.log(nuevaLatitud, nuevaLongitud); 
+//     }
+    
+// };
+
+
+// function initMap() {
+//     maping = new google.maps.Map(document.getElementById("map"), {
+//       center: { lat: 4.9815673, lng: -75.1703632 }, // Coordenadas iniciales del mapa
+//       zoom: 12,
+//     });
+//     geocoder = new google.maps.Geocoder();
+
+//     maping.addListener("click", (event) => {
+//         // Si ya existe un marcador, eliminarlo antes de agregar uno nuevo
+//         if (marcador) {
+//             marcador.setMap(null); // Eliminar el marcador anterior del mapa
+//         }
+    
+//         // Crear un nuevo marcador en la posición del clic
+//         marcador = new google.maps.Marker({
+//             maping,
+//             position: event.latLng,
+//             title: "Posición seleccionada"
+//         });
+    
+//         // Centrar el mapa en la nueva posición del marcador
+//         maping.setCenter(event.latLng);
+
+    
+//         // Capturar las nuevas coordenadas
+//         capturarNuevasCoordenadas();
+//     });
+     
+// }; 
+
+// const mostrarDireccion = () => {
+//     const new_direccion = `calle 7a, la ceja, antioquia, Colombia`;
+//     const geoCode = new google.maps.Geocoder();
+
+//     geoCode.geocode({ address: new_direccion }, function (results, status) {
+//         if (status == "OK") {
+//             const latLng = results[0].geometry.location;
+//             maping.setCenter(latLng);
+//             new google.maps.Marker({
+//                 maping,
+//                 position: latLng,
+//                 title: new_direccion
+//             });
+
+//             // Capturar las coordenadas
+//             const lat= latLng.lat();
+//             const long= latLng.lng();
+            
+//             latitud = lat; 
+//             longitud = long; 
+
+//         } else {
+//             console.log('La dirección no se pudo encontrar debido a: ' + status)
+//         }
+//     });
+// }
+
+// fecha = actual(); 
+
+
+// mapa.addEventListener('click', ()=>{
+//     mostrarDireccion(); 
+//     initMap(); 
+// })
+
+
+
+// const hidden_map= document.querySelector('.map')
+
+// mapa.addEventListener('click', ()=>{
+//     hidden_map.classList.toggle('hidden-map')
+// })
+
+
 bntDescuento.addEventListener("click", () => {
 
   if(Data.length == 0 || Data.length == undefined || Data.length == null) {
@@ -280,45 +383,17 @@ bntDescuento.addEventListener("click", () => {
 });
 //Funcion para cuando se aplica un Descuento
 const funcionPostDescuento = (percent) => {
-  // Dirección que deseas convertir a latitud y longitud
-  let direccion =  `${Direccion}, Colombia`;  
+    let DATA = [];
 
-  const cadenaEspecial = (cadena)=>{
-    return cadena.replace(/#/g, ''); 
-  }
+    let Numero_ID = Math.random() * 10;  
 
-  //Direccion sin # 
-  let NuevaDireccion = cadenaEspecial(direccion); 
-
-  let lat = 0; 
-  let long= 0; 
-
-  // Tu API Key de Google
-  let apiKey = 'AIzaSyAPV5If0IjvWEM5cX0qL_w2gg_gEoJULHw';
-
-  // URL para hacer la consulta a la API de Geocoding de Google
-  let url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${NuevaDireccion}`; 
-
-  // Realizar la consulta a la API utilizando fetch
-  fetch(url)
-  // Procesar la respuesta como JSON
-  .then(response => response.json())
-  // Obtener la latitud y longitud de los resultados
-  .then(data => { 
-      let latitud = data.results[0].geometry.location.lat;
-      let longitud = data.results[0].geometry.location.lng;
-
-      lat = latitud; 
-      long = longitud;
-
-      let DATA = [];
 
       //Aplicacion del descuento a facturacion 
       const TotalDescuento = {
         amount: Descuento,
-        ID: ID,
+        ID: Numero_ID,
         Fecha: fechaActual, 
-        Berry : "Si"
+        E_Cormers : "bfs"
       };
       const PostDescuento = {
         method: "POST",
@@ -330,8 +405,8 @@ const funcionPostDescuento = (percent) => {
       };
     
       //Peticion para encriptacion de datos para wompi 
-      const URL_API ="https://berry-connect.accsolutions.tech/api/Signature";
       
+      const URL_API ="https://berry-connect.accsolutions.tech/api/Signature"; 
     
       fetch(URL_API, PostDescuento)
         .then((response) => response.json())
@@ -362,20 +437,6 @@ const funcionPostDescuento = (percent) => {
     
             let suma = 0;
             let total = 0;
-            //Aplicaion del descuento a cada producto
-            // carts.forEach((product) => {
-            //   suma = (product.price * porcentaje) / 100;
-            //   total = product.price - suma;
-            //   const productDetail = {
-            //     id: product.product_id,
-            //     price: total,
-            //     name: product.referencia,
-            //     quantity: product.quantity,
-            //     gramo : product.quantity * product.gramos
-            //   };
-    
-            //   Products.push(productDetail);
-            // });
 
             carts.forEach((product) => {
               const new_gramos = [];   
@@ -441,8 +502,6 @@ const funcionPostDescuento = (percent) => {
               Estado: "PENDING",
               Clientes: ID,
               Cupon: cupon,
-              Latitud: lat, 
-              Longitud : long
             };
     
             const producto = {
@@ -478,52 +537,23 @@ const funcionPostDescuento = (percent) => {
       //Borrar el chache de la pagina 
       sessionStorage.clear();
       
-  });
-
 
 };
 
 //Funcion normal del pos
 const funcionPost = (totalW) => {
-
-  // Dirección que deseas convertir a latitud y longitud
-  let direccion =  `${Direccion}, Colombia`;  
-
-  const cadenaEspecial = (cadena)=>{
-    return cadena.replace(/#/g, ''); 
-  }
-
-  let NuevaDireccion = cadenaEspecial(direccion); 
-
-  let lat = 0; 
-  let long= 0; 
-
-  // Tu API Key de Google
-  let apiKey = 'AIzaSyAPV5If0IjvWEM5cX0qL_w2gg_gEoJULHw';
-
-  // URL para hacer la consulta a la API de Geocoding de Google
-  let url = `https://maps.googleapis.com/maps/api/geocode/json?key=${apiKey}&address=${NuevaDireccion}`; 
-
-  // Realizar la consulta a la API utilizando fetch
-  fetch(url)
-  // Procesar la respuesta como JSON
-  .then(response => response.json())
-  // Obtener la latitud y longitud de los resultados
-  .then(data => {
-      let latitud = data.results[0].geometry.location.lat;
-      let longitud = data.results[0].geometry.location.lng;
-
-      lat = latitud; 
-      long = longitud;
-
       let DATA = [];
+
+      let Numero_ID = Math.random() * 10;  
     
       const total = {
         amount: totalW,
-        ID: ID,
+        ID: Numero_ID,
         Fecha: fechaActual, 
-        Hora1 : "Si"
+        E_Cormers : "bfs"
       };
+
+      console.log(total); 
     
       const post = {
         method: "POST",
@@ -538,7 +568,6 @@ const funcionPost = (totalW) => {
     
       const URL_API ="https://berry-connect.accsolutions.tech/api/Signature"; 
         
-        // https://a0de-181-128-18-177.ngrok-free.app/api/v1/api/Signature
     
         fetch(URL_API, post)
         .then((response) => response.json())
@@ -586,7 +615,6 @@ const funcionPost = (totalW) => {
                 for(let gr = 0; product.gramos.length; ){
                   
                   const gramaje = product.gramos[gr].Cantidad * product.quantity; 
-                  const ref = product.gramos[gr].Referencia; 
                   const id = product.gramos[gr].ID; 
 
                   const datos_gramos = {
@@ -630,8 +658,6 @@ const funcionPost = (totalW) => {
               Estado: "PENDING",
               Clientes: ID,
               Cupon: "No uso cupon",
-              Longitud : long, 
-              Latitud : lat
             };
 
             const producto = {
@@ -666,7 +692,7 @@ const funcionPost = (totalW) => {
       
       //Borrar cache de la pagina 
       sessionStorage.clear();
-  });
+ 
 
 };
 
@@ -754,4 +780,3 @@ btnCarrito.addEventListener("click", () => {
  
   }
 });
- 

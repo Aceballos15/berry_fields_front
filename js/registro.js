@@ -154,7 +154,6 @@ FechaNacimiento.addEventListener('blur',(e)=>{
         return edad >= 18 
 
     }
-
     const mayor = mayoriaEdad(fechaNueva)
 
     if(mayor == false){ 
@@ -164,7 +163,5 @@ FechaNacimiento.addEventListener('blur',(e)=>{
     else if(value > fechaActual){ 
         errors('La fecha tiene que registarse en pasado', field) 
     } 
-    
-
 
 })

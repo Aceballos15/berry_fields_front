@@ -65,6 +65,17 @@
   cursor: pointer;
 }
 
+/* .map{
+  display: flex; 
+  width: 200px;
+  height: 200px;
+} */
+
+.active{
+  display: none; 
+}
+
+
 .filtro_input {
   border: none;
   border-radius: 30px;

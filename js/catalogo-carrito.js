@@ -360,8 +360,6 @@ const changeQuantitykeyboard = (product_id, quantity) =>{
     addCartToHTML(product_id); 
 }
 
-
-
 //Captura del id con los botones minus, plus y delete
 listCartHTML.addEventListener('click', (event) =>{
     let positionClick = event.target; 
