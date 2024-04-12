@@ -26,212 +26,122 @@
 </head>
 
 <body>
-    <div class="dad">
-        <div class="header"> 
-            <div class="envioGratis">
-                <img src="/IMG/Carita.svg" alt="Envío Gratis">
-                <p>¡Envío gratis!</p> 
-            </div> 
-            
-            <!-- logos --> 
-            <div class="logo">
-                <img src="/IMG/Logo berry.svg" alt="">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>En Mantenimiento</title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+           
+    
+            body {
+        font-family: "Kanit", sans-serif;;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background: linear-gradient(
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.808)
+        ),
+        url(img/scheduled-maintenance-message-examples-and-inspiration0a@3x.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: center;
+    
+    }
+    
+    .container {
+        background-color: #000000;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 50px;
+        max-width: 80%;
+        width: 400px;
+        transition: background-color 0.3s ease;
+    }
+    
+    .container:hover {
+        background-color: rgba(168, 161, 161, 0.37);
+    }
+    
+    
+    
+    
+    .content {
+        text-align: center;
+    }
+    
+    h1 {
+        color: #ffffffa2;
+        font-size: 35px;
+        margin-bottom: 20px;
+    }
+    
+    p {
+        color: #ffffff;
+        font-size: 20px;
+        line-height: 1.6;
+        margin-bottom: 10px;
+    }
+    .contador{
+        color: #ffffff;
+    }
+    
+    
+    @media screen and (max-width: 460px) {
+        .container {
+        padding: 20px;
+        max-width: 70%;
+        width: 400px;
+        transition: background-color 0.3s ease;
+        }
+        h1 {
+        color: #ffffffa2;
+        font-size: 25px;
+        margin-bottom: 20px;
+    }
+    
+    p {
+        color: #ffffff;
+        font-size: 18px;
+        line-height: 1.0;
+        margin-bottom: 10px;
+    }
+    body {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.4),
+            rgba(0, 0, 0, 0.808)
+        ),
+        url(img/scheduled-maintenance-message-examples-and-inspiration0a@3x.png);
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        text-align: center;
+    
+    }
+    
+    
+    }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="content">
+                <h1>!Atencion¡ Sitio en Mantenimiento!</h1>
+                <p>Disculpa las molestias.</p>
+                <p>El Domingo la pagina estara lista de nuevo.</p>
             </div>
-
-
-            <div class="header__botones">
-                <!-- filtros de busqueda --> 
-                <div class="buscador">
-                    <div class="filtro"> 
-                        <input class="filtro_input filtro_active" type="search" id="buscar" placeholder="Filtrar referencia"> 
-
-                        <!-- <button class="buscador__close">
-                            <span class="material-symbols-outlined">
-                                close
-                            </span> 
-                        </button> -->
-                    </div>
-                    <button class="btn-buscar">
-                        <span class="material-symbols-outlined">
-                            search 
-                        </span>
-                    </button> 
-                </div>
-
-                <!--boton de carrito --> 
-                <button id="cart-product" class="cart" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                    <span class="material-symbols-outlined">
-                        shopping_cart
-                    </span> 
-                    <div class="count-products">
-                        <span class="contador-productos">0</span> 
-                    </div> 
-                </button> 
-                
-
-                <!-- estructura del caarito  -->
-                <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-                    <div class="offcanvas-header"> 
-                        <div class="nuevo__form" > 
-                            <h4>DATOS DE FACTURACIÓN</h4>
-                            <div class="nueva__clase">
-                                <label for="cedula" >Numero de documento: </label> 
-                                <input type="number" class="inputCheck" id="cedula" placeholder="" value=""> 
-                            </div>
-                            <div class="nueva__clase">
-                                <div class="container-direccion"> </div>
-                                <div class="direccion"> 
-                                    <label for="direccion" >Dirección de envío: </label> 
-                                    <input type="text" class="inputCheck" id="direccion"  placeholder="" value="" disabled>
-                                </div>
-                            </div>
-
-                            <div class="container__btn">
-                                <button class="validacion">validar</button>
-                            </div>
-                            
-                            
-                        </div>
-                        <button type="button" id="close" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"> 
-                            <span class="material-symbols-outlined">
-                                close
-                            </span> 
-                        </button> 
-                    </div>
-                    
-                    <div class="offcanvas-body">
-                        <div class="container-products">
-                            <div class="container-cart-products"> </div> 
-                        </div>
-
-                        <div class="pedido">
-
-                            <div class="pedido__descuento">
-                                <div class="input__descuento">
-                                    <label for="descuento">Aplica tu descuento:</label>
-                                    <input type="text" id="descuento" >
-                                </div>
-
-                                <button class="bntDescuento">Aplicar</button>
-                            </div>
-
-                            <div class="container-total">
-                                <div class="total">
-                                    <div class="txt_total">
-                                        <h4>Total: </h4>
-                                    </div>
-                                    <div > 
-                                        <span class="precio-total" > 0</span>  
-                                    </div>
-                                </div>
-                                <div class="descuento">
-                                    <div class="subtotal">
-                                        
-                                    </div>
-                                    <div class="descuento_porcentaje">
-                                        
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div class="info__pedido">
-                                
-                                <div class="dad-pagar">
-                                    <button class="pagar" id="pagar" data-bs-toggle="offcanvas" data-bs-target="#offcanvasTop" aria-controls="offcanvasTop"> 
-                                        PAGAR 
-                                        <span class="material-symbols-outlined">
-                                            local_shipping
-                                        </span>
-                                    </button> 
-                                </div> 
-
-                                <div class="container__envio">
-                                    <div class="body__envio">
-                                    
-                                        <button class="btn__envio">
-                                            ¡Info de envio!
-                                        </button>
-                                        
-                                    </div>
-                                </div>
-
-                            </div>
+        </div>
+       
+    
         
-                        </div>
-                    </div>
-                    
-                </div> 
-
-            </div>
- 
-        </div>  
-        <div class="slider"> 
-
-            <ul>
-                <li>                   
-                    <img class="mobile" src="/IMG/Banner_Mobile.png" alt=""> 
-                    <img class="destok" src="/IMG/Banner_Dekstop.png" alt="">                        
-                </li>
-                <li>                   
-                    <img class="mobile" src="/IMG/Banner Dekstop copia 2@4x.png" alt=""> 
-                    <img class="destok" src="/IMG/Banner_Large copia 3@4x.png" alt="">                   
-                </li> 
-                <li>                   
-                    <img class="mobile" src="/IMG/Banner_Mobile.png" alt=""> 
-                    <img class="destok" src="/IMG/Banner_Dekstop.png" alt="">                   
-                </li> 
-                <li>                
-                    <img class="mobile" src="/IMG/Banner Dekstop copia 2@4x.png" alt=""> 
-                    <img class="destok" src="/IMG/Banner_Large copia 3@4x.png" alt="">        
-                </li> 
-            </ul>
-            
-        </div>
-
-        <div class="contenido"> 
-
-            <div class="conainer__wwp">
-                <a href="https://wa.me/3022767677?text=Hola, quiero productos orgánicos, nutritivos y deliciosos para mi bienestar!!!" class="whatsapp" target="_blank"> <i class="fa fa-whatsapp whatsapp-icon"></i></a> 
-            </div>
-
-            <div class="cards_dad " id="producto">
-
-            </div>
-            
-            <div class="footer">
-
-                <div class="footer__logo">
-                    <img src=".//IMG/Logo Chacam.svg" alt=""> 
-                </div>
-    
-                <div class="footer__soporte">
-                    <div class="soporte_info">
-                        <h6>CONTACTO DE SOPORTE</h6>
-                        <p>Atencion al público: +57 3245974835</p> 
-                        <p>Correo: ecommerce@tecnosuper.com.co</p>
-                        <p>Horarios: Lunes a viernes de 8am a 5pm</p> 
-
-                    </div>
-                </div>
-    
-                <div class="footer__politica">
-                    <img src="/IMG/Industria y comercio.png" alt="">  
-                    
-                    <p class="politica">
-                        Política de tratamientos de datos 
-                    </p>
-                </div>
-            </div>
-            
-        </div>   
-        <div class="container-wompi hidden-wompi"> 
-            <div class="btnWompi"> 
-
-            </div>         
-        </div>
-
-    </div> 
+    </body>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script> 
     <script src="/js/botones.js"></script> 
     <script src="/js/catalogo-carrito.js"></script>  
