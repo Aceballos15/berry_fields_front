@@ -69,7 +69,6 @@ fechaActual = actual();
 //         latitud = nuevaLatitud; 
 //         longitud = nuevaLongitud; 
 
-//         console.log(nuevaLatitud, nuevaLongitud); 
 //     }
     
 // };
@@ -553,7 +552,6 @@ const funcionPost = (totalW) => {
         E_Cormers : "bfs"
       };
 
-      console.log(total); 
     
       const post = {
         method: "POST",
@@ -564,7 +562,6 @@ const funcionPost = (totalW) => {
         body: JSON.stringify(total),
       };
 
-      console.log(total)
     
       const URL_API ="https://berry-connect.accsolutions.tech/api/Signature"; 
         
