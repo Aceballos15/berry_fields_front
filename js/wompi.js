@@ -441,7 +441,7 @@ const funcionPostDescuento = (percent) => {
               const new_gramos = [];   
               const type = product.compuesto;
               suma = (product.price * porcentaje) /100; 
-              total  = product.price - suma; 
+              total  = Math.round(product.price - suma); 
               if(type == "No"){
                 const gramaje = product.gramos.gramos * product.quantity;   
                 const id = product.gramos.ID_Product;   
