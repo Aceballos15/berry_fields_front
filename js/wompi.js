@@ -602,6 +602,8 @@ const funcionPostDescuento = async (percent) => {
               Cupon: cupon,
             };
 
+            console.log(mapSend); 
+
             const producto = {
               method: "POST",
               headers: {
@@ -649,7 +651,7 @@ const funcionPostDescuento = async (percent) => {
   //Mandar a verificar pedido para hacer la validacion y creacion de la factura
 
   //Deshabilitar btn de pagar
-  // btnPedir.disabled = true;
+  btnPedir.disabled = true;
 
   //Borrar el chache de la pagina
   sessionStorage.clear();
@@ -741,7 +743,7 @@ const funcionPost = (totalW) => {
       
               const grams = product.gramos[gr].Cantidad;
       
-              let price_product = total / grams / contador;
+              let price_product = product.price / grams / contador;
       
               let total_price = parseInt(price_product) * grams * product.quantity;
               total = total_price;
@@ -793,6 +795,8 @@ const funcionPost = (totalW) => {
           Clientes: ID,
           Cupon: "No uso cupon",
         };
+
+        console.log(mapSend)
 
         const producto = {
           method: "POST",
