@@ -258,7 +258,7 @@ bntDescuento.addEventListener("click", () => {
                             carts.forEach((product)=>{
                               const new_gramos = [];
                               const type = product.compuesto;
-                              resta = (product.price * porcentaje) / 100;
+                              resta = (product.price * porcentaje * product.quantity) / 100;
                               total = parseInt(product.price * product.quantity) - resta;
                               if (type == "No") {
                                 const gramaje = product.gramos.gramos * product.quantity;
