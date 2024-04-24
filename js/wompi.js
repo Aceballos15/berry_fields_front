@@ -259,7 +259,7 @@ bntDescuento.addEventListener("click", () => {
                               const new_gramos = [];
                               const type = product.compuesto;
                               resta = (product.price * porcentaje) / 100;
-                              total = parseInt(product.price - resta);
+                              total = parseInt(product.price * product.quantity) - resta;
                               if (type == "No") {
                                 const gramaje = product.gramos.gramos * product.quantity;
                                 const id = product.gramos.ID_Product;
@@ -268,9 +268,9 @@ bntDescuento.addEventListener("click", () => {
 
                                 let price_product = total / gramos / product.quantity;
   
-                                let total_price = parseInt(price_product) * gramos;
+                                let total_price = parseInt(price_product) * gramos * product.quantity;
   
-                                new_total = new_total + total_price
+                                new_total = new_total + total_price; 
   
                                 const grams = {
                                   ID_Product: id,
@@ -291,7 +291,7 @@ bntDescuento.addEventListener("click", () => {
   
                                   let price_product = total / grams / contador;
   
-                                  let total_price = parseInt(price_product) * grams * product.quantity;
+                                  let total_price = parseInt(price_product) * grams; 
 
                                   new_total = new_total + total_price;
 
@@ -472,7 +472,7 @@ const funcionPostDescuento = async (percent) => {
     const new_gramos = [];
     const type = product.compuesto;
     suma = (product.price * porcentaje) / 100;
-    total = parseInt(product.price - suma);
+    total = parseInt(product.price * product.quantity) - suma;
     if (type == "No") {
       const gramaje = product.gramos.gramos * product.quantity;
       const id = product.gramos.ID_Product;
@@ -481,18 +481,19 @@ const funcionPostDescuento = async (percent) => {
 
       let price_product = total / gramos / product.quantity;
 
-      let total_price = parseInt(price_product) * gramos;
+      let total_price = parseInt(price_product) * gramos * product.quantity;
 
       // new_total = new_total + total_price; 
 
       const grams = {
         ID_Product: id,
-        Gramos: gramos,
+        Gramos: gramos * parseInt(price_product),
         Total: total_price,
         price_product: parseInt(price_product),
       };
 
       new_gramos.push(grams);
+      console.log(grams) 
     } else {
       const contador = product.gramos.length;
       for (let gr = 0; contador; ) {
@@ -504,7 +505,7 @@ const funcionPostDescuento = async (percent) => {
 
         let price_product = total / grams / contador;
 
-        let total_price = parseInt(price_product) * grams * product.quantity;
+        let total_price = parseInt(price_product) * grams * contador;
         total = total_price;
 
         // new_total = new_total + total_price; 
@@ -512,12 +513,14 @@ const funcionPostDescuento = async (percent) => {
         const datos_gramos = {
           ID_Product: id,
           Gramos: grams,
-          Total: total,
+          Total: grams * parseInt(price_product),
           price_product: parseInt(price_product),
           // Referencia : ref
         };
 
         new_gramos.push(datos_gramos);
+
+        console.log(datos_gramos) 
 
         gr++;
 
@@ -722,7 +725,7 @@ const funcionPost = (totalW) => {
       
             let price_product = product.price / gramos / product.quantity;
       
-            let total_price = parseInt(price_product) * gramos;
+            let total_price = parseInt(price_product) * gramos * product.quantity;
       
             // new_total = new_total + total_price; 
       
