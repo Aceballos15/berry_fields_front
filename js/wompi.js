@@ -468,187 +468,200 @@ const funcionPostDescuento = async (percent) => {
 
   let suma = 0;
   let total = 0;
+
+  let encrypt_status = false; 
+
+  console.log(`entra ${encrypt_status}`)
+  console.log('$')
+
+  
+  console.log(`sale ${encrypt_status}`); 
   carts.forEach((product) => {
-    const new_gramos = [];
-    const type = product.compuesto;
-    suma = (product.price * porcentaje) / 100;
-    total = parseInt(product.price * product.quantity) - suma;
-    if (type == "No") {
-      const gramaje = product.gramos.gramos * product.quantity;
-      const id = product.gramos.ID_Product;
-
-      let gramos = product.gramos.gramos;
-
-      let price_product = total / gramos / product.quantity;
-
-      let total_price = parseInt(price_product) * gramos * product.quantity;
-
-      // new_total = new_total + total_price; 
-
-      const grams = {
-        ID_Product: id,
-        Gramos: gramos * parseInt(price_product),
-        Total: total_price,
-        price_product: parseInt(price_product),
-      };
-
-      new_gramos.push(grams);
-      console.log(grams) 
-    } else {
-      const contador = product.gramos.length;
-      for (let gr = 0; contador; ) {
-        const gramaje = product.gramos[gr].Cantidad * product.quantity;
-        const ref = product.gramos[gr].Referencia;
-        const id = product.gramos[gr].ID;
-
-        const grams = product.gramos[gr].Cantidad;
-
-        let price_product = total / grams / contador;
-
-        let total_price = parseInt(price_product) * grams * contador;
-        total = total_price;
-
+    if(encrypt_status == false){
+  
+      encrypt_status = true; 
+      const new_gramos = [];
+      const type = product.compuesto;
+      suma = (product.price * porcentaje) / 100;
+      total = parseInt(product.price * product.quantity) - suma;
+      if (type == "No") {
+        const gramaje = product.gramos.gramos * product.quantity;
+        const id = product.gramos.ID_Product;
+  
+        let gramos = product.gramos.gramos;
+  
+        let price_product = total / gramos / product.quantity;
+  
+        let total_price = parseInt(price_product) * gramos * product.quantity;
+  
         // new_total = new_total + total_price; 
-
-        const datos_gramos = {
+  
+        const grams = {
           ID_Product: id,
-          Gramos: grams,
-          Total: grams * parseInt(price_product),
+          Gramos: gramos * parseInt(price_product),
+          Total: total_price,
           price_product: parseInt(price_product),
-          // Referencia : ref
         };
-
-        new_gramos.push(datos_gramos);
-
-        console.log(datos_gramos) 
-
-        gr++;
-
-        if (gr == product.gramos.length) {
-          break;
+  
+        new_gramos.push(grams);
+        console.log(grams) 
+      } else {
+        const contador = product.gramos.length;
+        for (let gr = 0; contador; ) {
+          const gramaje = product.gramos[gr].Cantidad * product.quantity;
+          const ref = product.gramos[gr].Referencia;
+          const id = product.gramos[gr].ID;
+  
+          const grams = product.gramos[gr].Cantidad;
+  
+          let price_product = total / grams / contador;
+  
+          let total_price = parseInt(price_product) * grams * contador;
+          total = total_price;
+  
+          // new_total = new_total + total_price; 
+  
+          const datos_gramos = {
+            ID_Product: id,
+            Gramos: grams,
+            Total: grams * parseInt(price_product),
+            price_product: parseInt(price_product),
+            // Referencia : ref
+          };
+  
+          new_gramos.push(datos_gramos);
+  
+          console.log(datos_gramos) 
+  
+          gr++;
+  
+          if (gr == product.gramos.length) {
+            break;
+          }
         }
       }
-    }
-
-    const productDetail = {
-      id: product.product_id,
-      price: total,
-      name: product.referencia,
-      quantity: product.quantity,
-      gramos: new_gramos,
-    };
-
-    Products.push(productDetail);
-
-    let DATA = [];
-
-    let Numero_ID = Math.random() * 10;
-
-    //Aplicacion del descuento a facturacion
-    const TotalDescuento = {
-      amount: new_total,
-      ID: Numero_ID,
-      Fecha: fechaActual,
-      E_Cormers: "bfs",
-    };
-    const PostDescuento = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(TotalDescuento),
-    };
-
-    const Producto = [];
-
-    const encrypt = async ()=>{
-      fetch(URL_API, PostDescuento)
-        .then((response) => response.json())
-        .then((data) => {
-          DATA = data;
   
-          DATA.forEach(async (datos) => {
-            let wompi = document.querySelector(".btnWompi");
+      const productDetail = {
+        id: product.product_id,
+        price: total,
+        name: product.referencia,
+        quantity: product.quantity,
+        gramos: new_gramos,
+      };
   
-            let pay = document.createElement("div");
-            pay.classList.add("wompi");
+      Products.push(productDetail);
   
-            wompi.innerHTML = `
-                
-                <div>   
-                    <form id="formWompi" action="https://checkout.wompi.co/p/" method="GET"> 
-                    <input type="hidden" name="public-key" class="key" value="${datos.public_key}" />  
-                    <input type="hidden" name="currency" class="currency" value="${datos.currency}" />
-                    <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
-                    <input type="hidden" name="reference" class="reference" value="${datos.reference}" /> 
-                    <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>
-                    <input type="hidden" name="redirect-url" value="https://www.theberryfields.com/"/>
+      let DATA = [];
+  
+      let Numero_ID = Math.random() * 10;
+  
+      //Aplicacion del descuento a facturacion
+      const TotalDescuento = {
+        amount: new_total,
+        ID: Numero_ID,
+        Fecha: fechaActual,
+        E_Cormers: "bfs",
+      };
+      const PostDescuento = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify(TotalDescuento),
+      };
+  
+      const Producto = [];
+  
+      const encrypt = async ()=>{
         
-                    </form>
-                <div> 
-                `;
-  
-            Referencia = datos.reference;
-  
-            //Datos de verificar pedido
-            const mapSend = {
-              Referencia: datos.reference,
-              Productos: Products,
-              Fecha: fechaHoy,
-              Total: new_total,
-              ID1: ID,
-              Direccion: Direccion,
-              Descripcion: "Berry Fields",
-              Estado: "PENDING",
-              Clientes: ID,
-              Cupon: cupon,
-            };
-
-            console.log(mapSend); 
-
-            const producto = {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-  
-              body: JSON.stringify(mapSend),
-            };
-  
-            Producto.push(producto); 
-  
-            const URL_BERRY ="https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido";
+        fetch(URL_API, PostDescuento)
+          .then((response) => response.json())
+          .then((data) => {
+            DATA = data;
     
-            async function enviarDatos() {
-
-              if(estado == "Rechazado"){
-                try {
-                  const respuesta = await fetch(URL_BERRY, producto);
+            DATA.forEach(async (datos) => {
+              let wompi = document.querySelector(".btnWompi");
+    
+              let pay = document.createElement("div");
+              pay.classList.add("wompi");
+    
+              wompi.innerHTML = `
+                  
+                  <div>   
+                      <form id="formWompi" action="https://checkout.wompi.co/p/" method="GET"> 
+                      <input type="hidden" name="public-key" class="key" value="${datos.public_key}" />  
+                      <input type="hidden" name="currency" class="currency" value="${datos.currency}" />
+                      <input type="hidden" name="amount-in-cents" class="amount" value="${datos.amount}" />
+                      <input type="hidden" name="reference" class="reference" value="${datos.reference}" /> 
+                      <input type="hidden" name="signature:integrity" class="signature" value="${datos.signature}"/>
+                      <input type="hidden" name="redirect-url" value="https://www.theberryfields.com/"/>
+          
+                      </form>
+                  <div> 
+                  `;
+    
+              Referencia = datos.reference;
+    
+              //Datos de verificar pedido
+              const mapSend = await {
+                Referencia: datos.reference,
+                Productos: Products,
+                Fecha: fechaHoy,
+                Total: new_total,
+                ID1: ID,
+                Direccion: Direccion,
+                Descripcion: "Berry Fields",
+                Estado: "PENDING",
+                Clientes: ID,
+                Cupon: cupon,
+              };
+  
+              console.log(mapSend); 
+  
+              const producto = {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+    
+                body: JSON.stringify(mapSend),
+              };
+    
+              Producto.push(producto); 
+    
+              const URL_BERRY ="https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido";
       
-                  const resultado = await respuesta.json();
-                  estado = "Aceptado"; 
-                  console.log(resultado);             
-                  const form = document.getElementById("formWompi").submit();  
-                } catch (error) {
-                  console.log(error);
+              async function enviarDatos() {
+  
+                if(estado == "Rechazado"){
+                  try {
+                    const respuesta = await fetch(URL_BERRY, producto);
+        
+                    const resultado = await respuesta.json();
+                    estado = "Aceptado"; 
+                    console.log(resultado);             
+                    const form = document.getElementById("formWompi").submit();  
+                  } catch (error) {
+                    console.log(error);
+                  }
                 }
+                
               }
-              
-            }
-            if(estado == "Rechazado"){
-              enviarDatos()
-              estado = "Aceptado"
-            }
-
-            return 1
-          })
-          // .catch((error) => console.error(error));
+              if(estado == "Rechazado"){
+                enviarDatos()
+                estado = "Aceptado"
+              }
+  
+              return 1
+            })
+            // .catch((error) => console.error(error));
         });
+      }
+      encrypt()
+      return; 
     }
 
-    encrypt()
-    return; 
   });
 
   //Mandar a verificar pedido para hacer la validacion y creacion de la factura
