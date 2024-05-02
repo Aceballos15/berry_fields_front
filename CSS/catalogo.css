@@ -992,10 +992,11 @@
     justify-content: center; 
     align-items: center; 
   }
-  .footer__logo{
-    align-items: center;
-    justify-content: center;
-    display: flex; 
+  
+  .footer__logo img{
+    width: 200px; 
+    padding: 20%;
+    padding-bottom: 20px;
   }
   .soporte_info p {
     display: flex;
