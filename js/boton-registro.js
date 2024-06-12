@@ -1,4 +1,4 @@
-const url = 'https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes'  
+const url = 'https://zoho.accsolutions.tech/API/v1/Clientes'  
 
 let datos = []
 
@@ -108,7 +108,7 @@ const cedulaNoRegistrada = ()=>{
             fetch(url, personaNatural)
             .then(response => response.json())
             .then(data => {
-                console.log('Respuesta', data)
+                console.log('Respuesta', data.data)
                 Swal.fire({
                     icon: "success", 
                     title: "LISTO",
@@ -119,7 +119,7 @@ const cedulaNoRegistrada = ()=>{
                 // Funcion para volver a la pagina principal despues de el registro exitoso
                 setTimeout(()=>{
                     window.location.href = "https://www.theberryfields.com/"
-                }, 4000) 
+                }, 10000) 
 
             })
             .catch(error => {
@@ -142,7 +142,7 @@ const cedulaNoRegistrada = ()=>{
             .then(response => response.json()) 
             .then(data => {
                 datos = data 
-                console.log('Respuesta', data)
+                console.log('Respuesta', data.data)
 
                 Swal.fire({
                     icon: "success", 
@@ -154,7 +154,7 @@ const cedulaNoRegistrada = ()=>{
                 //Funcion para volver a la pagina principal despues de el registro exitoso 
                 setTimeout(()=>{
                     window.location.href = "https://www.theberryfields.com/"
-                }, 4000) 
+                }, 10000) 
             })
         
             .catch(error => {
@@ -177,14 +177,14 @@ const cedulaNoRegistrada = ()=>{
 
 boton.addEventListener('click', ()=>{ 
 
-    URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Report?max=1000&where=Documento=="${Documento}"` 
+    URL_API_Reporte_Clientes = `https://zoho.accsolutions.tech/API/v1/Clientes_Report?where=Documento=="${Documento}"` 
 
     const validacionCedula = ()=>{
     fetch(URL_API_Reporte_Clientes)
     .then(response => response.json())
     .then(data =>{
-
-        if (data['status'] === 400) {
+        console.log(data.data);
+        if (data.data.length === 0) {
             cedulaNoRegistrada() 
         }else{
             cedulaRegistrada()
@@ -220,14 +220,14 @@ cedula.addEventListener('keyup', ((e)=>{
 
 let Municipios = [] 
 
-let URL_MUNI = "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Municipio1" 
+let URL_MUNI = "https://zoho.accsolutions.tech/API/v1/Municipio1" 
 
 //Traer municipios y departamentos 
 const muniBusqueda = ()=>{
     fetch(URL_MUNI)
     .then(response => response.json())
     .then(data =>{
-        Municipios = data 
+        Municipios = data.data
     })
 }
 
@@ -295,14 +295,13 @@ Municipio.addEventListener('keyup', (e)=>{
     
     Buscar = e.target.value 
 
-    URL_REPORT_MUNICIPIOS = URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Municipio1?where=Municipio.contains("${Buscar}")` 
+    URL_REPORT_MUNICIPIOS = `https://zoho.accsolutions.tech/API/v1/Municipio1?where=Municipio.contains("${Buscar}")` 
 
     const busquedaMunicipios = ()=>{
         fetch(URL_REPORT_MUNICIPIOS)
         .then(response => response.json())
         .then(data => {
-            mun = data; 
-
+            mun = data.data; 
             recorrido(mun)
         })
         .catch(error =>{
@@ -320,7 +319,7 @@ let idMunicipio = []
 let idDepartamento =[] 
 
 
-const recorrido = ()=>{
+const recorrido = (mun)=>{
     mun.forEach(municipio =>{
 
         idMunicipio = municipio.ID 

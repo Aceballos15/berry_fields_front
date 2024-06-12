@@ -1,5 +1,5 @@
 //Url de la api para traer los datos 
-URL_PRODUCTOS= "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Productos_Berry"
+URL_PRODUCTOS= "https://zoho.accsolutions.tech/API/v1/Productos_Berry"
 
 //Variable para almacenar la info de la api 
 let cards = [] 
@@ -12,14 +12,24 @@ const dad = document.querySelector('.cards_dad')
 //Cargado de la pagina 
 window.addEventListener('DOMContentLoaded', async()=>{
     const data = await loadCards()
-    cards = data
+    cards = data.data
     renderCard(cards)
 })
 //Llamar a la api y traer los datos 
-const loadCards = async()=>{
-    const response = await fetch(URL_PRODUCTOS) 
-    return await response.json() 
-}
+const loadCards = async () => {
+    try {
+        const response = await fetch(URL_PRODUCTOS);
+        // Verificar si la respuesta fue exitosa
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error al cargar los datos:', error);
+        return null;  // O puedes manejar el error de otra manera
+    }
+};
 
 
 //Funcion para los filtros de busqueda y renderizar los productos 
@@ -44,7 +54,6 @@ input.addEventListener('input', (e)=>{
 
     const newCard = cards.filter(card => card.Referencia.trim().toLowerCase().includes(input.value.trim().toLowerCase()))
     renderCard(newCard) 
-
     if(newCard.length == 0){
         Swal.fire({
             icon: "error",

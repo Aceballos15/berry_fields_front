@@ -1,5 +1,5 @@
 //Url de la api 
-URL_PRODUCTOS= "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Productos_Berry"  
+URL_PRODUCTOS= "https://zoho.accsolutions.tech/API/v1/Productos_Berry"  
 
 //Variables de contenido 
 let listProductsHTML = document.querySelector('.cards_dad') 
@@ -44,7 +44,7 @@ listProductsHTML.addEventListener('click', (event) => {
 //Funcion para validar un producto compuesto 
 const validacion_Product = (compuesto, product_id, price,referencia,imagen, gramos)=>{
     //Busqueda de los productos por medio de la api 
-    const url = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Productos_Berry?where=ID==${compuesto}`;
+    const url = `https://zoho.accsolutions.tech/API/v1/Productos_Berry?where=ID==${compuesto}`;
 
     //Posicion en el carrito 
     let position = carts.findIndex((value) => value.product_id == product_id); 
@@ -53,7 +53,7 @@ const validacion_Product = (compuesto, product_id, price,referencia,imagen, gram
     .then(data => {
         
         //Recorrido de la respuesta de api 
-        data.forEach(card =>{
+        data.data.forEach(card =>{
 
             //Productos compuestos 
             if(card.Producto_Compuesto == "true"){
@@ -434,7 +434,7 @@ const initApp =() =>{
     fetch(URL_PRODUCTOS) 
     .then(response => response.json())
     .then(data =>{
-        listProducts = data;  
+        listProducts = data.data;  
 
         //obtener info de la memoria 
 

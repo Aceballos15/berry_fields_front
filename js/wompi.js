@@ -46,101 +46,6 @@ const actual = () => {
 
 fechaActual = actual();
 
-// let maping;
-// let geocoder;
-
-// document.querySelector('.validacion').addEventListener('submit', (event)=>{
-//     event.preventDefault();
-// })
-
-// const mapa = document.querySelector('.validacion');
-
-// let marcador;
-
-// let latitud = [];
-// let longitud = [];
-
-// const capturarNuevasCoordenadas = () => {
-//     if (marcador) {
-//         const nuevaLatitud = marcador.getPosition().lat();
-//         const nuevaLongitud = marcador.getPosition().lng();
-
-//         latitud = nuevaLatitud;
-//         longitud = nuevaLongitud;
-
-//     }
-
-// };
-
-// function initMap() {
-//     maping = new google.maps.Map(document.getElementById("map"), {
-//       center: { lat: 4.9815673, lng: -75.1703632 }, // Coordenadas iniciales del mapa
-//       zoom: 12,
-//     });
-//     geocoder = new google.maps.Geocoder();
-
-//     maping.addListener("click", (event) => {
-//         // Si ya existe un marcador, eliminarlo antes de agregar uno nuevo
-//         if (marcador) {
-//             marcador.setMap(null); // Eliminar el marcador anterior del mapa
-//         }
-
-//         // Crear un nuevo marcador en la posición del clic
-//         marcador = new google.maps.Marker({
-//             maping,
-//             position: event.latLng,
-//             title: "Posición seleccionada"
-//         });
-
-//         // Centrar el mapa en la nueva posición del marcador
-//         maping.setCenter(event.latLng);
-
-//         // Capturar las nuevas coordenadas
-//         capturarNuevasCoordenadas();
-//     });
-
-// };
-
-// const mostrarDireccion = () => {
-//     const new_direccion = `calle 7a, la ceja, antioquia, Colombia`;
-//     const geoCode = new google.maps.Geocoder();
-
-//     geoCode.geocode({ address: new_direccion }, function (results, status) {
-//         if (status == "OK") {
-//             const latLng = results[0].geometry.location;
-//             maping.setCenter(latLng);
-//             new google.maps.Marker({
-//                 maping,
-//                 position: latLng,
-//                 title: new_direccion
-//             });
-
-//             // Capturar las coordenadas
-//             const lat= latLng.lat();
-//             const long= latLng.lng();
-
-//             latitud = lat;
-//             longitud = long;
-
-//         } else {
-//             console.log('La dirección no se pudo encontrar debido a: ' + status)
-//         }
-//     });
-// }
-
-// fecha = actual();
-
-// mapa.addEventListener('click', ()=>{
-//     mostrarDireccion();
-//     initMap();
-// })
-
-// const hidden_map= document.querySelector('.map')
-
-// mapa.addEventListener('click', ()=>{
-//     hidden_map.classList.toggle('hidden-map')
-// })
-
 let new_total = 0; 
 
 bntDescuento.addEventListener("click", () => {
@@ -176,12 +81,12 @@ bntDescuento.addEventListener("click", () => {
       //validacion de que exista algo en el campo de descuentos
       if (value.length > 1) {
         //Validar el cupon de descuento
-        const url__descuento = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/All_Descuentos_Berries?where=Codigo_Descuento.contains(%22${value}%22)%26%26Estado%3D%3D%22Activo%22`;
+        const url__descuento = `https://zoho.accsolutions.tech/API/v1/All_Descuentos_Berries?where=Codigo_Descuento.contains(%22${value}%22)%26%26Estado%3D%3D%22Activo%22`;
 
         fetch(url__descuento)
           .then((res) => res.json())
           .then((data) => {
-            Data = data;
+            Data = data.data;
 
             let uso = [];
             let Fecha_Inicio = [];
@@ -206,14 +111,14 @@ bntDescuento.addEventListener("click", () => {
               if (Fecha_Inicio <= fechaActual && Fecha_Fin >= fechaActual) {
                 if (uso == "Si") {
                   //Validacion de uso de de cupon para solo una vez
-                  const url_verificar_pedido = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido_Report?where=Cupon%3D%3D%22${value}%22%26%26Clientes.Documento%3D%3D%22${NumCedula}%22%26%26Estado%3D%3D%22APPROVED%22`;
+                  const url_verificar_pedido = `https://zoho.accsolutions.tech/API/v1/verificar_pedido_Report?where=Cupon%3D%3D%22${value}%22%26%26Clientes.Documento%3D%3D%22${NumCedula}%22%26%26Estado%3D%3D%22APPROVED%22`;
 
                   let pedido = [];
 
                   fetch(url_verificar_pedido)
                     .then((res) => res.json())
                     .then((data) => {
-                      pedido = data;
+                      pedido = data.data;
 
                       let total = 0; 
                       let resta = 0; 
@@ -630,7 +535,7 @@ const funcionPostDescuento = async (percent) => {
     
               Producto.push(producto); 
     
-              const URL_BERRY ="https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido";
+              const URL_BERRY ="https://zoho.accsolutions.tech/API/v1/verificar_pedido";
       
               async function enviarDatos() {
   
@@ -825,11 +730,12 @@ const funcionPost = (totalW) => {
 
         try {
           const URL_BERRY =
-            "https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/verificar_pedido";
+            "https://zoho.accsolutions.tech/API/v1/verificar_pedido";
           fetch(URL_BERRY, producto)
             .then((response) => response.json())
             .then((data) => {
-              if (data) {
+              if (data.data ) {
+                console.log(data.data);
                 const form = document.getElementById("formWompi").submit();
               }
             });

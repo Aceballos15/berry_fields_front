@@ -103,14 +103,15 @@ const check = async ()=>{
 //Fucion para buscar cedula 
 const searchDirection = async (cedula)=>{
 
-    URL_API_Reporte_Clientes = `https://nexyapp-f3a65a020e2a.herokuapp.com/zoho/v1/console/Clientes_Berry?where=Documento=="${cedula}"` 
+    URL_API_Reporte_Clientes = `https://zoho.accsolutions.tech/API/v1/Clientes_Berry?where=Documento=="${cedula}"` 
     
     //Funcion para traer la info 
     const initCheckout = async ()=>{
         await fetch(URL_API_Reporte_Clientes)
         .then(response => response.json()) 
         .then(data =>{
-            chechkout = data; 
+            console.log(data)
+            chechkout = data.data; 
             
             //Funcion para mostrar en el checkout
             check(); 
